@@ -1,0 +1,123 @@
+D:\project\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.csprojResolveAssemblyReference.cache
+D:\project\SchoolAPI\SchoolAPI\bin\ApplicationInsights.config
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\csc.exe
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\System.Collections.Immutable.dll
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\System.Reflection.Metadata.dll
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\vbc.exe
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\VBCSCompiler.exe
+D:\project\SchoolAPI\SchoolAPI\bin\roslyn\VBCSCompiler.exe.config
+D:\project\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll.config
+D:\project\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll
+D:\project\SchoolAPI\SchoolAPI\bin\SchoolAPI.pdb
+D:\project\SchoolAPI\SchoolAPI\bin\Antlr3.Runtime.dll
+D:\project\SchoolAPI\SchoolAPI\bin\EntityFramework.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.Agent.Intercept.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.DependencyCollector.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.Web.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.WindowsServer.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.ApplicationInsights.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.Web.Infrastructure.dll
+D:\project\SchoolAPI\SchoolAPI\bin\Newtonsoft.Json.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Net.Http.Formatting.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Helpers.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Http.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Http.WebHost.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Mvc.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Optimization.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Razor.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Deployment.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.dll
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Razor.dll
+D:\project\SchoolAPI\SchoolAPI\bin\WebGrease.dll
+D:\project\SchoolAPI\SchoolAPI\bin\EntityFramework.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.DependencyCollector.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.Web.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.AI.WindowsServer.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.ApplicationInsights.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Newtonsoft.Json.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Net.Http.Formatting.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Helpers.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Http.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Http.WebHost.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Mvc.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Optimization.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.Razor.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Deployment.xml
+D:\project\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Razor.xml
+D:\project\SchoolAPI\SchoolAPI\bin\Antlr3.Runtime.pdb
+D:\project\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.dll
+D:\project\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.pdb
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\ApplicationInsights.config
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\csc.exe
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\System.Collections.Immutable.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\System.Reflection.Metadata.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\vbc.exe
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\VBCSCompiler.exe
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\roslyn\VBCSCompiler.exe.config
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll.config
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\SchoolAPI.pdb
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Antlr3.Runtime.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\EntityFramework.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.DependencyCollector.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.Web.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.WindowsServer.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.ApplicationInsights.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.Web.Infrastructure.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Newtonsoft.Json.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Net.Http.Formatting.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Helpers.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.WebHost.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Mvc.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Optimization.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Razor.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Deployment.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Razor.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\WebGrease.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\EntityFramework.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.DependencyCollector.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.Web.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.WindowsServer.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.ApplicationInsights.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Newtonsoft.Json.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Net.Http.Formatting.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Helpers.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.WebHost.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Mvc.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Optimization.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.Razor.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Deployment.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Razor.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Antlr3.Runtime.pdb
+D:\Visual Projects\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.dll
+D:\Visual Projects\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.pdb
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll.CodeAnalysisLog.xml
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll.lastcodeanalysissucceeded

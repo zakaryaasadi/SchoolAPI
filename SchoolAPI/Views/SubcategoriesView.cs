@@ -1,0 +1,28 @@
+﻿using SchoolAPI.Models;
+using SchoolAPI.Models.MD;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace SchoolAPI.Views
+{
+    public class SubcategoriesView
+    {
+        public static List<SubcategoryClass> getSubcategories(List<NEWS_SUB_CATS> newsSubCatsList)
+        {
+
+            List<SubcategoryClass> subCatsList = new List<SubcategoryClass>();
+
+            foreach (var item in newsSubCatsList)
+                subCatsList.Add(new SubcategoryClass()
+                {
+                    id = item.NEWS_SUB_CAT_ID,
+                    title = item.TITLE,
+                    categoryId = item.NEWS_CATS.NEWS_CAT_ID
+                });
+
+            return subCatsList;
+        }
+    }
+}
