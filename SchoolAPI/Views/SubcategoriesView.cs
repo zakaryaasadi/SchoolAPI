@@ -9,7 +9,7 @@ namespace SchoolAPI.Views
 {
     public class SubcategoriesView
     {
-        public static List<SubcategoryClass> getSubcategories(List<NEWS_SUB_CATS> newsSubCatsList)
+        public static List<SubcategoryClass> getSubcategories(int categoryId, List<NEWS_SUB_CATS> newsSubCatsList)
         {
 
             List<SubcategoryClass> subCatsList = new List<SubcategoryClass>();
@@ -19,7 +19,7 @@ namespace SchoolAPI.Views
                 {
                     id = item.NEWS_SUB_CAT_ID,
                     title = item.TITLE,
-                    categoryId = item.NEWS_CATS.NEWS_CAT_ID
+                    categoryId = categoryId
                 });
 
             return subCatsList;

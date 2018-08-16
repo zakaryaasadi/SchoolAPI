@@ -116,7 +116,7 @@ namespace SchoolAPI.Controllers
                         {
                             var rowNews = entities.NEWS_ACL_GROUPS.Where(n => n.GROUP_ID == group.id).ToList();
                             foreach (var news in rowNews.Where(n => n.NEWS.NEWS_SUB_CAT_ID == sub_cat_id))
-                                newsList.Add(NewsView.GetNewsFromRowNews(entities, news.NEWS));
+                                newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Group));
                         }
                     
 
@@ -146,7 +146,7 @@ namespace SchoolAPI.Controllers
                         {
                             var rowNews = entities.NEWS_ACL_CLASSES.Where(n => n.CLASS_ID == _class.id).ToList();
                             foreach (var news in rowNews.Where(n => n.NEWS.NEWS_SUB_CAT_ID == sub_cat_id))
-                                newsList.Add(NewsView.GetNewsFromRowNews(entities, news.NEWS));
+                                newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Class));
                         }
 
 
@@ -176,7 +176,7 @@ namespace SchoolAPI.Controllers
                         {
                             var rowNews = entities.NEWS_ACL_SUBJECTS.Where(n => n.SUBJECT_ID == _subject.id).ToList();
                             foreach (var news in rowNews.Where(n => n.NEWS.NEWS_SUB_CAT_ID == sub_cat_id))
-                                newsList.Add(NewsView.GetNewsFromRowNews(entities, news.NEWS));
+                                newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Subject));
                         }
 
 
@@ -215,7 +215,7 @@ namespace SchoolAPI.Controllers
                         id = item.NEWS_CAT_ID,
                         title = item.TITLE,
                         image = item.PIC,
-                        subcategories = SubcategoriesView.getSubcategories(item.NEWS_SUB_CATS.ToList())
+                        subcategories = SubcategoriesView.getSubcategories(item.NEWS_CAT_ID, item.NEWS_SUB_CATS.ToList())
                     });
 
                 }
@@ -229,14 +229,14 @@ namespace SchoolAPI.Controllers
         {
             using (Entities entities = new Entities())
             {
-                var newsSubCatsList = entities.NEWS_SUB_CATS.
-                    Where(s => s.NEWS_CAT_ID == news_cat_id)
+                var newsSubCatsList = entities.NEWS_SUB_CATS
+                    .Where(s => s.NEWS_CAT_ID == news_cat_id)
                     .ToList();
 
                 if (newsSubCatsList == null)
                     return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "There are not news sub category", results = newsSubCatsList });
 
-                var subCatsList = SubcategoriesView.getSubcategories(newsSubCatsList);
+                var subCatsList = SubcategoriesView.getSubcategories(news_cat_id, newsSubCatsList);
 
                 return Request.CreateResponse(HttpStatusCode.OK, new Result() {statusCode = 200,num_result = subCatsList.Count, status = "Success", results = subCatsList });
             }

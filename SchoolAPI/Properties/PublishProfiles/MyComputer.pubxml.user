@@ -82,10 +82,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/25/2018 15:38:02</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>08/15/2018 18:14:25</publishTime>
+      <publishTime>08/16/2018 16:51:40</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>08/15/2018 18:14:25</publishTime>
+      <publishTime>08/16/2018 16:51:40</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>11/03/2015 17:43:34</publishTime>
@@ -157,7 +157,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2015 21:19:46</publishTime>
     </File>
     <File Include="bin/SchoolAPI.dll">
-      <publishTime>08/15/2018 18:14:02</publishTime>
+      <publishTime>08/16/2018 16:51:22</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/28/2015 04:02:42</publishTime>
@@ -223,7 +223,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/25/2018 15:43:33</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>08/15/2018 18:14:08</publishTime>
+      <publishTime>08/16/2018 16:51:27</publishTime>
     </File>
     <File Include="Scripts/ai.0.22.9-build00167.js">
       <publishTime>06/25/2018 15:38:03</publishTime>

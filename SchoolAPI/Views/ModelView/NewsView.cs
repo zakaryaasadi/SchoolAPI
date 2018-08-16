@@ -22,12 +22,12 @@ namespace SchoolAPI.Views
                 .Skip(5 * (page - 1)).Take(5)
                 .ToList();
 
-            return GetNewsFromRowNews(e, newsList);
+            return GetNews(e, newsList);
             
         }
 
 
-        public static NewsClass GetNewsFromRowNews(Entities e, NEWS news)
+        public static NewsClass GetNews(NEWS news, PrivateNewsType privteNewsType = PrivateNewsType.Public)
         {
                 byte[] newsImage = null;
                 string body = "";
@@ -49,27 +49,27 @@ namespace SchoolAPI.Views
                     userId = news.USERS.USER_ID,
                     userName = news.USERS.USER_NAME,
                     profileImage = news.USERS.IMAGE,
-
+                   
                     type = news.TYPE,
                     subcategory = new SubcategoryClass() { id = news.NEWS_SUB_CATS.NEWS_SUB_CAT_ID, title = news.NEWS_SUB_CATS.TITLE },
-
+                    privateNewsType = privteNewsType,
                     title = news.TITLE,
                     headLine = news.HEADLINE,
                     sharable = news.SHARABLE == 0 ? false : true,
                     creationDate = news.CREATION_DATE,
                     eventDate = news.EVENT_DATE,
-
+                    
                     newsImage = newsImage,
                     body = body
                 };
             return newsClass;
         }
-        public static List<NewsClass> GetNewsFromRowNews(Entities e, List<NEWS> newsList)
+        public static List<NewsClass> GetNews(Entities e, List<NEWS> newsList)
         {
             List<NewsClass> newsClassList = new List<NewsClass>();
 
             foreach (var item in newsList)
-                newsClassList.Add(GetNewsFromRowNews(e, item));
+                newsClassList.Add(GetNews(item));
 
             return newsClassList;
         }
@@ -102,11 +102,6 @@ namespace SchoolAPI.Views
             return votings;
         }
 
-
-        private static NEWS_CATS getCats(Entities e, Nullable<int> cat_id)
-        {
-            return e.NEWS_CATS.FirstOrDefault(n => n.NEWS_CAT_ID == cat_id);
-        }
 
         private static List<ChoiceClass> getChoices(Entities e, int newsId, int userId)
         {

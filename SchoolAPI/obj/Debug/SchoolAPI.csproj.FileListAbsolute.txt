@@ -119,5 +119,3 @@ D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Razor.xml
 D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Antlr3.Runtime.pdb
 D:\Visual Projects\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.dll
 D:\Visual Projects\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.pdb
-D:\Visual Projects\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll.CodeAnalysisLog.xml
-D:\Visual Projects\SchoolAPI\SchoolAPI\bin\SchoolAPI.dll.lastcodeanalysissucceeded

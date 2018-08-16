@@ -9,6 +9,6 @@ namespace SchoolAPI.Models
     {
         public int id { get; set; }
         public string title { get; set; }
-        public int categoryId { get; set; }
+        public int? categoryId { get; set; }
     }
 }
