@@ -121,7 +121,6 @@ namespace SchoolAPI.ModelView
             myEncoderParameters.Param[0] = myEncoderParameter;
             string path = HostingEnvironment.MapPath(@"~/App_Data/temp") + "." + format.ToString();
             bmp1.Save(path, jgpEncoder,myEncoderParameters);
-
             return bmp1;
         }
 

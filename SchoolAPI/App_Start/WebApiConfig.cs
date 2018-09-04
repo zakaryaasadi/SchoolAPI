@@ -7,6 +7,7 @@ using System.Data.Entity;
 using Newtonsoft.Json.Converters;
 using System.Data.SQLite;
 using System.Web.Hosting;
+using System.IO;
 
 namespace SchoolAPI
 {
@@ -28,12 +29,15 @@ namespace SchoolAPI
             config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            CreateTableForAttachBuffer();
+            
+           CreateTableForAttachBuffer();
         }
 
         private static void CreateTableForAttachBuffer()
         {
             string pathDb = HostingEnvironment.MapPath("~/App_Data/BufferDb.db");
+            CreateAppDataFolder();
+            CreateDatabaseFile(pathDb);
             using (SQLiteConnection connection = new SQLiteConnection("Data Source=" + pathDb + ";Version=3;"))
             {
                 connection.Open();
@@ -41,6 +45,24 @@ namespace SchoolAPI
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
                 command.ExecuteNonQuery();
                 connection.Close();
+            }
+        }
+
+        private static void CreateAppDataFolder()
+        {
+            string path = HostingEnvironment.MapPath("~/App_Data");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+
+        private static void CreateDatabaseFile(string pathDb)
+        {
+            
+            FileInfo f = new FileInfo(pathDb);
+            if (!f.Exists)
+            {
+                var fs = f.Create();
+                fs.Dispose();
             }
         }
     }
