@@ -48,5 +48,9 @@ namespace SchoolAPI.Models.MD
         public DbSet<USER_VOTES> USER_VOTES { get; set; }
         public DbSet<USERS> USERS { get; set; }
         public DbSet<VOTING_CHOICES> VOTING_CHOICES { get; set; }
+        public DbSet<ALLOWED_CATS> ALLOWED_CATS { get; set; }
+        public DbSet<MESSAGE_RECIPIENTS> MESSAGE_RECIPIENTS { get; set; }
+        public DbSet<MESSAGES> MESSAGES { get; set; }
+        public DbSet<ATTACHMENTS> ATTACHMENTS { get; set; }
     }
 }

@@ -334,5 +334,54 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ALLOWED_CATS">
+      <EntityTypeMapping TypeName="Model.ALLOWED_CATS">
+        <MappingFragment StoreEntitySet="ALLOWED_CATS">
+          <ScalarProperty Name="NEWS_SUB_CAT_ID" ColumnName="NEWS_SUB_CAT_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ALLOWED_CAT_ID" ColumnName="ALLOWED_CAT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MESSAGE_RECIPIENTS">
+      <EntityTypeMapping TypeName="Model.MESSAGE_RECIPIENTS">
+        <MappingFragment StoreEntitySet="MESSAGE_RECIPIENTS">
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="MESSAGE_RECIPIENT_ID" ColumnName="MESSAGE_RECIPIENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MESSAGES">
+      <EntityTypeMapping TypeName="Model.MESSAGES">
+        <MappingFragment StoreEntitySet="MESSAGES">
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="TO_STRING" ColumnName="TO_STRING" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="ATTACH_NO" ColumnName="ATTACH_NO" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="MESSAGE_TYPE" ColumnName="MESSAGE_TYPE" />
+          <ScalarProperty Name="MESSAGE_STATUS" ColumnName="MESSAGE_STATUS" />
+          <ScalarProperty Name="MESSAGE_DATE" ColumnName="MESSAGE_DATE" />
+          <ScalarProperty Name="MESSAGE_CONTENT" ColumnName="MESSAGE_CONTENT" />
+          <ScalarProperty Name="MESSAGE_SUBJECT" ColumnName="MESSAGE_SUBJECT" />
+          <ScalarProperty Name="TO_USER_ID" ColumnName="TO_USER_ID" />
+          <ScalarProperty Name="FROM_USER_ID" ColumnName="FROM_USER_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATTACHMENTS">
+      <EntityTypeMapping TypeName="Model.ATTACHMENTS">
+        <MappingFragment StoreEntitySet="ATTACHMENTS">
+          <ScalarProperty Name="ATTACHMENT" ColumnName="ATTACHMENT" />
+          <ScalarProperty Name="ATTACH_FILENAME" ColumnName="ATTACH_FILENAME" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="ATTACH_ID" ColumnName="ATTACH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

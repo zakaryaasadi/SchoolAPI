@@ -32,6 +32,7 @@
     <NavigationProperty Name="NEWS_ACL_CLASSES" Relationship="Self.NEWS_ACL_CLASSES_FK2" FromRole="CLASSES" ToRole="NEWS_ACL_CLASSES" />
     <NavigationProperty Name="STUDENTS" Relationship="Self.STUDENTS_FK1" FromRole="CLASSES" ToRole="STUDENTS" />
     <NavigationProperty Name="SUBJECTS" Relationship="Self.SUBJECTS_FK1" FromRole="CLASSES" ToRole="SUBJECTS" />
+    <NavigationProperty Name="MESSAGES" Relationship="Model.MESSAGES_FK3" FromRole="CLASSES" ToRole="MESSAGES" />
   </EntityType>
   <EntityType Name="GROUP_MEMBERS">
     <Key>
@@ -58,6 +59,7 @@
     <NavigationProperty Name="SCHOOLS" Relationship="Self.GROUPS_FK1" FromRole="GROUPS" ToRole="SCHOOLS" />
     <NavigationProperty Name="JOIN_GROUPS" Relationship="Self.JOIN_GROUPS_FK1" FromRole="GROUPS" ToRole="JOIN_GROUPS" />
     <NavigationProperty Name="NEWS_ACL_GROUPS" Relationship="Self.NEWS_ACL_GROUPS_FK2" FromRole="GROUPS" ToRole="NEWS_ACL_GROUPS" />
+    <NavigationProperty Name="MESSAGES" Relationship="Model.MESSAGES_FK4" FromRole="GROUPS" ToRole="MESSAGES" />
   </EntityType>
   <EntityType Name="JOIN_GROUPS">
     <Key>
@@ -179,6 +181,7 @@
     <Property Name="MAIN_ID" Type="Int32" />
     <NavigationProperty Name="NEWS" Relationship="Self.NEWS_FK1" FromRole="NEWS_SUB_CATS" ToRole="NEWS" />
     <NavigationProperty Name="NEWS_CATS" Relationship="Self.NEWS_SUB_CATS_FK1" FromRole="NEWS_SUB_CATS" ToRole="NEWS_CATS" />
+    <NavigationProperty Name="ALLOWED_CATS" Relationship="Model.ALLOWED_CATS_FK2" FromRole="NEWS_SUB_CATS" ToRole="ALLOWED_CATS" />
   </EntityType>
   <EntityType Name="PARENTS">
     <Key>
@@ -303,6 +306,7 @@
     <NavigationProperty Name="SCHOOLS" Relationship="Self.SUBJECTS_FK2" FromRole="SUBJECTS" ToRole="SCHOOLS" />
     <NavigationProperty Name="STUDENT_SUBJECTS" Relationship="Self.STUDENT_SUBJECTS_FK2" FromRole="SUBJECTS" ToRole="STUDENT_SUBJECTS" />
     <NavigationProperty Name="TEACHER_SUBJECTS" Relationship="Self.TEACHER_SUBJECTS_FK2" FromRole="SUBJECTS" ToRole="TEACHER_SUBJECTS" />
+    <NavigationProperty Name="MESSAGES" Relationship="Model.MESSAGES_FK1" FromRole="SUBJECTS" ToRole="MESSAGES" />
   </EntityType>
   <EntityType Name="TEACHER_SUBJECTS">
     <Key>
@@ -379,6 +383,9 @@
     <NavigationProperty Name="STUDENTS" Relationship="Self.STUDENTS_FK3" FromRole="USERS" ToRole="STUDENTS" />
     <NavigationProperty Name="TEACHERS" Relationship="Self.TEACHERS_FK2" FromRole="USERS" ToRole="TEACHERS" />
     <NavigationProperty Name="USER_VOTES" Relationship="Self.USER_VOTES_FK1" FromRole="USERS" ToRole="USER_VOTES" />
+    <NavigationProperty Name="ALLOWED_CATS" Relationship="Model.ALLOWED_CATS_FK1" FromRole="USERS" ToRole="ALLOWED_CATS" />
+    <NavigationProperty Name="MESSAGE_RECIPIENTS" Relationship="Model.MESSAGE_RECIPIENTS_FK2" FromRole="USERS" ToRole="MESSAGE_RECIPIENTS" />
+    <NavigationProperty Name="MESSAGES" Relationship="Model.OUTBOX_FK2" FromRole="USERS" ToRole="MESSAGES" />
   </EntityType>
   <EntityType Name="VOTING_CHOICES">
     <Key>
@@ -1154,5 +1161,227 @@
       <End Role="VOTING_CHOICES" EntitySet="VOTING_CHOICES" />
       <End Role="USER_VOTES" EntitySet="USER_VOTES" />
     </AssociationSet>
+    <EntitySet Name="ALLOWED_CATS" EntityType="Model.ALLOWED_CATS" />
+    <AssociationSet Name="ALLOWED_CATS_FK1" Association="Model.ALLOWED_CATS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ALLOWED_CATS" EntitySet="ALLOWED_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="ALLOWED_CATS_FK2" Association="Model.ALLOWED_CATS_FK2">
+      <End Role="NEWS_SUB_CATS" EntitySet="NEWS_SUB_CATS" />
+      <End Role="ALLOWED_CATS" EntitySet="ALLOWED_CATS" />
+    </AssociationSet>
+    <EntitySet Name="MESSAGE_RECIPIENTS" EntityType="Model.MESSAGE_RECIPIENTS" />
+    <EntitySet Name="MESSAGES" EntityType="Model.MESSAGES" />
+    <AssociationSet Name="MESSAGES_FK3" Association="Model.MESSAGES_FK3">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGES_FK4" Association="Model.MESSAGES_FK4">
+      <End Role="GROUPS" EntitySet="GROUPS" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGE_RECIPIENTS_FK1" Association="Model.MESSAGE_RECIPIENTS_FK1">
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+      <End Role="MESSAGE_RECIPIENTS" EntitySet="MESSAGE_RECIPIENTS" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGE_RECIPIENTS_FK2" Association="Model.MESSAGE_RECIPIENTS_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="MESSAGE_RECIPIENTS" EntitySet="MESSAGE_RECIPIENTS" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGES_FK1" Association="Model.MESSAGES_FK1">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+    </AssociationSet>
+    <AssociationSet Name="OUTBOX_FK2" Association="Model.OUTBOX_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+    </AssociationSet>
+    <EntitySet Name="ATTACHMENTS" EntityType="Model.ATTACHMENTS" />
+    <AssociationSet Name="ATTACHMENTS_MESSAGES_FK1" Association="Model.ATTACHMENTS_MESSAGES_FK1">
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+      <End Role="ATTACHMENTS" EntitySet="ATTACHMENTS" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="ALLOWED_CATS">
+    <Key>
+      <PropertyRef Name="ALLOWED_CAT_ID" />
+    </Key>
+    <Property Name="ALLOWED_CAT_ID" Type="Int32" Nullable="false" />
+    <Property Name="USER_ID" Type="Int32" />
+    <Property Name="NEWS_SUB_CAT_ID" Type="Int32" />
+    <NavigationProperty Name="USERS" Relationship="Model.ALLOWED_CATS_FK1" FromRole="ALLOWED_CATS" ToRole="USERS" />
+    <NavigationProperty Name="NEWS_SUB_CATS" Relationship="Model.ALLOWED_CATS_FK2" FromRole="ALLOWED_CATS" ToRole="NEWS_SUB_CATS" />
+  </EntityType>
+  <Association Name="ALLOWED_CATS_FK1">
+    <End Type="Model.USERS" Role="USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.ALLOWED_CATS" Role="ALLOWED_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="ALLOWED_CATS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ALLOWED_CATS_FK2">
+    <End Type="Model.NEWS_SUB_CATS" Role="NEWS_SUB_CATS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.ALLOWED_CATS" Role="ALLOWED_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS_SUB_CATS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Principal>
+      <Dependent Role="ALLOWED_CATS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MESSAGE_RECIPIENTS">
+    <Key>
+      <PropertyRef Name="MESSAGE_RECIPIENT_ID" />
+    </Key>
+    <Property Name="MESSAGE_RECIPIENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="Int32" />
+    <Property Name="USER_ID" Type="Int32" />
+    <NavigationProperty Name="MESSAGES" Relationship="Model.MESSAGE_RECIPIENTS_FK1" FromRole="MESSAGE_RECIPIENTS" ToRole="MESSAGES" />
+    <NavigationProperty Name="USERS" Relationship="Model.MESSAGE_RECIPIENTS_FK2" FromRole="MESSAGE_RECIPIENTS" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="MESSAGES">
+    <Key>
+      <PropertyRef Name="MESSAGE_ID" />
+    </Key>
+    <Property Name="MESSAGE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="FROM_USER_ID" Type="Int32" />
+    <Property Name="TO_USER_ID" Type="Int32" />
+    <Property Name="MESSAGE_SUBJECT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MESSAGE_CONTENT" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="MESSAGE_DATE" Type="DateTime" />
+    <Property Name="MESSAGE_STATUS" Type="Int16" />
+    <Property Name="MESSAGE_TYPE" Type="Int16" />
+    <Property Name="SUBJECT_ID" Type="Int32" />
+    <Property Name="ATTACH_NO" Type="Int16" />
+    <Property Name="CLASS_ID" Type="Int32" />
+    <Property Name="GROUP_ID" Type="Int32" />
+    <Property Name="TO_STRING" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="CREATION_DATE" Type="DateTime" />
+    <NavigationProperty Name="CLASSES" Relationship="Model.MESSAGES_FK3" FromRole="MESSAGES" ToRole="CLASSES" />
+    <NavigationProperty Name="GROUPS" Relationship="Model.MESSAGES_FK4" FromRole="MESSAGES" ToRole="GROUPS" />
+    <NavigationProperty Name="MESSAGE_RECIPIENTS" Relationship="Model.MESSAGE_RECIPIENTS_FK1" FromRole="MESSAGES" ToRole="MESSAGE_RECIPIENTS" />
+    <NavigationProperty Name="SUBJECTS" Relationship="Model.MESSAGES_FK1" FromRole="MESSAGES" ToRole="SUBJECTS" />
+    <NavigationProperty Name="USERS" Relationship="Model.OUTBOX_FK2" FromRole="MESSAGES" ToRole="USERS" />
+    <NavigationProperty Name="ATTACHMENTS" Relationship="Model.ATTACHMENTS_MESSAGES_FK1" FromRole="MESSAGES" ToRole="ATTACHMENTS" />
+  </EntityType>
+  <Association Name="MESSAGES_FK3">
+    <End Type="Model.CLASSES" Role="CLASSES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.MESSAGES" Role="MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGES_FK4">
+    <End Type="Model.GROUPS" Role="GROUPS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.MESSAGES" Role="MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUPS">
+        <PropertyRef Name="GROUP_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGE_RECIPIENTS_FK1">
+    <End Type="Model.MESSAGES" Role="MESSAGES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.MESSAGE_RECIPIENTS" Role="MESSAGE_RECIPIENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGES">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Principal>
+      <Dependent Role="MESSAGE_RECIPIENTS">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGE_RECIPIENTS_FK2">
+    <End Type="Model.USERS" Role="USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.MESSAGE_RECIPIENTS" Role="MESSAGE_RECIPIENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="MESSAGE_RECIPIENTS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGES_FK1">
+    <End Type="Model.SUBJECTS" Role="SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.MESSAGES" Role="MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OUTBOX_FK2">
+    <End Type="Model.USERS" Role="USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.MESSAGES" Role="MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="FROM_USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ATTACHMENTS">
+    <Key>
+      <PropertyRef Name="ATTACH_ID" />
+    </Key>
+    <Property Name="ATTACH_ID" Type="Int32" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="Int32" />
+    <Property Name="ATTACH_FILENAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTACHMENT" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="MESSAGES" Relationship="Model.ATTACHMENTS_MESSAGES_FK1" FromRole="ATTACHMENTS" ToRole="MESSAGES" />
+  </EntityType>
+  <Association Name="ATTACHMENTS_MESSAGES_FK1">
+    <End Type="Model.MESSAGES" Role="MESSAGES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.ATTACHMENTS" Role="ATTACHMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGES">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Principal>
+      <Dependent Role="ATTACHMENTS">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

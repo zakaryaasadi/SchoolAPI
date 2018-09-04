@@ -11,7 +11,7 @@ using System.Web.Http;
 
 namespace SchoolAPI.Controllers
 {
-    public class EventsController : ApiController
+    public class EventController : ApiController
     {
         [HttpGet]
         public HttpResponseMessage Get(int school_id)
@@ -38,5 +38,6 @@ namespace SchoolAPI.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, new Result() {statusCode = 400, status = ex.Message });
             }
         }
+
     }
 }

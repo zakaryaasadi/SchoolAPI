@@ -24,6 +24,9 @@ namespace SchoolAPI.Models.MD
             this.STUDENTS = new HashSet<STUDENTS>();
             this.TEACHERS = new HashSet<TEACHERS>();
             this.USER_VOTES = new HashSet<USER_VOTES>();
+            this.ALLOWED_CATS = new HashSet<ALLOWED_CATS>();
+            this.MESSAGE_RECIPIENTS = new HashSet<MESSAGE_RECIPIENTS>();
+            this.MESSAGES = new HashSet<MESSAGES>();
         }
     
         public Nullable<int> SCHOOL_ID { get; set; }
@@ -49,5 +52,8 @@ namespace SchoolAPI.Models.MD
         public virtual ICollection<STUDENTS> STUDENTS { get; set; }
         public virtual ICollection<TEACHERS> TEACHERS { get; set; }
         public virtual ICollection<USER_VOTES> USER_VOTES { get; set; }
+        public virtual ICollection<ALLOWED_CATS> ALLOWED_CATS { get; set; }
+        public virtual ICollection<MESSAGE_RECIPIENTS> MESSAGE_RECIPIENTS { get; set; }
+        public virtual ICollection<MESSAGES> MESSAGES { get; set; }
     }
 }

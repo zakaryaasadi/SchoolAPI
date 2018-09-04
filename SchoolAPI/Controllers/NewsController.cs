@@ -8,7 +8,6 @@ using SchoolAPI.Models.MD;
 using SchoolAPI.Models;
 using SchoolAPI.Views;
 using System.Linq.Expressions;
-using SchoolAPI.Views.ModelView;
 
 namespace SchoolAPI.Controllers
 {
@@ -53,7 +52,7 @@ namespace SchoolAPI.Controllers
             {
                 using (Entities entities = new Entities())
                 {
-                    Expression<Func<NEWS, bool>> expr = n => n.SCHOOL_ID == school_id && n.NEWS_SUB_CAT_ID == sub_cat_id && n.TYPE == type && n.EVENT_DATE == null && n.ACCESSIBILITY == 1;
+                    Expression<Func<NEWS, bool>> expr = n => n.SCHOOL_ID == school_id && n.NEWS_SUB_CAT_ID == sub_cat_id && n.TYPE == type && n.EVENT_DATE == null && n.ACCESSIBILITY == 1 && n.APPROVED == 1;
                     var numNews = entities.NEWS.Where(expr).Count();
                     int numTotalPage = (int)Math.Ceiling(numNews / 10.0);
 
@@ -75,6 +74,32 @@ namespace SchoolAPI.Controllers
             }
         }
 
+        [HttpPost]
+        public HttpResponseMessage Add(int school_id, [FromBody] NewsClass news)
+        {
+            try
+            {
+                using (Entities entities = new Entities())
+                {
+                    if (entities.ALLOWED_CATS.FirstOrDefault(a => a.NEWS_SUB_CAT_ID == news.subcategory.id && a.USER_ID == news.userId) == null)
+                        return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = "You do not have permission to add news to this subcategory, please request permission from the administrator" });
+
+                    NEWS _News = NewsView.CreateNews(entities, news);
+                    _News.SCHOOL_ID = school_id; 
+                    
+                    entities.NEWS.Add(_News);
+                    entities.SaveChanges();
+
+                    NewsClass newNews = NewsView.GetNews(entities.NEWS.FirstOrDefault(n => n.NEWS_ID == _News.NEWS_ID));
+                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Done", results = new List<NewsClass> { newNews } });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = ex.Message });
+            }
+        }
+
 
         [HttpGet]
         public HttpResponseMessage Profile(int school_id, int user_id)
@@ -83,7 +108,7 @@ namespace SchoolAPI.Controllers
             {
                 using (Entities entities = new Entities())
                 {
-                    Expression<Func<NEWS, bool>> expr = n => n.SCHOOL_ID == school_id && n.USER_ID == user_id && n.ACCESSIBILITY == 1;
+                    Expression<Func<NEWS, bool>> expr = n => n.SCHOOL_ID == school_id && n.USER_ID == user_id && n.ACCESSIBILITY == 1 && n.APPROVED == 1;
                     var numNews = entities.NEWS.Where(expr).Count();
                     int numTotalPage = (int)Math.Ceiling(numNews / 10.0);
 
@@ -110,13 +135,14 @@ namespace SchoolAPI.Controllers
                 using (Entities entities = new Entities())
                 {
                     List<NewsClass> newsList = new List<NewsClass>();
-                    USERS user = entities.USERS.FirstOrDefault(u => u.USER_ID == user_id);
+                    UserPrivateInfoClass user = new UserPrivateInfoClass(entities.USERS.FirstOrDefault(u => u.USER_ID == user_id));
                     if(user != null )
-                        foreach (var group in UserView.Info(entities,user).groups )
+                        foreach (var group in user.groups )
                         {
                             var rowNews = entities.NEWS_ACL_GROUPS.Where(n => n.GROUP_ID == group.id).ToList();
                             foreach (var news in rowNews.Where(n => n.NEWS.NEWS_SUB_CAT_ID == sub_cat_id))
-                                newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Group));
+                                if(news.NEWS.APPROVED == 1)
+                                    newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Group));
                         }
                     
 
@@ -140,13 +166,14 @@ namespace SchoolAPI.Controllers
                 using (Entities entities = new Entities())
                 {
                     List<NewsClass> newsList = new List<NewsClass>();
-                    USERS user = entities.USERS.FirstOrDefault(u => u.USER_ID == user_id);
+                    UserPrivateInfoClass user = new UserPrivateInfoClass(user_id);
                     if (user != null)
-                        foreach (var _class in UserView.Info(entities, user).classes)
+                        foreach (var _class in user.classes)
                         {
                             var rowNews = entities.NEWS_ACL_CLASSES.Where(n => n.CLASS_ID == _class.id).ToList();
                             foreach (var news in rowNews.Where(n => n.NEWS.NEWS_SUB_CAT_ID == sub_cat_id))
-                                newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Class));
+                                if (news.NEWS.APPROVED == 1)
+                                    newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Class));
                         }
 
 
@@ -170,13 +197,14 @@ namespace SchoolAPI.Controllers
                 using (Entities entities = new Entities())
                 {
                     List<NewsClass> newsList = new List<NewsClass>();
-                    USERS user = entities.USERS.FirstOrDefault(u => u.USER_ID == user_id);
+                    UserPrivateInfoClass user = new UserPrivateInfoClass(user_id);
                     if (user != null)
-                        foreach (var _subject in UserView.Info(entities, user).subjects)
+                        foreach (var _subject in user.subjects)
                         {
                             var rowNews = entities.NEWS_ACL_SUBJECTS.Where(n => n.SUBJECT_ID == _subject.id).ToList();
                             foreach (var news in rowNews.Where(n => n.NEWS.NEWS_SUB_CAT_ID == sub_cat_id))
-                                newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Subject));
+                                if (news.NEWS.APPROVED == 1)
+                                    newsList.Add(NewsView.GetNews(news.NEWS, PrivateNewsType.Subject));
                         }
 
 
@@ -209,36 +237,10 @@ namespace SchoolAPI.Controllers
 
                 List<CategoryClass> catsList = new List<CategoryClass>();
                 foreach (var item in newsCatsList)
-                {
-                    catsList.Add(new CategoryClass()
-                    {
-                        id = item.NEWS_CAT_ID,
-                        title = item.TITLE,
-                        image = item.PIC,
-                        subcategories = SubcategoriesView.getSubcategories(item.NEWS_CAT_ID, item.NEWS_SUB_CATS.ToList())
-                    });
+                    catsList.Add(new CategoryClass(item));
 
-                }
 
                 return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, num_result = catsList.Count, status = "Success", results = catsList });
-            }
-        }
-
-        [HttpGet]
-        public HttpResponseMessage SubCats(int news_cat_id)
-        {
-            using (Entities entities = new Entities())
-            {
-                var newsSubCatsList = entities.NEWS_SUB_CATS
-                    .Where(s => s.NEWS_CAT_ID == news_cat_id)
-                    .ToList();
-
-                if (newsSubCatsList == null)
-                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "There are not news sub category", results = newsSubCatsList });
-
-                var subCatsList = SubcategoriesView.getSubcategories(news_cat_id, newsSubCatsList);
-
-                return Request.CreateResponse(HttpStatusCode.OK, new Result() {statusCode = 200,num_result = subCatsList.Count, status = "Success", results = subCatsList });
             }
         }
 

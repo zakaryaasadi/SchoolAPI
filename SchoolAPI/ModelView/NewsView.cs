@@ -51,11 +51,11 @@ namespace SchoolAPI.Views
                     profileImage = news.USERS.IMAGE,
                    
                     type = news.TYPE,
-                    subcategory = new SubcategoryClass() { id = news.NEWS_SUB_CATS.NEWS_SUB_CAT_ID, title = news.NEWS_SUB_CATS.TITLE },
+                    subcategory = new SubcategoryClass(news.NEWS_SUB_CATS),
                     privateNewsType = privteNewsType,
                     title = news.TITLE,
                     headLine = news.HEADLINE,
-                    sharable = news.SHARABLE == 0 ? false : true,
+                    sharable = news.SHARABLE == 1,
                     creationDate = news.CREATION_DATE,
                     eventDate = news.EVENT_DATE,
                     
@@ -74,6 +74,42 @@ namespace SchoolAPI.Views
             return newsClassList;
         }
 
+        public static NEWS CreateNews(Entities e, NewsClass news)
+        {
+            NEWS _News = new NEWS()
+            {
+                NEWS_ID = e.NEWS.Max(n => n.NEWS_ID) + 1,
+                USER_ID = news.userId,
+                TYPE = news.type,
+                NEWS_SUB_CAT_ID = news.subcategory.id,
+                TITLE = news.title,
+                HEADLINE = news.headLine,
+                SHARABLE = news.sharable ? short.Parse("1") : short.Parse("2"),
+                CREATION_DATE = DateTime.Now,
+                EVENT_DATE = news.eventDate,
+                VOTE_COUNT = 1,
+                VOTE_RESULT = 1,
+                VOTE_TYPE = 1,
+                HIERARCHY_TYPE = 1,
+                USERS = e.USERS.FirstOrDefault(u => u.USER_ID == news.userId),
+                NEWS_SUB_CATS = e.NEWS_SUB_CATS.FirstOrDefault(n => n.NEWS_SUB_CAT_ID == news.subcategory.id),
+                APPROVED = new UserPrivateInfoClass(news.userId).needApprove,
+                ACCESSIBILITY = news.privateNewsType == 0 ? 1 : 2
+        };
+
+            processFKForNEWS_IDAndNEWS_MEDIA(e);
+            int offset = e.NEWS_MEDIAS.Max(n => n.NEWS_MEDIA_ID) + 1;
+            if (news.body != null)
+            {
+                _News.NEWS_MEDIAS.Add(new NEWS_MEDIAS() { NEWS_MEDIA_ID = offset, NEWS_ID = _News.NEWS_ID, BODY = news.body, TYPE = 1 });
+                if (news.newsImage != null) offset++;
+            }
+
+            if (news.newsImage != null)
+                _News.NEWS_MEDIAS.Add(new NEWS_MEDIAS() { NEWS_MEDIA_ID = offset, NEWS_ID = _News.NEWS_ID, ATTACH = news.newsImage, TYPE = 2, NAME ="No Name.jpg" });
+            return _News;
+        } 
+
         public static List<VotingClass> getVotingClassList(Entities e, Expression<Func<NEWS, bool>> expr, int page, int userId = 0)
         {
             List<NewsClass> newsList = getNewsClassList(e, expr, page);
@@ -89,7 +125,7 @@ namespace SchoolAPI.Views
                 votingClass.voteType = _NEWS.VOTE_TYPE;
                 votingClass.voteResult = _NEWS.VOTE_RESULT;
                 votingClass.voteCount = _NEWS.VOTE_COUNT == 1 ? true : false;
-                votingClass.expierDate = _NEWS.EXPIRATION_DATE;
+                votingClass.expireDate = _NEWS.EXPIRATION_DATE;
                 votingClass.choices = getChoices(e, item.id, userId);
 
                 
@@ -109,19 +145,18 @@ namespace SchoolAPI.Views
             List<VOTING_CHOICES> VC = e.VOTING_CHOICES.Where(v => v.NEWS_ID == newsId).ToList();
 
             foreach (var item in VC)
-            {
-                choices.Add(new ChoiceClass()
-                {
-                    id = item.VOTING_CHOICE_ID,
-                    title = item.CHOICE,
-                    voteCount = e.USER_VOTES.Where(uv => uv.VOTING_CHOICE_ID == item.VOTING_CHOICE_ID).ToList().Count(),
-                    isChoiced = e.USER_VOTES.FirstOrDefault(uv => uv.USER_ID == userId && uv.VOTING_CHOICE_ID == item.VOTING_CHOICE_ID) == null ? false : true,
-                    newsId = newsId
-                });
+                choices.Add(new ChoiceClass(newsId, userId, item));
 
-            }
             return choices;
         }
 
+        private static void processFKForNEWS_IDAndNEWS_MEDIA(Entities e)
+        {
+            foreach (var item in e.NEWS_MEDIAS.Where(nm => nm.NEWS_ID == null))
+            {
+                item.ATTACH = null;
+                item.BODY = null;
+            }
+        }
     }
 }

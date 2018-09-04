@@ -19,6 +19,7 @@ namespace SchoolAPI.Models.MD
             this.GROUP_MEMBERS = new HashSet<GROUP_MEMBERS>();
             this.JOIN_GROUPS = new HashSet<JOIN_GROUPS>();
             this.NEWS_ACL_GROUPS = new HashSet<NEWS_ACL_GROUPS>();
+            this.MESSAGES = new HashSet<MESSAGES>();
         }
     
         public int GROUP_ID { get; set; }
@@ -31,5 +32,6 @@ namespace SchoolAPI.Models.MD
         public virtual SCHOOLS SCHOOLS { get; set; }
         public virtual ICollection<JOIN_GROUPS> JOIN_GROUPS { get; set; }
         public virtual ICollection<NEWS_ACL_GROUPS> NEWS_ACL_GROUPS { get; set; }
+        public virtual ICollection<MESSAGES> MESSAGES { get; set; }
     }
 }

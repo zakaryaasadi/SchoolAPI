@@ -69,6 +69,19 @@
         <AssociationConnector Association="Model.TEACHERS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.USER_VOTES_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.USER_VOTES_FK2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.ALLOWED_CATS" Width="1.5" PointX="21" PointY="32.25" />
+        <AssociationConnector Association="Model.ALLOWED_CATS_FK1" />
+        <AssociationConnector Association="Model.ALLOWED_CATS_FK2" />
+        <EntityTypeShape EntityType="Model.MESSAGE_RECIPIENTS" Width="1.5" PointX="26.25" PointY="30" />
+        <EntityTypeShape EntityType="Model.MESSAGES" Width="1.5" PointX="24" PointY="27.375" />
+        <AssociationConnector Association="Model.MESSAGES_FK3" />
+        <AssociationConnector Association="Model.MESSAGES_FK4" />
+        <AssociationConnector Association="Model.MESSAGE_RECIPIENTS_FK1" />
+        <AssociationConnector Association="Model.MESSAGE_RECIPIENTS_FK2" />
+        <AssociationConnector Association="Model.MESSAGES_FK1" />
+        <AssociationConnector Association="Model.OUTBOX_FK2" />
+        <EntityTypeShape EntityType="Model.ATTACHMENTS" Width="1.5" PointX="26.25" PointY="26.875" />
+        <AssociationConnector Association="Model.ATTACHMENTS_MESSAGES_FK1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

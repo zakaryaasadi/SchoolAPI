@@ -14,6 +14,23 @@
     <Property Name="ALLOW_ADD_NEWS" Type="number" Precision="2" Scale="0" />
     <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
   </EntityType>
+  <EntityType Name="ALLOWED_CATS">
+    <Key>
+      <PropertyRef Name="ALLOWED_CAT_ID" />
+    </Key>
+    <Property Name="ALLOWED_CAT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NEWS_SUB_CAT_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="ATTACHMENTS">
+    <Key>
+      <PropertyRef Name="ATTACH_ID" />
+    </Key>
+    <Property Name="ATTACH_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="ATTACH_FILENAME" Type="varchar2" MaxLength="200" />
+    <Property Name="ATTACHMENT" Type="blob" />
+  </EntityType>
   <EntityType Name="CLASSES">
     <Key>
       <PropertyRef Name="CLASS_ID" />
@@ -52,6 +69,34 @@
     <Property Name="JOIN_GROUP_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
     <Property Name="GROUP_ID" Type="number" Precision="8" Scale="0" />
     <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="MESSAGE_RECIPIENTS">
+    <Key>
+      <PropertyRef Name="MESSAGE_RECIPIENT_ID" />
+    </Key>
+    <Property Name="MESSAGE_RECIPIENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="MESSAGES">
+    <Key>
+      <PropertyRef Name="MESSAGE_ID" />
+    </Key>
+    <Property Name="MESSAGE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="FROM_USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="TO_USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="MESSAGE_SUBJECT" Type="varchar2" MaxLength="200" />
+    <Property Name="MESSAGE_CONTENT" Type="varchar2" MaxLength="2000" />
+    <Property Name="MESSAGE_DATE" Type="date" />
+    <Property Name="MESSAGE_STATUS" Type="number" Precision="2" Scale="0" />
+    <Property Name="MESSAGE_TYPE" Type="number" Precision="2" Scale="0" />
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="ATTACH_NO" Type="number" Precision="2" Scale="0" />
+    <Property Name="CLASS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="GROUP_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="TO_STRING" Type="varchar2" MaxLength="4000" />
+    <Property Name="CREATION_DATE" Type="date" />
   </EntityType>
   <EntityType Name="NEWS">
     <Key>
@@ -352,6 +397,48 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ALLOWED_CATS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ALLOWED_CATS" Type="Self.ALLOWED_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="ALLOWED_CATS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ALLOWED_CATS_FK2">
+    <End Role="NEWS_SUB_CATS" Type="Self.NEWS_SUB_CATS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ALLOWED_CATS" Type="Self.ALLOWED_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS_SUB_CATS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Principal>
+      <Dependent Role="ALLOWED_CATS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ATTACHMENTS_MESSAGES_FK1">
+    <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ATTACHMENTS" Type="Self.ATTACHMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGES">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Principal>
+      <Dependent Role="ATTACHMENTS">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="CLASSES_FK1">
     <End Role="NEWS_CATS" Type="Self.NEWS_CATS" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -447,6 +534,76 @@
       </Principal>
       <Dependent Role="JOIN_GROUPS">
         <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGE_RECIPIENTS_FK1">
+    <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MESSAGE_RECIPIENTS" Type="Self.MESSAGE_RECIPIENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MESSAGES">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Principal>
+      <Dependent Role="MESSAGE_RECIPIENTS">
+        <PropertyRef Name="MESSAGE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGE_RECIPIENTS_FK2">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MESSAGE_RECIPIENTS" Type="Self.MESSAGE_RECIPIENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="MESSAGE_RECIPIENTS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGES_FK1">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGES_FK3">
+    <End Role="CLASSES" Type="Self.CLASSES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGES_FK4">
+    <End Role="GROUPS" Type="Self.GROUPS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUPS">
+        <PropertyRef Name="GROUP_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="GROUP_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -577,9 +734,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="NEWS_MEDIAS_FK1">
-    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1" />
     <End Role="NEWS_MEDIAS" Type="Self.NEWS_MEDIAS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="NEWS">
@@ -601,6 +756,20 @@
       </Principal>
       <Dependent Role="NEWS_SUB_CATS">
         <PropertyRef Name="NEWS_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OUTBOX_FK2">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="MESSAGES">
+        <PropertyRef Name="FROM_USER_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -886,10 +1055,14 @@
   </Association>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ADMINS" EntityType="Self.ADMINS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="ALLOWED_CATS" EntityType="Self.ALLOWED_CATS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="ATTACHMENTS" EntityType="Self.ATTACHMENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
     <EntitySet Name="CLASSES" EntityType="Self.CLASSES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
     <EntitySet Name="GROUP_MEMBERS" EntityType="Self.GROUP_MEMBERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
     <EntitySet Name="GROUPS" EntityType="Self.GROUPS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
     <EntitySet Name="JOIN_GROUPS" EntityType="Self.JOIN_GROUPS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="MESSAGE_RECIPIENTS" EntityType="Self.MESSAGE_RECIPIENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="MESSAGES" EntityType="Self.MESSAGES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
     <EntitySet Name="NEWS" EntityType="Self.NEWS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
     <EntitySet Name="NEWS_ACL_CLASSES" EntityType="Self.NEWS_ACL_CLASSES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
     <EntitySet Name="NEWS_ACL_GROUPS" EntityType="Self.NEWS_ACL_GROUPS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
@@ -920,6 +1093,18 @@
       <End Role="USERS" EntitySet="USERS" />
       <End Role="ADMINS" EntitySet="ADMINS" />
     </AssociationSet>
+    <AssociationSet Name="ALLOWED_CATS_FK1" Association="Self.ALLOWED_CATS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ALLOWED_CATS" EntitySet="ALLOWED_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="ALLOWED_CATS_FK2" Association="Self.ALLOWED_CATS_FK2">
+      <End Role="NEWS_SUB_CATS" EntitySet="NEWS_SUB_CATS" />
+      <End Role="ALLOWED_CATS" EntitySet="ALLOWED_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="ATTACHMENTS_MESSAGES_FK1" Association="Self.ATTACHMENTS_MESSAGES_FK1">
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+      <End Role="ATTACHMENTS" EntitySet="ATTACHMENTS" />
+    </AssociationSet>
     <AssociationSet Name="CLASSES_FK1" Association="Self.CLASSES_FK1">
       <End Role="NEWS_CATS" EntitySet="NEWS_CATS" />
       <End Role="CLASSES" EntitySet="CLASSES" />
@@ -947,6 +1132,26 @@
     <AssociationSet Name="JOIN_GROUPS_FK2" Association="Self.JOIN_GROUPS_FK2">
       <End Role="USERS" EntitySet="USERS" />
       <End Role="JOIN_GROUPS" EntitySet="JOIN_GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGE_RECIPIENTS_FK1" Association="Self.MESSAGE_RECIPIENTS_FK1">
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+      <End Role="MESSAGE_RECIPIENTS" EntitySet="MESSAGE_RECIPIENTS" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGE_RECIPIENTS_FK2" Association="Self.MESSAGE_RECIPIENTS_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="MESSAGE_RECIPIENTS" EntitySet="MESSAGE_RECIPIENTS" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGES_FK1" Association="Self.MESSAGES_FK1">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGES_FK3" Association="Self.MESSAGES_FK3">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGES_FK4" Association="Self.MESSAGES_FK4">
+      <End Role="GROUPS" EntitySet="GROUPS" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
     </AssociationSet>
     <AssociationSet Name="NEWS_ACL_CLASSES_FK1" Association="Self.NEWS_ACL_CLASSES_FK1">
       <End Role="NEWS" EntitySet="NEWS" />
@@ -991,6 +1196,10 @@
     <AssociationSet Name="NEWS_SUB_CATS_FK1" Association="Self.NEWS_SUB_CATS_FK1">
       <End Role="NEWS_CATS" EntitySet="NEWS_CATS" />
       <End Role="NEWS_SUB_CATS" EntitySet="NEWS_SUB_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="OUTBOX_FK2" Association="Self.OUTBOX_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="MESSAGES" EntitySet="MESSAGES" />
     </AssociationSet>
     <AssociationSet Name="PARENTS_SCHOOLS_FK1" Association="Self.PARENTS_SCHOOLS_FK1">
       <End Role="SCHOOLS" EntitySet="SCHOOLS" />

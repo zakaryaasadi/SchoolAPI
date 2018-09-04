@@ -12,6 +12,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="ApplicationInsights.config">
       <publishTime>06/25/2018 15:38:02</publishTime>
     </File>
+    <File Include="App_Data/BufferDb.db">
+      <publishTime>08/31/2018 14:58:57</publishTime>
+    </File>
     <File Include="Areas/HelpPage/HelpPage.css">
       <publishTime>06/25/2018 15:37:55</publishTime>
     </File>
@@ -82,10 +85,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/25/2018 15:38:02</publishTime>
     </File>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>08/16/2018 16:51:40</publishTime>
+      <publishTime>09/03/2018 18:31:19</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>08/16/2018 16:51:40</publishTime>
+      <publishTime>09/03/2018 18:31:19</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>11/03/2015 17:43:34</publishTime>
@@ -157,7 +160,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2015 21:19:46</publishTime>
     </File>
     <File Include="bin/SchoolAPI.dll">
-      <publishTime>08/16/2018 16:51:22</publishTime>
+      <publishTime>09/03/2018 18:31:13</publishTime>
+    </File>
+    <File Include="bin/System.Data.SQLite.dll">
+      <publishTime>04/22/2017 14:00:24</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>01/28/2015 04:02:42</publishTime>
@@ -217,13 +223,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/25/2018 15:37:51</publishTime>
     </File>
     <File Include="Models/MD/ModelDataAccess.edmx.diagram">
-      <publishTime>08/07/2018 14:57:25</publishTime>
+      <publishTime>08/30/2018 12:58:25</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>06/25/2018 15:43:33</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>08/16/2018 16:51:27</publishTime>
+      <publishTime>09/03/2018 18:31:14</publishTime>
     </File>
     <File Include="Scripts/ai.0.22.9-build00167.js">
       <publishTime>06/25/2018 15:38:03</publishTime>

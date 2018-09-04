@@ -120,3 +120,4 @@ D:\Visual Projects\SchoolAPI\SchoolAPI\bin\Antlr3.Runtime.pdb
 D:\Visual Projects\SchoolAPI\SchoolAPI\obj\Release\SchoolAPI.csprojResolveAssemblyReference.cache
 D:\Visual Projects\SchoolAPI\SchoolAPI\obj\Release\SchoolAPI.dll
 D:\Visual Projects\SchoolAPI\SchoolAPI\obj\Release\SchoolAPI.pdb
+D:\Visual Projects\SchoolAPI\SchoolAPI\bin\System.Data.SQLite.dll

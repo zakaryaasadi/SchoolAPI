@@ -19,6 +19,7 @@ namespace SchoolAPI.Models.MD
             this.NEWS_ACL_SUBJECTS = new HashSet<NEWS_ACL_SUBJECTS>();
             this.STUDENT_SUBJECTS = new HashSet<STUDENT_SUBJECTS>();
             this.TEACHER_SUBJECTS = new HashSet<TEACHER_SUBJECTS>();
+            this.MESSAGES = new HashSet<MESSAGES>();
         }
     
         public int SUBJECT_ID { get; set; }
@@ -37,5 +38,6 @@ namespace SchoolAPI.Models.MD
         public virtual SCHOOLS SCHOOLS { get; set; }
         public virtual ICollection<STUDENT_SUBJECTS> STUDENT_SUBJECTS { get; set; }
         public virtual ICollection<TEACHER_SUBJECTS> TEACHER_SUBJECTS { get; set; }
+        public virtual ICollection<MESSAGES> MESSAGES { get; set; }
     }
 }
