@@ -1,0 +1,1577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ADMIN_SUBJECTS">
+    <Key>
+      <PropertyRef Name="ADMIN_SUBJECT_ID" />
+    </Key>
+    <Property Name="ADMIN_SUBJECT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="ADMIN_ID" Type="number" Precision="38" Scale="0" />
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="ADMINS">
+    <Key>
+      <PropertyRef Name="ADMIN_ID" />
+    </Key>
+    <Property Name="ADMIN_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="ADMIN_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="ADMIN_POSITION" Type="varchar2" MaxLength="200" />
+    <Property Name="NEWS_CAT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="FULL_ADMIN" Type="number" Precision="2" Scale="0" />
+    <Property Name="ALLOW_ADD_NEWS" Type="number" Precision="2" Scale="0" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="ALLOWED_CATS">
+    <Key>
+      <PropertyRef Name="ALLOWED_CAT_ID" />
+    </Key>
+    <Property Name="ALLOWED_CAT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NEWS_SUB_CAT_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="ANSWERS_USERS">
+    <Key>
+      <PropertyRef Name="ANSWER_USER_ID" />
+    </Key>
+    <Property Name="ANSWER_USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="ANSWER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="IS_CHECKED" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ANSWER" Type="varchar2" MaxLength="1000" />
+    <Property Name="QUESTION_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="ATTACHMENTS">
+    <Key>
+      <PropertyRef Name="ATTACH_ID" />
+    </Key>
+    <Property Name="ATTACH_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="ATTACH_FILENAME" Type="varchar2" MaxLength="200" />
+    <Property Name="ATTACHMENT" Type="blob" />
+  </EntityType>
+  <EntityType Name="CLASSES">
+    <Key>
+      <PropertyRef Name="CLASS_ID" />
+    </Key>
+    <Property Name="CLASS_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NEWS_CAT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="CLASS_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="SORT" Type="number" Precision="8" Scale="0" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="DOC_ANSWERS">
+    <Key>
+      <PropertyRef Name="ANSWER_ID" />
+    </Key>
+    <Property Name="ANSWER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="VALUE" Type="varchar2" MaxLength="500" Nullable="false" />
+    <Property Name="QUESTION_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="DOC_QUESTIONS">
+    <Key>
+      <PropertyRef Name="QUESTION_ID" />
+    </Key>
+    <Property Name="QUESTION_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="VALUE" Type="varchar2" MaxLength="1000" Nullable="false" />
+    <Property Name="TYPE" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="DOCUMENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DOCUMENT_USER">
+    <Key>
+      <PropertyRef Name="DOCUMENT_USER_ID" />
+    </Key>
+    <Property Name="DOCUMENT_USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="DOCUMENT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="DOCUMENTS">
+    <Key>
+      <PropertyRef Name="DOCUMENT_ID" />
+    </Key>
+    <Property Name="DOCUMENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="NAME" Type="varchar2" MaxLength="20" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EXAM_TYPES">
+    <Key>
+      <PropertyRef Name="EXAM_TYPE_ID" />
+    </Key>
+    <Property Name="EXAM_TYPE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="WEIGHT" Type="number" Precision="8" Scale="0" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="EXAMS">
+    <Key>
+      <PropertyRef Name="EXAM_ID" />
+    </Key>
+    <Property Name="EXAM_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="EXAM_TYPE_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="EXAM_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="EXAM_WEGHIT" Type="number" Precision="12" Scale="2" />
+    <Property Name="EXAM_MAX" Type="number" Precision="8" Scale="0" />
+    <Property Name="EXAM_PASS" Type="number" Precision="8" Scale="0" />
+    <Property Name="EXAM_DATE" Type="date" />
+    <Property Name="NOTE" Type="varchar2" MaxLength="4000" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="GROUP_MEMBERS">
+    <Key>
+      <PropertyRef Name="GROUP_MEMBER_ID" />
+    </Key>
+    <Property Name="GROUP_MEMBER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="GROUP_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="2000" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="GROUPS">
+    <Key>
+      <PropertyRef Name="GROUP_ID" />
+    </Key>
+    <Property Name="GROUP_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="2000" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="JOIN_GROUPS">
+    <Key>
+      <PropertyRef Name="JOIN_GROUP_ID" />
+    </Key>
+    <Property Name="JOIN_GROUP_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="GROUP_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="MESSAGE_RECIPIENTS">
+    <Key>
+      <PropertyRef Name="MESSAGE_RECIPIENT_ID" />
+    </Key>
+    <Property Name="MESSAGE_RECIPIENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="MESSAGE_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="IS_READ" Type="number" Precision="2" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NEWS">
+    <Key>
+      <PropertyRef Name="NEWS_ID" />
+    </Key>
+    <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NEWS_SUB_CAT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="TITLE" Type="varchar2" MaxLength="2000" />
+    <Property Name="BODY" Type="long" />
+    <Property Name="CREATION_DATE" Type="date" />
+    <Property Name="TYPE" Type="number" Precision="2" Scale="0" />
+    <Property Name="HEADLINE" Type="varchar2" MaxLength="2000" />
+    <Property Name="ACCESSIBILITY" Type="number" Precision="8" Scale="0" />
+    <Property Name="VOTE_RESULT" Type="number" Precision="2" Scale="0" />
+    <Property Name="VOTE_COUNT" Type="number" Precision="2" Scale="0" />
+    <Property Name="VOTE_TYPE" Type="number" Precision="2" Scale="0" />
+    <Property Name="EXPIRATION_DATE" Type="date" />
+    <Property Name="SHARABLE" Type="number" Precision="2" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="APPROVED" Type="number" Precision="2" Scale="0" />
+    <Property Name="HIERARCHY_TYPE" Type="number" Precision="2" Scale="0" />
+    <Property Name="EVENT_DATE" Type="date" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="NEWS_ACL_CLASSES">
+    <Key>
+      <PropertyRef Name="NEWS_ACL_CLASS_ID" />
+    </Key>
+    <Property Name="NEWS_ACL_CLASS_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="CLASS_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="NEWS_ACL_GROUPS">
+    <Key>
+      <PropertyRef Name="NEWS_ACL_GROUP_ID" />
+    </Key>
+    <Property Name="NEWS_ACL_GROUP_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="GROUP_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="NEWS_ACL_SUBJECTS">
+    <Key>
+      <PropertyRef Name="NEW_ACL_SUBJECT_ID" />
+    </Key>
+    <Property Name="NEW_ACL_SUBJECT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="NEWS_CATS">
+    <Key>
+      <PropertyRef Name="NEWS_CAT_ID" />
+    </Key>
+    <Property Name="NEWS_CAT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="TITLE" Type="varchar2" MaxLength="200" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="2000" />
+    <Property Name="HOT_KEY" Type="varchar2" MaxLength="200" />
+    <Property Name="FROM_DATE" Type="date" />
+    <Property Name="TO_DATE" Type="date" />
+    <Property Name="FROM_HOUR" Type="number" Precision="2" Scale="0" />
+    <Property Name="FROM_MINUTE" Type="number" Precision="2" Scale="0" />
+    <Property Name="TO_HOUR" Type="number" Precision="2" Scale="0" />
+    <Property Name="TO_MINUTE" Type="number" Precision="2" Scale="0" />
+    <Property Name="PIC" Type="blob" />
+    <Property Name="LAST_UPDATED_DATE" Type="date" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="NEWS_MEDIAS">
+    <Key>
+      <PropertyRef Name="NEWS_MEDIA_ID" />
+    </Key>
+    <Property Name="NEWS_MEDIA_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="ATTACH" Type="blob" />
+    <Property Name="BODY3" Type="varchar2" MaxLength="4000" />
+    <Property Name="TYPE" Type="number" Precision="2" Scale="0" />
+    <Property Name="BODY" Type="long" />
+  </EntityType>
+  <EntityType Name="NEWS_SUB_CATS">
+    <Key>
+      <PropertyRef Name="NEWS_SUB_CAT_ID" />
+    </Key>
+    <Property Name="NEWS_SUB_CAT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="TITLE" Type="varchar2" MaxLength="200" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="200" />
+    <Property Name="NEWS_CAT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="LAST_UPDATED_DATE" Type="date" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="PARENTS">
+    <Key>
+      <PropertyRef Name="PARENT_ID" />
+    </Key>
+    <Property Name="PARENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="PARENT_MOTHER" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_MOTHER_MPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_MOTHER_LPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_FATHER_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_FATHER_MPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_FATHER_LPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_ACTIVE" Type="number" Precision="2" Scale="0" />
+    <Property Name="PARENT_ADRESS" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_AREA" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_MOTHER_EMAIL" Type="varchar2" MaxLength="200" />
+    <Property Name="PARENT_FATHER_EMAIL" Type="varchar2" MaxLength="200" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="SCHOOLS">
+    <Key>
+      <PropertyRef Name="SCHOOL_ID" />
+    </Key>
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="LOGO" Type="blob" />
+    <Property Name="SLOGEN" Type="varchar2" MaxLength="200" />
+    <Property Name="ENGLISH_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="CODE" Type="varchar2" MaxLength="200" />
+    <Property Name="ALLOWED_USER_COUNT" Type="number" Precision="8" Scale="0" />
+    <Property Name="EXPIER_DATE" Type="date" />
+    <Property Name="MESSAGING" Type="number" Precision="2" Scale="0" />
+    <Property Name="GRADES" Type="number" Precision="2" Scale="0" />
+    <Property Name="WOMEWORKS" Type="number" Precision="2" Scale="0" />
+    <Property Name="SCHEDULE" Type="number" Precision="2" Scale="0" />
+    <Property Name="PARENT_TO_TEACHER" Type="number" Precision="2" Scale="0" />
+    <Property Name="TEACHER_TO_PARENT" Type="number" Precision="2" Scale="0" />
+    <Property Name="TEACHER_TO_STUDENT" Type="number" Precision="2" Scale="0" />
+    <Property Name="STUDENT_TO_TEACHER" Type="number" Precision="2" Scale="0" />
+    <Property Name="FETCH_SIZE" Type="number" Precision="2" Scale="0" />
+    <Property Name="TYPE" Type="number" Precision="2" Scale="0" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="SESSION_DURATION" Type="number" Precision="4" Scale="0" />
+  </EntityType>
+  <EntityType Name="STUDENT_ANSWERS">
+    <Key>
+      <PropertyRef Name="STUDENT_ANSWER_ID" />
+    </Key>
+    <Property Name="STUDENT_ANSWER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="QUESTION_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="ANSWER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="ANSWER_TEXT" Type="varchar2" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="STUDENT_SUBJECTS">
+    <Key>
+      <PropertyRef Name="STUDENT_SUBJECT_ID" />
+    </Key>
+    <Property Name="STUDENT_SUBJECT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="STUDENTS">
+    <Key>
+      <PropertyRef Name="STUDENT_ID" />
+    </Key>
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="CLASS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="STUDENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="STUDENT_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="STUDENT_PHOTO" Type="blob" />
+    <Property Name="STUDENT_FATHER" Type="varchar2" MaxLength="200" />
+    <Property Name="STUDENT_MATHER" Type="varchar2" MaxLength="200" />
+    <Property Name="STDENT_BIRTHDATE" Type="date" />
+    <Property Name="STUDENT_MPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="STUDENT_LPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="STUDENT_EMAIL" Type="varchar2" MaxLength="200" />
+    <Property Name="STUDENT_FACEBOOK" Type="varchar2" MaxLength="200" />
+    <Property Name="STUDENT_TWEETER" Type="varchar2" MaxLength="200" />
+    <Property Name="STUDENT_ACTIVE" Type="number" Precision="2" Scale="0" />
+    <Property Name="ALLOW_ADD_NEWS" Type="number" Precision="2" Scale="0" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="STUDENTS_EXAM">
+    <Key>
+      <PropertyRef Name="STUDENTS_EXAM_ID" />
+    </Key>
+    <Property Name="STUDENTS_EXAM_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="EXAM_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="STUDENT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="STUDENT_GRADE_NOTES" Type="varchar2" MaxLength="200" />
+    <Property Name="ABSENT" Type="number" Precision="2" Scale="0" />
+    <Property Name="GRADE" Type="number" Precision="8" Scale="2" />
+  </EntityType>
+  <EntityType Name="STUDENTS_NOTES">
+    <Key>
+      <PropertyRef Name="STUDENT_NOTE_ID" />
+    </Key>
+    <Property Name="STUDENT_NOTE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NOTE" Type="varchar2" MaxLength="2000" />
+    <Property Name="NOTE_DATE" Type="date" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="STUDENTS_PARENTS">
+    <Key>
+      <PropertyRef Name="STUDENTS_PARENT_ID" />
+    </Key>
+    <Property Name="STUDENTS_PARENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="PAERNT_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="SUBJECTS">
+    <Key>
+      <PropertyRef Name="SUBJECT_ID" />
+    </Key>
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="CLASS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="SUBJECT_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="SUBJECT_MAX" Type="number" Precision="8" Scale="0" />
+    <Property Name="SUBJECT_PASS" Type="number" Precision="8" Scale="0" />
+    <Property Name="SORT" Type="number" Precision="8" Scale="0" />
+    <Property Name="EXPIRE_DATE" Type="date" />
+    <Property Name="START_DATE" Type="date" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="TEACHER_SUBJECTS">
+    <Key>
+      <PropertyRef Name="TEACHER_SUBJECT_ID" />
+    </Key>
+    <Property Name="TEACHER_SUBJECT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="SUBJECT_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="TEACHERS">
+    <Key>
+      <PropertyRef Name="TEACHER_ID" />
+    </Key>
+    <Property Name="TEACHER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="TEACHER_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_PHOTO" Type="blob" />
+    <Property Name="TEACHER_FATHER" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_MATHER" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_BIRTHDATE" Type="date" />
+    <Property Name="TEACHER_MPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_LPHONE" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_AREA" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_ADDRES" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_EMAIL" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_FACEBOOK" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_TWEETER" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_NOTE" Type="varchar2" MaxLength="200" />
+    <Property Name="TEACHER_ACTIVE" Type="number" Precision="2" Scale="0" />
+    <Property Name="ALLOW_ADD_NEWS" Type="number" Precision="2" Scale="0" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <EntityType Name="USER_VOTES">
+    <Key>
+      <PropertyRef Name="USER_VOTE_ID" />
+    </Key>
+    <Property Name="USER_VOTE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="VOTING_CHOICE_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="VOTING_DATE" Type="date" />
+    <Property Name="IMEI" Type="varchar2" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="USER_NAME" Type="varchar2" MaxLength="200" />
+    <Property Name="USER_PASSWORD" Type="varchar2" MaxLength="200" />
+    <Property Name="VALID_FROM" Type="date" />
+    <Property Name="USER_ACTIVE" Type="number" Precision="2" Scale="0" />
+    <Property Name="TYPE" Type="number" Precision="38" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="FULL_NAME" Type="varchar2" MaxLength="2000" />
+    <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="NEED_APPROVE" Type="number" Precision="2" Scale="0" />
+    <Property Name="IMAGE" Type="blob" />
+  </EntityType>
+  <EntityType Name="VOTING_CHOICES">
+    <Key>
+      <PropertyRef Name="VOTING_CHOICE_ID" />
+    </Key>
+    <Property Name="VOTING_CHOICE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+    <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" />
+    <Property Name="CHOICE" Type="varchar2" MaxLength="4000" />
+    <Property Name="DESCRIPTION" Type="varchar2" MaxLength="4000" />
+    <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+  </EntityType>
+  <Association Name="ADMIN_SUBJECTS_ADMINS_FK1">
+    <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ADMIN_SUBJECTS" Type="Self.ADMIN_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ADMINS">
+        <PropertyRef Name="ADMIN_ID" />
+      </Principal>
+      <Dependent Role="ADMIN_SUBJECTS">
+        <PropertyRef Name="ADMIN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ADMIN_SUBJECTS_FK2">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ADMIN_SUBJECTS" Type="Self.ADMIN_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="ADMIN_SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ADMINS_NEWS_CATS_FK1">
+    <End Role="NEWS_CATS" Type="Self.NEWS_CATS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS_CATS">
+        <PropertyRef Name="NEWS_CAT_ID" />
+      </Principal>
+      <Dependent Role="ADMINS">
+        <PropertyRef Name="NEWS_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ADMINS_SCHOOLS_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="ADMINS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ADMINS_USERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ADMINS" Type="Self.ADMINS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="ADMINS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ALLOWED_CATS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ALLOWED_CATS" Type="Self.ALLOWED_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="ALLOWED_CATS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ALLOWED_CATS_FK2">
+    <End Role="NEWS_SUB_CATS" Type="Self.NEWS_SUB_CATS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ALLOWED_CATS" Type="Self.ALLOWED_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS_SUB_CATS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Principal>
+      <Dependent Role="ALLOWED_CATS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ANSWERS_USERS_DOC_ANSWERS_FK1">
+    <End Role="DOC_ANSWERS" Type="Self.DOC_ANSWERS" Multiplicity="1" />
+    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOC_ANSWERS">
+        <PropertyRef Name="ANSWER_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="ANSWER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ANSWERS_USERS_QUESTION_FK1">
+    <End Role="DOC_QUESTIONS" Type="Self.DOC_QUESTIONS" Multiplicity="0..1" />
+    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOC_QUESTIONS">
+        <PropertyRef Name="QUESTION_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="QUESTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ANSWERS_USERS_USERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLASSES_FK1">
+    <End Role="NEWS_CATS" Type="Self.NEWS_CATS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CLASSES" Type="Self.CLASSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS_CATS">
+        <PropertyRef Name="NEWS_CAT_ID" />
+      </Principal>
+      <Dependent Role="CLASSES">
+        <PropertyRef Name="NEWS_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLASSES_FK2">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CLASSES" Type="Self.CLASSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="CLASSES">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DOC_ANSWERS_DOC_QUESTIONS_FK1">
+    <End Role="DOC_QUESTIONS" Type="Self.DOC_QUESTIONS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DOC_ANSWERS" Type="Self.DOC_ANSWERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOC_QUESTIONS">
+        <PropertyRef Name="QUESTION_ID" />
+      </Principal>
+      <Dependent Role="DOC_ANSWERS">
+        <PropertyRef Name="QUESTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DOC_QUESTIONS_DOCUMENTS_FK1">
+    <End Role="DOCUMENTS" Type="Self.DOCUMENTS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DOC_QUESTIONS" Type="Self.DOC_QUESTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTS">
+        <PropertyRef Name="DOCUMENT_ID" />
+      </Principal>
+      <Dependent Role="DOC_QUESTIONS">
+        <PropertyRef Name="DOCUMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DOCUMENT_USER_DOCUMENTS_FK1">
+    <End Role="DOCUMENTS" Type="Self.DOCUMENTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DOCUMENT_USER" Type="Self.DOCUMENT_USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTS">
+        <PropertyRef Name="DOCUMENT_ID" />
+      </Principal>
+      <Dependent Role="DOCUMENT_USER">
+        <PropertyRef Name="DOCUMENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DOCUMENT_USER_USERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DOCUMENT_USER" Type="Self.DOCUMENT_USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="DOCUMENT_USER">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DOCUMENTS_SCHOOLS_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DOCUMENTS" Type="Self.DOCUMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="DOCUMENTS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EXAM_TYPES_FK1">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EXAM_TYPES" Type="Self.EXAM_TYPES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="EXAM_TYPES">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EXAMS_FK1">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EXAMS" Type="Self.EXAMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="EXAMS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EXAMS_FK2">
+    <End Role="EXAM_TYPES" Type="Self.EXAM_TYPES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EXAMS" Type="Self.EXAMS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EXAM_TYPES">
+        <PropertyRef Name="EXAM_TYPE_ID" />
+      </Principal>
+      <Dependent Role="EXAMS">
+        <PropertyRef Name="EXAM_TYPE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GROUP_MEMBERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GROUP_MEMBERS" Type="Self.GROUP_MEMBERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="GROUP_MEMBERS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GROUP_MEMBERS_FK2">
+    <End Role="GROUPS" Type="Self.GROUPS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GROUP_MEMBERS" Type="Self.GROUP_MEMBERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUPS">
+        <PropertyRef Name="GROUP_ID" />
+      </Principal>
+      <Dependent Role="GROUP_MEMBERS">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GROUPS_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="GROUPS" Type="Self.GROUPS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="GROUPS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JOIN_GROUPS_FK1">
+    <End Role="GROUPS" Type="Self.GROUPS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JOIN_GROUPS" Type="Self.JOIN_GROUPS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUPS">
+        <PropertyRef Name="GROUP_ID" />
+      </Principal>
+      <Dependent Role="JOIN_GROUPS">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JOIN_GROUPS_FK2">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="JOIN_GROUPS" Type="Self.JOIN_GROUPS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="JOIN_GROUPS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MESSAGE_RECIPIENTS_FK2">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MESSAGE_RECIPIENTS" Type="Self.MESSAGE_RECIPIENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="MESSAGE_RECIPIENTS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_ACL_CLASSES_FK1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_ACL_CLASSES" Type="Self.NEWS_ACL_CLASSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="NEWS_ID" />
+      </Principal>
+      <Dependent Role="NEWS_ACL_CLASSES">
+        <PropertyRef Name="NEWS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_ACL_CLASSES_FK2">
+    <End Role="CLASSES" Type="Self.CLASSES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_ACL_CLASSES" Type="Self.NEWS_ACL_CLASSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="NEWS_ACL_CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_ACL_GROUPS_FK1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_ACL_GROUPS" Type="Self.NEWS_ACL_GROUPS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="NEWS_ID" />
+      </Principal>
+      <Dependent Role="NEWS_ACL_GROUPS">
+        <PropertyRef Name="NEWS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_ACL_GROUPS_FK2">
+    <End Role="GROUPS" Type="Self.GROUPS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_ACL_GROUPS" Type="Self.NEWS_ACL_GROUPS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GROUPS">
+        <PropertyRef Name="GROUP_ID" />
+      </Principal>
+      <Dependent Role="NEWS_ACL_GROUPS">
+        <PropertyRef Name="GROUP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_ACL_SUBJECTS_FK1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_ACL_SUBJECTS" Type="Self.NEWS_ACL_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="NEWS_ID" />
+      </Principal>
+      <Dependent Role="NEWS_ACL_SUBJECTS">
+        <PropertyRef Name="NEWS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_ACL_SUBJECTS_FK2">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_ACL_SUBJECTS" Type="Self.NEWS_ACL_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="NEWS_ACL_SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_CATS_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_CATS" Type="Self.NEWS_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="NEWS_CATS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_FK1">
+    <End Role="NEWS_SUB_CATS" Type="Self.NEWS_SUB_CATS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS_SUB_CATS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="NEWS_SUB_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_FK2">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="NEWS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_MEDIAS_FK1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_MEDIAS" Type="Self.NEWS_MEDIAS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="NEWS_ID" />
+      </Principal>
+      <Dependent Role="NEWS_MEDIAS">
+        <PropertyRef Name="NEWS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NEWS_SUB_CATS_FK1">
+    <End Role="NEWS_CATS" Type="Self.NEWS_CATS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NEWS_SUB_CATS" Type="Self.NEWS_SUB_CATS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS_CATS">
+        <PropertyRef Name="NEWS_CAT_ID" />
+      </Principal>
+      <Dependent Role="NEWS_SUB_CATS">
+        <PropertyRef Name="NEWS_CAT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PARENTS_SCHOOLS_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1" />
+    <End Role="PARENTS" Type="Self.PARENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="PARENTS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PARENTS_USERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PARENTS" Type="Self.PARENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="PARENTS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_ANSWERS_FK1">
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENT_ANSWERS" Type="Self.STUDENT_ANSWERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Principal>
+      <Dependent Role="STUDENT_ANSWERS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_SUBJECTS_FK1">
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENT_SUBJECTS" Type="Self.STUDENT_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Principal>
+      <Dependent Role="STUDENT_SUBJECTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_SUBJECTS_FK2">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENT_SUBJECTS" Type="Self.STUDENT_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="STUDENT_SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_EXAM_FK2">
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS_EXAM" Type="Self.STUDENTS_EXAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS_EXAM">
+        <PropertyRef Name="STUDENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_FK1">
+    <End Role="CLASSES" Type="Self.CLASSES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_FK2">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_FK3">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_NOTES_FK1">
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS_NOTES" Type="Self.STUDENTS_NOTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS_NOTES">
+        <PropertyRef Name="STUDENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_NOTES_USERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS_NOTES" Type="Self.STUDENTS_NOTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS_NOTES">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_PARENTS_PARENTS_FK2">
+    <End Role="PARENTS" Type="Self.PARENTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS_PARENTS" Type="Self.STUDENTS_PARENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PARENTS">
+        <PropertyRef Name="PARENT_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS_PARENTS">
+        <PropertyRef Name="PAERNT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENTS_PARENTS_STUDENTS_FK1">
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENTS_PARENTS" Type="Self.STUDENTS_PARENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Principal>
+      <Dependent Role="STUDENTS_PARENTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUBJECTS_FK1">
+    <End Role="CLASSES" Type="Self.CLASSES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="SUBJECTS">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUBJECTS_FK2">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="SUBJECTS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEACHER_SUBJECTS_FK1">
+    <End Role="TEACHERS" Type="Self.TEACHERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TEACHER_SUBJECTS" Type="Self.TEACHER_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHERS">
+        <PropertyRef Name="TEACHER_ID" />
+      </Principal>
+      <Dependent Role="TEACHER_SUBJECTS">
+        <PropertyRef Name="TEACHER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEACHER_SUBJECTS_FK2">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TEACHER_SUBJECTS" Type="Self.TEACHER_SUBJECTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="TEACHER_SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEACHERS_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TEACHERS" Type="Self.TEACHERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="TEACHERS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEACHERS_FK2">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TEACHERS" Type="Self.TEACHERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TEACHERS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USER_VOTES_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="USER_VOTES" Type="Self.USER_VOTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="USER_VOTES">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USER_VOTES_FK2">
+    <End Role="VOTING_CHOICES" Type="Self.VOTING_CHOICES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="USER_VOTES" Type="Self.USER_VOTES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VOTING_CHOICES">
+        <PropertyRef Name="VOTING_CHOICE_ID" />
+      </Principal>
+      <Dependent Role="USER_VOTES">
+        <PropertyRef Name="VOTING_CHOICE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USERS_FK1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="NEWS_ID" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="NEWS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USERSID_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="USERS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VOTING_CHOICES_FK1">
+    <End Role="NEWS" Type="Self.NEWS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="VOTING_CHOICES" Type="Self.VOTING_CHOICES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NEWS">
+        <PropertyRef Name="NEWS_ID" />
+      </Principal>
+      <Dependent Role="VOTING_CHOICES">
+        <PropertyRef Name="NEWS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="ADMIN_SUBJECTS" EntityType="Self.ADMIN_SUBJECTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="ADMINS" EntityType="Self.ADMINS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="ALLOWED_CATS" EntityType="Self.ALLOWED_CATS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="ANSWERS_USERS" EntityType="Self.ANSWERS_USERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="ATTACHMENTS" EntityType="Self.ATTACHMENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="CLASSES" EntityType="Self.CLASSES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="DOC_ANSWERS" EntityType="Self.DOC_ANSWERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="DOC_QUESTIONS" EntityType="Self.DOC_QUESTIONS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="DOCUMENT_USER" EntityType="Self.DOCUMENT_USER" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTS" EntityType="Self.DOCUMENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="EXAM_TYPES" EntityType="Self.EXAM_TYPES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="EXAMS" EntityType="Self.EXAMS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="GROUP_MEMBERS" EntityType="Self.GROUP_MEMBERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="GROUPS" EntityType="Self.GROUPS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="JOIN_GROUPS" EntityType="Self.JOIN_GROUPS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="MESSAGE_RECIPIENTS" EntityType="Self.MESSAGE_RECIPIENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="NEWS" EntityType="Self.NEWS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="NEWS_ACL_CLASSES" EntityType="Self.NEWS_ACL_CLASSES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="NEWS_ACL_GROUPS" EntityType="Self.NEWS_ACL_GROUPS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="NEWS_ACL_SUBJECTS" EntityType="Self.NEWS_ACL_SUBJECTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="NEWS_CATS" EntityType="Self.NEWS_CATS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="NEWS_MEDIAS" EntityType="Self.NEWS_MEDIAS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="NEWS_SUB_CATS" EntityType="Self.NEWS_SUB_CATS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="PARENTS" EntityType="Self.PARENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="SCHOOLS" EntityType="Self.SCHOOLS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="STUDENT_ANSWERS" EntityType="Self.STUDENT_ANSWERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="STUDENT_SUBJECTS" EntityType="Self.STUDENT_SUBJECTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="STUDENTS" EntityType="Self.STUDENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="STUDENTS_EXAM" EntityType="Self.STUDENTS_EXAM" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="STUDENTS_NOTES" EntityType="Self.STUDENTS_NOTES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="STUDENTS_PARENTS" EntityType="Self.STUDENTS_PARENTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="SUBJECTS" EntityType="Self.SUBJECTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="TEACHER_SUBJECTS" EntityType="Self.TEACHER_SUBJECTS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="TEACHERS" EntityType="Self.TEACHERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="USER_VOTES" EntityType="Self.USER_VOTES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <EntitySet Name="VOTING_CHOICES" EntityType="Self.VOTING_CHOICES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+    <AssociationSet Name="ADMIN_SUBJECTS_ADMINS_FK1" Association="Self.ADMIN_SUBJECTS_ADMINS_FK1">
+      <End Role="ADMINS" EntitySet="ADMINS" />
+      <End Role="ADMIN_SUBJECTS" EntitySet="ADMIN_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="ADMIN_SUBJECTS_FK2" Association="Self.ADMIN_SUBJECTS_FK2">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="ADMIN_SUBJECTS" EntitySet="ADMIN_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="ADMINS_NEWS_CATS_FK1" Association="Self.ADMINS_NEWS_CATS_FK1">
+      <End Role="NEWS_CATS" EntitySet="NEWS_CATS" />
+      <End Role="ADMINS" EntitySet="ADMINS" />
+    </AssociationSet>
+    <AssociationSet Name="ADMINS_SCHOOLS_FK1" Association="Self.ADMINS_SCHOOLS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="ADMINS" EntitySet="ADMINS" />
+    </AssociationSet>
+    <AssociationSet Name="ADMINS_USERS_FK1" Association="Self.ADMINS_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ADMINS" EntitySet="ADMINS" />
+    </AssociationSet>
+    <AssociationSet Name="ALLOWED_CATS_FK1" Association="Self.ALLOWED_CATS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ALLOWED_CATS" EntitySet="ALLOWED_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="ALLOWED_CATS_FK2" Association="Self.ALLOWED_CATS_FK2">
+      <End Role="NEWS_SUB_CATS" EntitySet="NEWS_SUB_CATS" />
+      <End Role="ALLOWED_CATS" EntitySet="ALLOWED_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="ANSWERS_USERS_DOC_ANSWERS_FK1" Association="Self.ANSWERS_USERS_DOC_ANSWERS_FK1">
+      <End Role="DOC_ANSWERS" EntitySet="DOC_ANSWERS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="ANSWERS_USERS_QUESTION_FK1" Association="Self.ANSWERS_USERS_QUESTION_FK1">
+      <End Role="DOC_QUESTIONS" EntitySet="DOC_QUESTIONS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="ANSWERS_USERS_USERS_FK1" Association="Self.ANSWERS_USERS_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="CLASSES_FK1" Association="Self.CLASSES_FK1">
+      <End Role="NEWS_CATS" EntitySet="NEWS_CATS" />
+      <End Role="CLASSES" EntitySet="CLASSES" />
+    </AssociationSet>
+    <AssociationSet Name="CLASSES_FK2" Association="Self.CLASSES_FK2">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="CLASSES" EntitySet="CLASSES" />
+    </AssociationSet>
+    <AssociationSet Name="DOC_ANSWERS_DOC_QUESTIONS_FK1" Association="Self.DOC_ANSWERS_DOC_QUESTIONS_FK1">
+      <End Role="DOC_QUESTIONS" EntitySet="DOC_QUESTIONS" />
+      <End Role="DOC_ANSWERS" EntitySet="DOC_ANSWERS" />
+    </AssociationSet>
+    <AssociationSet Name="DOC_QUESTIONS_DOCUMENTS_FK1" Association="Self.DOC_QUESTIONS_DOCUMENTS_FK1">
+      <End Role="DOCUMENTS" EntitySet="DOCUMENTS" />
+      <End Role="DOC_QUESTIONS" EntitySet="DOC_QUESTIONS" />
+    </AssociationSet>
+    <AssociationSet Name="DOCUMENT_USER_DOCUMENTS_FK1" Association="Self.DOCUMENT_USER_DOCUMENTS_FK1">
+      <End Role="DOCUMENTS" EntitySet="DOCUMENTS" />
+      <End Role="DOCUMENT_USER" EntitySet="DOCUMENT_USER" />
+    </AssociationSet>
+    <AssociationSet Name="DOCUMENT_USER_USERS_FK1" Association="Self.DOCUMENT_USER_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="DOCUMENT_USER" EntitySet="DOCUMENT_USER" />
+    </AssociationSet>
+    <AssociationSet Name="DOCUMENTS_SCHOOLS_FK1" Association="Self.DOCUMENTS_SCHOOLS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="DOCUMENTS" EntitySet="DOCUMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="EXAM_TYPES_FK1" Association="Self.EXAM_TYPES_FK1">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="EXAM_TYPES" EntitySet="EXAM_TYPES" />
+    </AssociationSet>
+    <AssociationSet Name="EXAMS_FK1" Association="Self.EXAMS_FK1">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="EXAMS" EntitySet="EXAMS" />
+    </AssociationSet>
+    <AssociationSet Name="EXAMS_FK2" Association="Self.EXAMS_FK2">
+      <End Role="EXAM_TYPES" EntitySet="EXAM_TYPES" />
+      <End Role="EXAMS" EntitySet="EXAMS" />
+    </AssociationSet>
+    <AssociationSet Name="GROUP_MEMBERS_FK1" Association="Self.GROUP_MEMBERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="GROUP_MEMBERS" EntitySet="GROUP_MEMBERS" />
+    </AssociationSet>
+    <AssociationSet Name="GROUP_MEMBERS_FK2" Association="Self.GROUP_MEMBERS_FK2">
+      <End Role="GROUPS" EntitySet="GROUPS" />
+      <End Role="GROUP_MEMBERS" EntitySet="GROUP_MEMBERS" />
+    </AssociationSet>
+    <AssociationSet Name="GROUPS_FK1" Association="Self.GROUPS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="GROUPS" EntitySet="GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="JOIN_GROUPS_FK1" Association="Self.JOIN_GROUPS_FK1">
+      <End Role="GROUPS" EntitySet="GROUPS" />
+      <End Role="JOIN_GROUPS" EntitySet="JOIN_GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="JOIN_GROUPS_FK2" Association="Self.JOIN_GROUPS_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="JOIN_GROUPS" EntitySet="JOIN_GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="MESSAGE_RECIPIENTS_FK2" Association="Self.MESSAGE_RECIPIENTS_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="MESSAGE_RECIPIENTS" EntitySet="MESSAGE_RECIPIENTS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_ACL_CLASSES_FK1" Association="Self.NEWS_ACL_CLASSES_FK1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="NEWS_ACL_CLASSES" EntitySet="NEWS_ACL_CLASSES" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_ACL_CLASSES_FK2" Association="Self.NEWS_ACL_CLASSES_FK2">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="NEWS_ACL_CLASSES" EntitySet="NEWS_ACL_CLASSES" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_ACL_GROUPS_FK1" Association="Self.NEWS_ACL_GROUPS_FK1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="NEWS_ACL_GROUPS" EntitySet="NEWS_ACL_GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_ACL_GROUPS_FK2" Association="Self.NEWS_ACL_GROUPS_FK2">
+      <End Role="GROUPS" EntitySet="GROUPS" />
+      <End Role="NEWS_ACL_GROUPS" EntitySet="NEWS_ACL_GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_ACL_SUBJECTS_FK1" Association="Self.NEWS_ACL_SUBJECTS_FK1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="NEWS_ACL_SUBJECTS" EntitySet="NEWS_ACL_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_ACL_SUBJECTS_FK2" Association="Self.NEWS_ACL_SUBJECTS_FK2">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="NEWS_ACL_SUBJECTS" EntitySet="NEWS_ACL_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_CATS_FK1" Association="Self.NEWS_CATS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="NEWS_CATS" EntitySet="NEWS_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_FK1" Association="Self.NEWS_FK1">
+      <End Role="NEWS_SUB_CATS" EntitySet="NEWS_SUB_CATS" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_FK2" Association="Self.NEWS_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="NEWS" EntitySet="NEWS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_MEDIAS_FK1" Association="Self.NEWS_MEDIAS_FK1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="NEWS_MEDIAS" EntitySet="NEWS_MEDIAS" />
+    </AssociationSet>
+    <AssociationSet Name="NEWS_SUB_CATS_FK1" Association="Self.NEWS_SUB_CATS_FK1">
+      <End Role="NEWS_CATS" EntitySet="NEWS_CATS" />
+      <End Role="NEWS_SUB_CATS" EntitySet="NEWS_SUB_CATS" />
+    </AssociationSet>
+    <AssociationSet Name="PARENTS_SCHOOLS_FK1" Association="Self.PARENTS_SCHOOLS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="PARENTS" EntitySet="PARENTS" />
+    </AssociationSet>
+    <AssociationSet Name="PARENTS_USERS_FK1" Association="Self.PARENTS_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="PARENTS" EntitySet="PARENTS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_ANSWERS_FK1" Association="Self.STUDENT_ANSWERS_FK1">
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+      <End Role="STUDENT_ANSWERS" EntitySet="STUDENT_ANSWERS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_SUBJECTS_FK1" Association="Self.STUDENT_SUBJECTS_FK1">
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+      <End Role="STUDENT_SUBJECTS" EntitySet="STUDENT_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_SUBJECTS_FK2" Association="Self.STUDENT_SUBJECTS_FK2">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="STUDENT_SUBJECTS" EntitySet="STUDENT_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_EXAM_FK2" Association="Self.STUDENTS_EXAM_FK2">
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+      <End Role="STUDENTS_EXAM" EntitySet="STUDENTS_EXAM" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_FK1" Association="Self.STUDENTS_FK1">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_FK2" Association="Self.STUDENTS_FK2">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_FK3" Association="Self.STUDENTS_FK3">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_NOTES_FK1" Association="Self.STUDENTS_NOTES_FK1">
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+      <End Role="STUDENTS_NOTES" EntitySet="STUDENTS_NOTES" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_NOTES_USERS_FK1" Association="Self.STUDENTS_NOTES_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="STUDENTS_NOTES" EntitySet="STUDENTS_NOTES" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_PARENTS_PARENTS_FK2" Association="Self.STUDENTS_PARENTS_PARENTS_FK2">
+      <End Role="PARENTS" EntitySet="PARENTS" />
+      <End Role="STUDENTS_PARENTS" EntitySet="STUDENTS_PARENTS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENTS_PARENTS_STUDENTS_FK1" Association="Self.STUDENTS_PARENTS_STUDENTS_FK1">
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+      <End Role="STUDENTS_PARENTS" EntitySet="STUDENTS_PARENTS" />
+    </AssociationSet>
+    <AssociationSet Name="SUBJECTS_FK1" Association="Self.SUBJECTS_FK1">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="SUBJECTS_FK2" Association="Self.SUBJECTS_FK2">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="TEACHER_SUBJECTS_FK1" Association="Self.TEACHER_SUBJECTS_FK1">
+      <End Role="TEACHERS" EntitySet="TEACHERS" />
+      <End Role="TEACHER_SUBJECTS" EntitySet="TEACHER_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="TEACHER_SUBJECTS_FK2" Association="Self.TEACHER_SUBJECTS_FK2">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="TEACHER_SUBJECTS" EntitySet="TEACHER_SUBJECTS" />
+    </AssociationSet>
+    <AssociationSet Name="TEACHERS_FK1" Association="Self.TEACHERS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="TEACHERS" EntitySet="TEACHERS" />
+    </AssociationSet>
+    <AssociationSet Name="TEACHERS_FK2" Association="Self.TEACHERS_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="TEACHERS" EntitySet="TEACHERS" />
+    </AssociationSet>
+    <AssociationSet Name="USER_VOTES_FK1" Association="Self.USER_VOTES_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="USER_VOTES" EntitySet="USER_VOTES" />
+    </AssociationSet>
+    <AssociationSet Name="USER_VOTES_FK2" Association="Self.USER_VOTES_FK2">
+      <End Role="VOTING_CHOICES" EntitySet="VOTING_CHOICES" />
+      <End Role="USER_VOTES" EntitySet="USER_VOTES" />
+    </AssociationSet>
+    <AssociationSet Name="USERS_FK1" Association="Self.USERS_FK1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="USERSID_FK1" Association="Self.USERSID_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="VOTING_CHOICES_FK1" Association="Self.VOTING_CHOICES_FK1">
+      <End Role="NEWS" EntitySet="NEWS" />
+      <End Role="VOTING_CHOICES" EntitySet="VOTING_CHOICES" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

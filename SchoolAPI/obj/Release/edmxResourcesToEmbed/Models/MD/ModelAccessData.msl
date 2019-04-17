@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="ADMINS">
+      <EntityTypeMapping TypeName="Model.ADMINS">
+        <MappingFragment StoreEntitySet="ADMINS">
+          <ScalarProperty Name="ADMIN_ID" ColumnName="ADMIN_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ADMIN_NAME" ColumnName="ADMIN_NAME" />
+          <ScalarProperty Name="ADMIN_POSITION" ColumnName="ADMIN_POSITION" />
+          <ScalarProperty Name="NEWS_CAT_ID" ColumnName="NEWS_CAT_ID" />
+          <ScalarProperty Name="FULL_ADMIN" ColumnName="FULL_ADMIN" />
+          <ScalarProperty Name="ALLOW_ADD_NEWS" ColumnName="ALLOW_ADD_NEWS" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ALLOWED_CATS">
+      <EntityTypeMapping TypeName="Model.ALLOWED_CATS">
+        <MappingFragment StoreEntitySet="ALLOWED_CATS">
+          <ScalarProperty Name="ALLOWED_CAT_ID" ColumnName="ALLOWED_CAT_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="NEWS_SUB_CAT_ID" ColumnName="NEWS_SUB_CAT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ATTACHMENTS">
+      <EntityTypeMapping TypeName="Model.ATTACHMENTS">
+        <MappingFragment StoreEntitySet="ATTACHMENTS">
+          <ScalarProperty Name="ATTACH_ID" ColumnName="ATTACH_ID" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="ATTACH_FILENAME" ColumnName="ATTACH_FILENAME" />
+          <ScalarProperty Name="ATTACHMENT" ColumnName="ATTACHMENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLASSES">
+      <EntityTypeMapping TypeName="Model.CLASSES">
+        <MappingFragment StoreEntitySet="CLASSES">
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="NEWS_CAT_ID" ColumnName="NEWS_CAT_ID" />
+          <ScalarProperty Name="CLASS_NAME" ColumnName="CLASS_NAME" />
+          <ScalarProperty Name="SORT" ColumnName="SORT" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXAM_TYPES">
+      <EntityTypeMapping TypeName="Model.EXAM_TYPES">
+        <MappingFragment StoreEntitySet="EXAM_TYPES">
+          <ScalarProperty Name="EXAM_TYPE_ID" ColumnName="EXAM_TYPE_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="WEIGHT" ColumnName="WEIGHT" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EXAMS">
+      <EntityTypeMapping TypeName="Model.EXAMS">
+        <MappingFragment StoreEntitySet="EXAMS">
+          <ScalarProperty Name="EXAM_ID" ColumnName="EXAM_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="EXAM_TYPE_ID" ColumnName="EXAM_TYPE_ID" />
+          <ScalarProperty Name="EXAM_NAME" ColumnName="EXAM_NAME" />
+          <ScalarProperty Name="EXAM_WEGHIT" ColumnName="EXAM_WEGHIT" />
+          <ScalarProperty Name="EXAM_MAX" ColumnName="EXAM_MAX" />
+          <ScalarProperty Name="EXAM_PASS" ColumnName="EXAM_PASS" />
+          <ScalarProperty Name="EXAM_DATE" ColumnName="EXAM_DATE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROUP_MEMBERS">
+      <EntityTypeMapping TypeName="Model.GROUP_MEMBERS">
+        <MappingFragment StoreEntitySet="GROUP_MEMBERS">
+          <ScalarProperty Name="GROUP_MEMBER_ID" ColumnName="GROUP_MEMBER_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GROUPS">
+      <EntityTypeMapping TypeName="Model.GROUPS">
+        <MappingFragment StoreEntitySet="GROUPS">
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOIN_GROUPS">
+      <EntityTypeMapping TypeName="Model.JOIN_GROUPS">
+        <MappingFragment StoreEntitySet="JOIN_GROUPS">
+          <ScalarProperty Name="JOIN_GROUP_ID" ColumnName="JOIN_GROUP_ID" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MESSAGE_RECIPIENTS">
+      <EntityTypeMapping TypeName="Model.MESSAGE_RECIPIENTS">
+        <MappingFragment StoreEntitySet="MESSAGE_RECIPIENTS">
+          <ScalarProperty Name="MESSAGE_RECIPIENT_ID" ColumnName="MESSAGE_RECIPIENT_ID" />
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="IS_READ" ColumnName="IS_READ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MESSAGES">
+      <EntityTypeMapping TypeName="Model.MESSAGES">
+        <MappingFragment StoreEntitySet="MESSAGES">
+          <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="FROM_USER_ID" ColumnName="FROM_USER_ID" />
+          <ScalarProperty Name="TO_USER_ID" ColumnName="TO_USER_ID" />
+          <ScalarProperty Name="MESSAGE_SUBJECT" ColumnName="MESSAGE_SUBJECT" />
+          <ScalarProperty Name="MESSAGE_CONTENT" ColumnName="MESSAGE_CONTENT" />
+          <ScalarProperty Name="MESSAGE_DATE" ColumnName="MESSAGE_DATE" />
+          <ScalarProperty Name="MESSAGE_STATUS" ColumnName="MESSAGE_STATUS" />
+          <ScalarProperty Name="MESSAGE_TYPE" ColumnName="MESSAGE_TYPE" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="ATTACH_NO" ColumnName="ATTACH_NO" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+          <ScalarProperty Name="TO_STRING" ColumnName="TO_STRING" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS">
+      <EntityTypeMapping TypeName="Model.NEWS">
+        <MappingFragment StoreEntitySet="NEWS">
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="NEWS_SUB_CAT_ID" ColumnName="NEWS_SUB_CAT_ID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="BODY" ColumnName="BODY" />
+          <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="HEADLINE" ColumnName="HEADLINE" />
+          <ScalarProperty Name="ACCESSIBILITY" ColumnName="ACCESSIBILITY" />
+          <ScalarProperty Name="VOTE_RESULT" ColumnName="VOTE_RESULT" />
+          <ScalarProperty Name="VOTE_COUNT" ColumnName="VOTE_COUNT" />
+          <ScalarProperty Name="VOTE_TYPE" ColumnName="VOTE_TYPE" />
+          <ScalarProperty Name="EXPIRATION_DATE" ColumnName="EXPIRATION_DATE" />
+          <ScalarProperty Name="SHARABLE" ColumnName="SHARABLE" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="APPROVED" ColumnName="APPROVED" />
+          <ScalarProperty Name="HIERARCHY_TYPE" ColumnName="HIERARCHY_TYPE" />
+          <ScalarProperty Name="EVENT_DATE" ColumnName="EVENT_DATE" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS_ACL_CLASSES">
+      <EntityTypeMapping TypeName="Model.NEWS_ACL_CLASSES">
+        <MappingFragment StoreEntitySet="NEWS_ACL_CLASSES">
+          <ScalarProperty Name="NEWS_ACL_CLASS_ID" ColumnName="NEWS_ACL_CLASS_ID" />
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS_ACL_GROUPS">
+      <EntityTypeMapping TypeName="Model.NEWS_ACL_GROUPS">
+        <MappingFragment StoreEntitySet="NEWS_ACL_GROUPS">
+          <ScalarProperty Name="NEWS_ACL_GROUP_ID" ColumnName="NEWS_ACL_GROUP_ID" />
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS_ACL_SUBJECTS">
+      <EntityTypeMapping TypeName="Model.NEWS_ACL_SUBJECTS">
+        <MappingFragment StoreEntitySet="NEWS_ACL_SUBJECTS">
+          <ScalarProperty Name="NEW_ACL_SUBJECT_ID" ColumnName="NEW_ACL_SUBJECT_ID" />
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS_CATS">
+      <EntityTypeMapping TypeName="Model.NEWS_CATS">
+        <MappingFragment StoreEntitySet="NEWS_CATS">
+          <ScalarProperty Name="NEWS_CAT_ID" ColumnName="NEWS_CAT_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="HOT_KEY" ColumnName="HOT_KEY" />
+          <ScalarProperty Name="FROM_DATE" ColumnName="FROM_DATE" />
+          <ScalarProperty Name="TO_DATE" ColumnName="TO_DATE" />
+          <ScalarProperty Name="FROM_HOUR" ColumnName="FROM_HOUR" />
+          <ScalarProperty Name="FROM_MINUTE" ColumnName="FROM_MINUTE" />
+          <ScalarProperty Name="TO_HOUR" ColumnName="TO_HOUR" />
+          <ScalarProperty Name="TO_MINUTE" ColumnName="TO_MINUTE" />
+          <ScalarProperty Name="PIC" ColumnName="PIC" />
+          <ScalarProperty Name="LAST_UPDATED_DATE" ColumnName="LAST_UPDATED_DATE" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS_MEDIAS">
+      <EntityTypeMapping TypeName="Model.NEWS_MEDIAS">
+        <MappingFragment StoreEntitySet="NEWS_MEDIAS">
+          <ScalarProperty Name="NEWS_MEDIA_ID" ColumnName="NEWS_MEDIA_ID" />
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ATTACH" ColumnName="ATTACH" />
+          <ScalarProperty Name="BODY3" ColumnName="BODY3" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="BODY" ColumnName="BODY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NEWS_SUB_CATS">
+      <EntityTypeMapping TypeName="Model.NEWS_SUB_CATS">
+        <MappingFragment StoreEntitySet="NEWS_SUB_CATS">
+          <ScalarProperty Name="NEWS_SUB_CAT_ID" ColumnName="NEWS_SUB_CAT_ID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="NEWS_CAT_ID" ColumnName="NEWS_CAT_ID" />
+          <ScalarProperty Name="LAST_UPDATED_DATE" ColumnName="LAST_UPDATED_DATE" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PARENTS">
+      <EntityTypeMapping TypeName="Model.PARENTS">
+        <MappingFragment StoreEntitySet="PARENTS">
+          <ScalarProperty Name="PARENT_ID" ColumnName="PARENT_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="PARENT_MOTHER" ColumnName="PARENT_MOTHER" />
+          <ScalarProperty Name="PARENT_MOTHER_MPHONE" ColumnName="PARENT_MOTHER_MPHONE" />
+          <ScalarProperty Name="PARENT_MOTHER_LPHONE" ColumnName="PARENT_MOTHER_LPHONE" />
+          <ScalarProperty Name="PARENT_FATHER_NAME" ColumnName="PARENT_FATHER_NAME" />
+          <ScalarProperty Name="PARENT_FATHER_MPHONE" ColumnName="PARENT_FATHER_MPHONE" />
+          <ScalarProperty Name="PARENT_FATHER_LPHONE" ColumnName="PARENT_FATHER_LPHONE" />
+          <ScalarProperty Name="PARENT_ACTIVE" ColumnName="PARENT_ACTIVE" />
+          <ScalarProperty Name="PARENT_ADRESS" ColumnName="PARENT_ADRESS" />
+          <ScalarProperty Name="PARENT_AREA" ColumnName="PARENT_AREA" />
+          <ScalarProperty Name="PARENT_MOTHER_EMAIL" ColumnName="PARENT_MOTHER_EMAIL" />
+          <ScalarProperty Name="PARENT_FATHER_EMAIL" ColumnName="PARENT_FATHER_EMAIL" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCHOOLS">
+      <EntityTypeMapping TypeName="Model.SCHOOLS">
+        <MappingFragment StoreEntitySet="SCHOOLS">
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="SCHOOL_NAME" ColumnName="SCHOOL_NAME" />
+          <ScalarProperty Name="LOGO" ColumnName="LOGO" />
+          <ScalarProperty Name="SLOGEN" ColumnName="SLOGEN" />
+          <ScalarProperty Name="ENGLISH_NAME" ColumnName="ENGLISH_NAME" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+          <ScalarProperty Name="ALLOWED_USER_COUNT" ColumnName="ALLOWED_USER_COUNT" />
+          <ScalarProperty Name="EXPIER_DATE" ColumnName="EXPIER_DATE" />
+          <ScalarProperty Name="MESSAGING" ColumnName="MESSAGING" />
+          <ScalarProperty Name="GRADES" ColumnName="GRADES" />
+          <ScalarProperty Name="WOMEWORKS" ColumnName="WOMEWORKS" />
+          <ScalarProperty Name="SCHEDULE" ColumnName="SCHEDULE" />
+          <ScalarProperty Name="PARENT_TO_TEACHER" ColumnName="PARENT_TO_TEACHER" />
+          <ScalarProperty Name="TEACHER_TO_PARENT" ColumnName="TEACHER_TO_PARENT" />
+          <ScalarProperty Name="TEACHER_TO_STUDENT" ColumnName="TEACHER_TO_STUDENT" />
+          <ScalarProperty Name="STUDENT_TO_TEACHER" ColumnName="STUDENT_TO_TEACHER" />
+          <ScalarProperty Name="FETCH_SIZE" ColumnName="FETCH_SIZE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+          <ScalarProperty Name="SESSION_DURATION" ColumnName="SESSION_DURATION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_SUBJECTS">
+      <EntityTypeMapping TypeName="Model.STUDENT_SUBJECTS">
+        <MappingFragment StoreEntitySet="STUDENT_SUBJECTS">
+          <ScalarProperty Name="STUDENT_SUBJECT_ID" ColumnName="STUDENT_SUBJECT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTS">
+      <EntityTypeMapping TypeName="Model.STUDENTS">
+        <MappingFragment StoreEntitySet="STUDENTS">
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="STUDENT_NAME" ColumnName="STUDENT_NAME" />
+          <ScalarProperty Name="STUDENT_PHOTO" ColumnName="STUDENT_PHOTO" />
+          <ScalarProperty Name="STUDENT_FATHER" ColumnName="STUDENT_FATHER" />
+          <ScalarProperty Name="STUDENT_MATHER" ColumnName="STUDENT_MATHER" />
+          <ScalarProperty Name="STDENT_BIRTHDATE" ColumnName="STDENT_BIRTHDATE" />
+          <ScalarProperty Name="STUDENT_MPHONE" ColumnName="STUDENT_MPHONE" />
+          <ScalarProperty Name="STUDENT_LPHONE" ColumnName="STUDENT_LPHONE" />
+          <ScalarProperty Name="STUDENT_EMAIL" ColumnName="STUDENT_EMAIL" />
+          <ScalarProperty Name="STUDENT_FACEBOOK" ColumnName="STUDENT_FACEBOOK" />
+          <ScalarProperty Name="STUDENT_TWEETER" ColumnName="STUDENT_TWEETER" />
+          <ScalarProperty Name="STUDENT_ACTIVE" ColumnName="STUDENT_ACTIVE" />
+          <ScalarProperty Name="ALLOW_ADD_NEWS" ColumnName="ALLOW_ADD_NEWS" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTS_EXAM">
+      <EntityTypeMapping TypeName="Model.STUDENTS_EXAM">
+        <MappingFragment StoreEntitySet="STUDENTS_EXAM">
+          <ScalarProperty Name="STUDENTS_EXAM_ID" ColumnName="STUDENTS_EXAM_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="EXAM_ID" ColumnName="EXAM_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="STUDENT_GRADE_NOTES" ColumnName="STUDENT_GRADE_NOTES" />
+          <ScalarProperty Name="ABSENT" ColumnName="ABSENT" />
+          <ScalarProperty Name="GRADE" ColumnName="GRADE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTS_NOTES">
+      <EntityTypeMapping TypeName="Model.STUDENTS_NOTES">
+        <MappingFragment StoreEntitySet="STUDENTS_NOTES">
+          <ScalarProperty Name="STUDENT_NOTE_ID" ColumnName="STUDENT_NOTE_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="NOTE_DATE" ColumnName="NOTE_DATE" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENTS_PARENTS">
+      <EntityTypeMapping TypeName="Model.STUDENTS_PARENTS">
+        <MappingFragment StoreEntitySet="STUDENTS_PARENTS">
+          <ScalarProperty Name="STUDENTS_PARENT_ID" ColumnName="STUDENTS_PARENT_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="PAERNT_ID" ColumnName="PAERNT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SUBJECTS">
+      <EntityTypeMapping TypeName="Model.SUBJECTS">
+        <MappingFragment StoreEntitySet="SUBJECTS">
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="SUBJECT_NAME" ColumnName="SUBJECT_NAME" />
+          <ScalarProperty Name="SUBJECT_MAX" ColumnName="SUBJECT_MAX" />
+          <ScalarProperty Name="SUBJECT_PASS" ColumnName="SUBJECT_PASS" />
+          <ScalarProperty Name="SORT" ColumnName="SORT" />
+          <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
+          <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHER_SUBJECTS">
+      <EntityTypeMapping TypeName="Model.TEACHER_SUBJECTS">
+        <MappingFragment StoreEntitySet="TEACHER_SUBJECTS">
+          <ScalarProperty Name="TEACHER_SUBJECT_ID" ColumnName="TEACHER_SUBJECT_ID" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEACHERS">
+      <EntityTypeMapping TypeName="Model.TEACHERS">
+        <MappingFragment StoreEntitySet="TEACHERS">
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="TEACHER_NAME" ColumnName="TEACHER_NAME" />
+          <ScalarProperty Name="TEACHER_PHOTO" ColumnName="TEACHER_PHOTO" />
+          <ScalarProperty Name="TEACHER_FATHER" ColumnName="TEACHER_FATHER" />
+          <ScalarProperty Name="TEACHER_MATHER" ColumnName="TEACHER_MATHER" />
+          <ScalarProperty Name="TEACHER_BIRTHDATE" ColumnName="TEACHER_BIRTHDATE" />
+          <ScalarProperty Name="TEACHER_MPHONE" ColumnName="TEACHER_MPHONE" />
+          <ScalarProperty Name="TEACHER_LPHONE" ColumnName="TEACHER_LPHONE" />
+          <ScalarProperty Name="TEACHER_AREA" ColumnName="TEACHER_AREA" />
+          <ScalarProperty Name="TEACHER_ADDRES" ColumnName="TEACHER_ADDRES" />
+          <ScalarProperty Name="TEACHER_EMAIL" ColumnName="TEACHER_EMAIL" />
+          <ScalarProperty Name="TEACHER_FACEBOOK" ColumnName="TEACHER_FACEBOOK" />
+          <ScalarProperty Name="TEACHER_TWEETER" ColumnName="TEACHER_TWEETER" />
+          <ScalarProperty Name="TEACHER_NOTE" ColumnName="TEACHER_NOTE" />
+          <ScalarProperty Name="TEACHER_ACTIVE" ColumnName="TEACHER_ACTIVE" />
+          <ScalarProperty Name="ALLOW_ADD_NEWS" ColumnName="ALLOW_ADD_NEWS" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_VOTES">
+      <EntityTypeMapping TypeName="Model.USER_VOTES">
+        <MappingFragment StoreEntitySet="USER_VOTES">
+          <ScalarProperty Name="USER_VOTE_ID" ColumnName="USER_VOTE_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="VOTING_CHOICE_ID" ColumnName="VOTING_CHOICE_ID" />
+          <ScalarProperty Name="VOTING_DATE" ColumnName="VOTING_DATE" />
+          <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="Model.USERS">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="USER_PASSWORD" ColumnName="USER_PASSWORD" />
+          <ScalarProperty Name="VALID_FROM" ColumnName="VALID_FROM" />
+          <ScalarProperty Name="USER_ACTIVE" ColumnName="USER_ACTIVE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+          <ScalarProperty Name="NEED_APPROVE" ColumnName="NEED_APPROVE" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VOTING_CHOICES">
+      <EntityTypeMapping TypeName="Model.VOTING_CHOICES">
+        <MappingFragment StoreEntitySet="VOTING_CHOICES">
+          <ScalarProperty Name="VOTING_CHOICE_ID" ColumnName="VOTING_CHOICE_ID" />
+          <ScalarProperty Name="NEWS_ID" ColumnName="NEWS_ID" />
+          <ScalarProperty Name="CHOICE" ColumnName="CHOICE" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ANSWERS_USERS">
+      <EntityTypeMapping TypeName="Model.ANSWERS_USERS">
+        <MappingFragment StoreEntitySet="ANSWERS_USERS">
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="USER_ANSWER" ColumnName="USER_ANSWER" />
+          <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ANSWER_USER_ID" ColumnName="ANSWER_USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOC_ANSWERS">
+      <EntityTypeMapping TypeName="Model.DOC_ANSWERS">
+        <MappingFragment StoreEntitySet="DOC_ANSWERS">
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOC_QUESTIONS">
+      <EntityTypeMapping TypeName="Model.DOC_QUESTIONS">
+        <MappingFragment StoreEntitySet="DOC_QUESTIONS">
+          <ScalarProperty Name="DOCUMENT_ID" ColumnName="DOCUMENT_ID" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENT_USERS">
+      <EntityTypeMapping TypeName="Model.DOCUMENT_USERS">
+        <MappingFragment StoreEntitySet="DOCUMENT_USERS">
+          <ScalarProperty Name="USERS_ID" ColumnName="USERS_ID" />
+          <ScalarProperty Name="DOCUMENT_ID" ColumnName="DOCUMENT_ID" />
+          <ScalarProperty Name="DOCUMENT_USERS_ID" ColumnName="DOCUMENT_USERS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTS">
+      <EntityTypeMapping TypeName="Model.DOCUMENTS">
+        <MappingFragment StoreEntitySet="DOCUMENTS">
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DOCUMENT_ID" ColumnName="DOCUMENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

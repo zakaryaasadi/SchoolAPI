@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="STUDENTS_NOTES">
+          <Key>
+            <PropertyRef Name="STUDENT_NOTE_ID" />
+          </Key>
+          <Property Name="STUDENT_NOTE_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="STUDENT_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="NOTE" Type="varchar2" MaxLength="2000" />
+          <Property Name="NOTE_DATE" Type="date" />
+          <Property Name="USER_ID" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="SCHOOL_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="USER_NAME" Type="varchar2" MaxLength="200" />
+          <Property Name="USER_PASSWORD" Type="varchar2" MaxLength="200" />
+          <Property Name="VALID_FROM" Type="date" />
+          <Property Name="USER_ACTIVE" Type="number" Precision="2" Scale="0" />
+          <Property Name="TYPE" Type="number" Precision="38" Scale="0" />
+          <Property Name="USER_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="FULL_NAME" Type="varchar2" MaxLength="2000" />
+          <Property Name="NEWS_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="MAIN_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="NEED_APPROVE" Type="number" Precision="2" Scale="0" />
+          <Property Name="IMAGE" Type="blob" />
+        </EntityType>
+        <Association Name="STUDENTS_NOTES_USERS_FK1">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="STUDENTS_NOTES" Type="Self.STUDENTS_NOTES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="USER_ID" />
+            </Principal>
+            <Dependent Role="STUDENTS_NOTES">
+              <PropertyRef Name="USER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="STUDENTS_NOTES" EntityType="Self.STUDENTS_NOTES" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="NEWSCHOOLPRO" store:Type="Tables" />
+          <AssociationSet Name="STUDENTS_NOTES_USERS_FK1" Association="Self.STUDENTS_NOTES_USERS_FK1">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="STUDENTS_NOTES" EntitySet="STUDENTS_NOTES" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true"></EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer"></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

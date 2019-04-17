@@ -16,8 +16,8 @@ namespace SchoolAPI.Models.MD
     {
         public NEWS_SUB_CATS()
         {
-            this.NEWS = new HashSet<NEWS>();
             this.ALLOWED_CATS = new HashSet<ALLOWED_CATS>();
+            this.NEWS = new HashSet<NEWS>();
         }
     
         public int NEWS_SUB_CAT_ID { get; set; }
@@ -27,8 +27,8 @@ namespace SchoolAPI.Models.MD
         public Nullable<System.DateTime> LAST_UPDATED_DATE { get; set; }
         public Nullable<int> MAIN_ID { get; set; }
     
+        public virtual ICollection<ALLOWED_CATS> ALLOWED_CATS { get; set; }
         public virtual ICollection<NEWS> NEWS { get; set; }
         public virtual NEWS_CATS NEWS_CATS { get; set; }
-        public virtual ICollection<ALLOWED_CATS> ALLOWED_CATS { get; set; }
     }
 }

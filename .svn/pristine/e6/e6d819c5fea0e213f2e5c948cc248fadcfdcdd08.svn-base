@@ -1,0 +1,214 @@
+﻿using SchoolAPI.Models.MD;
+using SchoolAPI.ModelView;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace SchoolAPI.Models
+{
+    public class UserPublicInfoClass
+    {
+        public int id { get; set; }
+        public string userName { get; set; }
+        public string fullName { get; set; }
+        public byte[] profileImage { get; set; }
+        public UserTypeClass type { get; set; }
+
+        public UserPublicInfoClass(USERS user)
+        {
+            setInstance(user);
+        }
+
+        public UserPublicInfoClass(int? userId)
+        {
+            if (userId == null)
+                return;
+
+            Entities e = new Entities();
+            setInstance(e.USERS.FirstOrDefault(u => u.USER_ID == userId));
+
+        }
+
+        private void setInstance(USERS user)
+        {
+            if (user == null)
+                return;
+
+            id = user.USER_ID;
+            userName = user.USER_NAME;
+            fullName = user.FULL_NAME;
+            profileImage = Compression.ImageCompression(user.IMAGE, System.Drawing.Imaging.ImageFormat.Jpeg, 200, 200);
+            type = GetUserType(user);
+        }
+
+        private UserTypeClass GetUserType(USERS user)
+        {
+            try
+            {
+                int type = user.TYPE == null ? 0 : (int)user.TYPE;
+                switch (type)
+                {
+                    case 1: return new UserTypeClass() { id = user.ADMINS.Last().ADMIN_ID, userType = UserType.Admin };
+                    case 2: return new UserTypeClass() { id = user.TEACHERS.Last().TEACHER_ID, userType = UserType.Teacher };
+                    case 3: return new UserTypeClass() { id = user.STUDENTS.Last().STUDENT_ID, userType = UserType.Student };
+                    case 4: return new UserTypeClass() { id = user.PARENTS.Last().PARENT_ID, userType = UserType.Parent };
+                }
+
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+    }
+
+    public class UserPrivateInfoClass : UserPublicInfoClass
+    {
+        private USERS user;
+        public short? needApprove { get; set; }
+        public ParentClass parents { get; set; }
+        public List<GroupClass> groups { get; set; }
+        public List<ClassClass> classes { get; set; }
+        public List<SubjectClass> subjects { get; set; }
+        public List<UserPublicInfoClass> children { get; set; }
+
+        public List<UserPublicInfoClass> students { get; set; }
+
+        public UserPrivateInfoClass(USERS user):base(user)
+        {
+            setInstance(user);
+        }
+
+        public UserPrivateInfoClass(int userId) : base(userId)
+        {
+            Entities e = new Entities();
+            setInstance(e.USERS.FirstOrDefault(u => u.USER_ID == userId));
+        }
+
+        private void setInstance(USERS user)
+        {
+            if (user == null)
+                return;
+
+            this.user = user;
+
+            needApprove = user.NEED_APPROVE;
+            parents = GetParents();
+            classes = GetClasses();
+            groups = GetGroups();
+            subjects = GetSubjects();
+            children = GetChildren();
+            students = GetStudents();
+        }
+
+        private UserTypeClass GetUserType()
+        {
+            int type = user.TYPE == null ? 0 : (int)user.TYPE;
+            switch (type)
+            {
+                case 1: return new UserTypeClass() { id = user.ADMINS.Last().ADMIN_ID, userType = UserType.Admin };
+                case 2: return new UserTypeClass() { id = user.TEACHERS.Last().TEACHER_ID, userType = UserType.Teacher };
+                case 3: return new UserTypeClass() { id = user.STUDENTS.Last().STUDENT_ID, userType = UserType.Student };
+                case 4: return new UserTypeClass() { id = user.PARENTS.Last().PARENT_ID, userType = UserType.Parent };
+            }
+
+            return null;
+        }
+
+        private List<ClassClass> GetClasses()
+        {
+            List<ClassClass> classes = new List<ClassClass>();
+            Dictionary<CLASSES, List<SUBJECTS>> _classes = new Dictionary<CLASSES, List<SUBJECTS>>();
+            //classes.Add(new ClassClass(_subject.SUBJECTS.CLASSES));
+
+            if (user.TYPE == 2)
+            {
+                foreach (var _subject in user.TEACHERS.Last().TEACHER_SUBJECTS)
+                    if (_classes.ContainsKey(_subject.SUBJECTS.CLASSES))
+                    {
+                        _classes[_subject.SUBJECTS.CLASSES].Add(_subject.SUBJECTS);
+                    }
+                    else
+                    {
+                        _classes[_subject.SUBJECTS.CLASSES] = new List<SUBJECTS>();
+                        _classes[_subject.SUBJECTS.CLASSES].Add(_subject.SUBJECTS);
+                    }
+
+                foreach (var key in _classes.Keys)
+                    classes.Add(new ClassClass(key, _classes[key]));
+            }
+
+
+            else if (user.TYPE == 3)
+                foreach (var _class in user.STUDENTS)
+                    classes.Add(new ClassClass(_class.CLASSES));
+
+            return classes;
+        }
+
+        private List<GroupClass> GetGroups()
+        {
+            List<GroupClass> groups = new List<GroupClass>();
+
+            foreach (var _group in user.GROUP_MEMBERS)
+                groups.Add(new GroupClass(_group.GROUPS));
+
+
+            return groups;
+        }
+
+        private List<SubjectClass> GetSubjects()
+        {
+            List<SubjectClass> subjects = new List<SubjectClass>();
+
+            //if (user.ADMINS.Count > 0)
+            //    foreach (var item in user.ADMINS.Last().S)
+            //    {
+
+            //    }
+
+            if (user.TYPE == 2)
+                foreach (var item in user.TEACHERS.Last().TEACHER_SUBJECTS)
+                    subjects.Add(new SubjectClass(item.SUBJECTS));
+
+            if (user.TYPE == 3)
+                foreach (var item in user.STUDENTS.Last().STUDENT_SUBJECTS)
+                    subjects.Add(new SubjectClass(item.SUBJECTS)); 
+            return subjects;
+        }
+
+        private ParentClass GetParents()
+        {
+            if (user.TYPE == 3 && user.STUDENTS.Last().STUDENTS_PARENTS.LastOrDefault() != null)
+            {
+                var parent = user.STUDENTS.Last().STUDENTS_PARENTS.Last().PARENTS;
+                return new ParentClass(parent);
+            }
+
+            return null;
+        }
+
+        private List<UserPublicInfoClass> GetChildren()
+        {
+            List<UserPublicInfoClass> children = new List<UserPublicInfoClass>();
+            if (user.TYPE == 4)  
+                foreach (var item in user.PARENTS.Last().STUDENTS_PARENTS)
+                    children.Add(new UserPublicInfoClass(item.STUDENTS.USER_ID));
+
+            return children;
+        }
+
+        private List<UserPublicInfoClass> GetStudents()
+        {
+            List<UserPublicInfoClass> students = new List<UserPublicInfoClass>();
+            if (user.TYPE == 2)
+                foreach (var item in user.TEACHERS.Last().TEACHER_SUBJECTS)
+                    foreach (var st in item.SUBJECTS.STUDENT_SUBJECTS)
+                        students.Add(new UserPublicInfoClass(st.STUDENTS.USER_ID));
+            return students;
+        }
+    }
+}

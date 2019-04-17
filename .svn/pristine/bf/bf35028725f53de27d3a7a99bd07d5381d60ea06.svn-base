@@ -1,0 +1,89 @@
+﻿using SchoolAPI.Models;
+using SchoolAPI.Models.MD;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace SchoolAPI.Controllers
+{
+    public class ExamsController : ApiController
+    {
+
+        [HttpGet]
+        public HttpResponseMessage Get(int user_id, int subject_id)
+        {
+            try
+            {
+                using (Entities entities = new Entities())
+                {
+                    var _student = entities.STUDENTS.FirstOrDefault(s => s.USER_ID == user_id);
+                    var _exams = entities.EXAMS.Where(e => e.SUBJECT_ID == subject_id);
+                    List<Exams> exams = new List<Exams>();
+                    foreach (var item in _exams)
+                    {
+                        var _student_exam = entities.STUDENTS_EXAM.FirstOrDefault(se => se.STUDENT_ID == _student.STUDENT_ID && se.EXAM_ID == item.EXAM_ID);
+                        exams.Add(new Exams(item.EXAM_NAME, _student_exam.GRADE));
+                    }
+
+                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Success", results = exams });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = ex.Message });
+            }
+        }
+
+
+        [HttpGet]
+        public HttpResponseMessage Children(int user_id)
+        {
+            try
+            {
+                var user = new UserPrivateInfoClass(user_id);
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Success", results = user.children });
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = ex.Message });
+            }
+        }
+
+
+        [HttpGet]
+        public HttpResponseMessage GetClasses(int user_id)
+        {
+            try
+            {
+                using (Entities entities = new Entities())
+                {
+                    var user = entities.USERS.FirstOrDefault(a => a.USER_ID == user_id);
+                    if (user != null)
+                        return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Done", results = new UserPrivateInfoClass(user).classes });
+
+                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "No exist user!" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = ex.Message });
+            }
+        }
+
+    }
+
+    class Exams
+    {
+        public string examsName { get; set; }
+        public decimal? mark { get; set; }
+
+        public Exams(string examsName, decimal? mark)
+        {
+            this.examsName = examsName;
+            this.mark = mark;
+        }
+    }
+}
