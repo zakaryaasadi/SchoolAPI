@@ -22,7 +22,7 @@ namespace SchoolAPI.Models
             this.category = category;
             id = category.NEWS_CAT_ID;
             title = category.TITLE;
-            image = Compression.ImageCompression(category.PIC, ImageFormat.Png, 200, 200);
+            image = Compression.ImageCompression(category.PIC, ImageFormat.Png, 128);
             subcategories = getSubcategories();
         }
 

@@ -16,6 +16,7 @@ namespace SchoolAPI.Models.MD
     {
         public STUDENTS()
         {
+            this.STUDENT_SESSION_DETAILS = new HashSet<STUDENT_SESSION_DETAILS>();
             this.STUDENT_SUBJECTS = new HashSet<STUDENT_SUBJECTS>();
             this.STUDENTS_EXAM = new HashSet<STUDENTS_EXAM>();
             this.STUDENTS_NOTES = new HashSet<STUDENTS_NOTES>();
@@ -42,6 +43,7 @@ namespace SchoolAPI.Models.MD
     
         public virtual CLASSES CLASSES { get; set; }
         public virtual SCHOOLS SCHOOLS { get; set; }
+        public virtual ICollection<STUDENT_SESSION_DETAILS> STUDENT_SESSION_DETAILS { get; set; }
         public virtual ICollection<STUDENT_SUBJECTS> STUDENT_SUBJECTS { get; set; }
         public virtual ICollection<STUDENTS_EXAM> STUDENTS_EXAM { get; set; }
         public virtual USERS USERS { get; set; }

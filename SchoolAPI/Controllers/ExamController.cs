@@ -71,7 +71,7 @@ namespace SchoolAPI.Controllers
                         {
                             students.Add(new Student(new UserPublicInfoClass(_student.STUDENTS.USER_ID), _student.GRADE, _student.ABSENT));
                         }
-                        exams.Add(new ExamStudent(item.EXAM_ID, item.EXAM_NAME, item.EXAM_MAX, item.EXAM_PASS, item.EXAM_WEGHIT, students));
+                        exams.Add(new ExamStudent(item.EXAM_ID, item.EXAM_NAME, item.EXAM_MAX, item.EXAM_PASS, item.EXAM_WEGHIT, item.EXAM_DATE, students));
                     }
 
                     return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "Done",results = exams });
@@ -98,7 +98,7 @@ namespace SchoolAPI.Controllers
                     List<SimpleStudent> students = new List<SimpleStudent>();
                     foreach (var _student in _students)
                         if (_student_exam.FirstOrDefault(se => se.STUDENT_ID == _student.STUDENT_ID) == null)
-                            students.Add(new SimpleStudent() { id = _student.STUDENT_ID, name = _student.STUDENTS.USERS.USER_NAME });
+                            students.Add(new SimpleStudent() { id = _student.STUDENT_ID, name = _student.STUDENTS.USERS.FULL_NAME });
 
                     return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "Done", results = students });
                 }
@@ -110,7 +110,7 @@ namespace SchoolAPI.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage AddExam(int user_id,int subject_id, int exam_type_id, int max, int min, string exam_name, DateTime date)
+        public HttpResponseMessage AddExam(int user_id,int subject_id, int exam_type_id, int max, int min, string exam_name)
         {
             try
             {
@@ -118,12 +118,42 @@ namespace SchoolAPI.Controllers
                 {
                    
                     if (new UserPublicInfoClass(user_id).type.userType == UserType.Parent || new UserPublicInfoClass(user_id).type.userType == UserType.Student)
-                        return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "permission denial to add exam!" });
+                        return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "Permission denial to add exam!" });
 
 
-                    var isExistexam = entities.EXAMS.FirstOrDefault(e => e.EXAM_TYPE_ID == exam_type_id && e.SUBJECT_ID == subject_id);
-                    if(isExistexam != null)
-                        return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "permission denial to add exam!" });
+                    EXAMS exam = new EXAMS()
+                    {
+                        EXAM_ID = entities.EXAMS.Max(e => e.EXAM_ID) + 1,
+                        SUBJECT_ID = subject_id,
+                        EXAM_TYPE_ID = exam_type_id,
+                        EXAM_NAME = exam_name,
+                        EXAM_MAX = max,
+                        EXAM_PASS = min
+                    };
+                    entities.EXAMS.Add(exam);
+                    entities.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Success"});
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = ex.Message });
+            }
+        }
+
+
+
+        [HttpGet]
+        public HttpResponseMessage AddExam(int user_id, int subject_id, int exam_type_id, int max, int min, string exam_name, DateTime exam_date)
+        {
+            try
+            {
+                using (Entities entities = new Entities())
+                {
+
+                    if (new UserPublicInfoClass(user_id).type.userType == UserType.Parent || new UserPublicInfoClass(user_id).type.userType == UserType.Student)
+                        return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, status = "Permission denial to add exam!" });
+
 
                     EXAMS exam = new EXAMS()
                     {
@@ -133,11 +163,11 @@ namespace SchoolAPI.Controllers
                         EXAM_NAME = exam_name,
                         EXAM_MAX = max,
                         EXAM_PASS = min,
-                        EXAM_DATE = date
+                        EXAM_DATE = exam_date
                     };
                     entities.EXAMS.Add(exam);
                     entities.SaveChanges();
-                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Success"});
+                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Success" });
                 }
             }
             catch (Exception ex)
@@ -213,7 +243,8 @@ namespace SchoolAPI.Controllers
                 foreach (var item in _exams)
                 {
                     var _student_exam = e.STUDENTS_EXAM.FirstOrDefault(se => se.STUDENT_ID == _student.STUDENT_ID && se.EXAM_ID == item.EXAM_ID);
-                    exams.Add(new Exam(item.EXAM_ID, item.EXAM_NAME, _student_exam.GRADE, item.EXAM_MAX, item.EXAM_PASS, item.EXAM_WEGHIT, _student_exam.ABSENT));
+                    if (_student_exam != null)
+                        exams.Add(new Exam(item.EXAM_ID, item.EXAM_NAME, _student_exam.GRADE, item.EXAM_MAX, item.EXAM_PASS, item.EXAM_WEGHIT == null ? 100 : item.EXAM_WEGHIT, _student_exam.ABSENT));
                 }
                 list.Add(new ExamSubject(s, exams));
             }
@@ -264,15 +295,17 @@ namespace SchoolAPI.Controllers
         public int? max { get; set; }
         public int? min { get; set; }
         public decimal? weight { get; set; }
+        public DateTime? examDate { get; set; }
         public List<Student> students { get; set; }
 
-        public ExamStudent(int id, string examName, int? max, int? min, decimal? weight, List<Student> students)
+        public ExamStudent(int id, string examName, int? max, int? min, decimal? weight, DateTime? examDate, List<Student> students)
         {
             examId = id;
             this.examName = examName;
             this.max = max;
             this.min = min;
             this.weight = weight;
+            this.examDate = examDate;
             this.students = students;
         }
 

@@ -22,10 +22,15 @@ namespace SchoolAPI.Models.MD
             this.GROUPS = new HashSet<GROUPS>();
             this.NEWS_CATS = new HashSet<NEWS_CATS>();
             this.PARENTS = new HashSet<PARENTS>();
+            this.RESOURCES = new HashSet<RESOURCES>();
+            this.SESSIONS = new HashSet<SESSIONS>();
             this.STUDENTS = new HashSet<STUDENTS>();
             this.SUBJECTS = new HashSet<SUBJECTS>();
             this.TEACHERS = new HashSet<TEACHERS>();
             this.USERS = new HashSet<USERS>();
+            this.LESSONS = new HashSet<LESSONS>();
+            this.HOLYDAYS = new HashSet<HOLYDAYS>();
+            this.EDUCATION_YEARS = new HashSet<EDUCATION_YEARS>();
         }
     
         public int SCHOOL_ID { get; set; }
@@ -55,9 +60,14 @@ namespace SchoolAPI.Models.MD
         public virtual ICollection<GROUPS> GROUPS { get; set; }
         public virtual ICollection<NEWS_CATS> NEWS_CATS { get; set; }
         public virtual ICollection<PARENTS> PARENTS { get; set; }
+        public virtual ICollection<RESOURCES> RESOURCES { get; set; }
+        public virtual ICollection<SESSIONS> SESSIONS { get; set; }
         public virtual ICollection<STUDENTS> STUDENTS { get; set; }
         public virtual ICollection<SUBJECTS> SUBJECTS { get; set; }
         public virtual ICollection<TEACHERS> TEACHERS { get; set; }
         public virtual ICollection<USERS> USERS { get; set; }
+        public virtual ICollection<LESSONS> LESSONS { get; set; }
+        public virtual ICollection<HOLYDAYS> HOLYDAYS { get; set; }
+        public virtual ICollection<EDUCATION_YEARS> EDUCATION_YEARS { get; set; }
     }
 }

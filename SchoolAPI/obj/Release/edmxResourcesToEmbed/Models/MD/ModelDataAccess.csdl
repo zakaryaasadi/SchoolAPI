@@ -27,24 +27,6 @@
     <NavigationProperty Name="USERS" Relationship="Self.ALLOWED_CATS_FK1" FromRole="ALLOWED_CATS" ToRole="USERS" />
     <NavigationProperty Name="NEWS_SUB_CATS" Relationship="Self.ALLOWED_CATS_FK2" FromRole="ALLOWED_CATS" ToRole="NEWS_SUB_CATS" />
   </EntityType>
-  <EntityType Name="ANSWERS_USERS">
-    <Key>
-      <PropertyRef Name="ANSWER_USER_ID" />
-    </Key>
-    <Property Name="ANSWER_USER_ID" Type="Int32" Nullable="false" />
-    <Property Name="USER_ID" Type="Int32" Nullable="false" />
-    <Property Name="ANSWER_ID" Type="Int32" />
-    <Property Name="IS_CHECKED" Type="Int32" />
-    <Property Name="USER_ANSWER" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-    <Property Name="QUESTION_ID" Type="Int32" />
-    <Property Name="SUBJECT_ID" Type="Int32" />
-    <Property Name="STUDENT_ID" Type="Int32" />
-    <NavigationProperty Name="DOC_ANSWERS" Relationship="Self.ANSWERS_USERS_DOC_ANSWERS_FK1" FromRole="ANSWERS_USERS" ToRole="DOC_ANSWERS" />
-    <NavigationProperty Name="SUBJECTS" Relationship="Self.ANSWERS_USERS_FK1" FromRole="ANSWERS_USERS" ToRole="SUBJECTS" />
-    <NavigationProperty Name="USERS" Relationship="Self.ANSWERS_USERS_FK2" FromRole="ANSWERS_USERS" ToRole="USERS" />
-    <NavigationProperty Name="DOC_QUESTIONS" Relationship="Self.ANSWERS_USERS_QUESTION_FK1" FromRole="ANSWERS_USERS" ToRole="DOC_QUESTIONS" />
-    <NavigationProperty Name="USERS1" Relationship="Self.ANSWERS_USERS_USERS_FK1" FromRole="ANSWERS_USERS" ToRole="USERS" />
-  </EntityType>
   <EntityType Name="ATTACHMENTS">
     <Key>
       <PropertyRef Name="ATTACH_ID" />
@@ -69,8 +51,11 @@
     <NavigationProperty Name="SCHOOLS" Relationship="Self.CLASSES_FK2" FromRole="CLASSES" ToRole="SCHOOLS" />
     <NavigationProperty Name="MESSAGES" Relationship="Self.MESSAGES_FK3" FromRole="CLASSES" ToRole="MESSAGES" />
     <NavigationProperty Name="NEWS_ACL_CLASSES" Relationship="Self.NEWS_ACL_CLASSES_FK2" FromRole="CLASSES" ToRole="NEWS_ACL_CLASSES" />
+    <NavigationProperty Name="SESSIONS" Relationship="Self.SESSIONS_FK3" FromRole="CLASSES" ToRole="SESSIONS" />
     <NavigationProperty Name="STUDENTS" Relationship="Self.STUDENTS_FK1" FromRole="CLASSES" ToRole="STUDENTS" />
     <NavigationProperty Name="SUBJECTS" Relationship="Self.SUBJECTS_FK1" FromRole="CLASSES" ToRole="SUBJECTS" />
+    <NavigationProperty Name="LESSONS" Relationship="Model.LESSONS_FK3" FromRole="CLASSES" ToRole="LESSONS" />
+    <NavigationProperty Name="COURSES" Relationship="Model.COURSES_FK3" FromRole="CLASSES" ToRole="COURSES" />
   </EntityType>
   <EntityType Name="DOC_ANSWERS">
     <Key>
@@ -79,8 +64,8 @@
     <Property Name="ANSWER_ID" Type="Int32" Nullable="false" />
     <Property Name="VALUE" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="QUESTION_ID" Type="Int32" />
-    <NavigationProperty Name="ANSWERS_USERS" Relationship="Self.ANSWERS_USERS_DOC_ANSWERS_FK1" FromRole="DOC_ANSWERS" ToRole="ANSWERS_USERS" />
     <NavigationProperty Name="DOC_QUESTIONS" Relationship="Self.DOC_ANSWERS_DOC_QUESTIONS_FK1" FromRole="DOC_ANSWERS" ToRole="DOC_QUESTIONS" />
+    <NavigationProperty Name="ANSWERS_USERS" Relationship="Model.ANSWERS_USERS_DOC_ANSWERS_FK1" FromRole="DOC_ANSWERS" ToRole="ANSWERS_USERS" />
   </EntityType>
   <EntityType Name="DOC_QUESTIONS">
     <Key>
@@ -90,9 +75,9 @@
     <Property Name="VALUE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TYPE" Type="Int32" Nullable="false" />
     <Property Name="DOCUMENT_ID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="ANSWERS_USERS" Relationship="Self.ANSWERS_USERS_QUESTION_FK1" FromRole="DOC_QUESTIONS" ToRole="ANSWERS_USERS" />
     <NavigationProperty Name="DOC_ANSWERS" Relationship="Self.DOC_ANSWERS_DOC_QUESTIONS_FK1" FromRole="DOC_QUESTIONS" ToRole="DOC_ANSWERS" />
     <NavigationProperty Name="DOCUMENTS" Relationship="Self.DOC_QUESTIONS_DOCUMENTS_FK1" FromRole="DOC_QUESTIONS" ToRole="DOCUMENTS" />
+    <NavigationProperty Name="ANSWERS_USERS" Relationship="Model.ANSWERS_USERS_QUESTION_FK1" FromRole="DOC_QUESTIONS" ToRole="ANSWERS_USERS" />
   </EntityType>
   <EntityType Name="DOCUMENT_USER">
     <Key>
@@ -180,6 +165,20 @@
     <Property Name="USER_ID" Type="Int32" />
     <NavigationProperty Name="GROUPS" Relationship="Self.JOIN_GROUPS_FK1" FromRole="JOIN_GROUPS" ToRole="GROUPS" />
     <NavigationProperty Name="USERS" Relationship="Self.JOIN_GROUPS_FK2" FromRole="JOIN_GROUPS" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="LESSONS_SECTIONS">
+    <Key>
+      <PropertyRef Name="LESSON_SECTION_ID" />
+    </Key>
+    <Property Name="LESSON_SECTION_ID" Type="Int32" Nullable="false" />
+    <Property Name="LESSON_ID" Type="Int32" />
+    <Property Name="RESOURCE_ID" Type="Int32" />
+    <Property Name="ORDR" Type="Int16" />
+    <Property Name="DURATION" Type="Int16" />
+    <Property Name="TEACHER" Type="Int16" />
+    <Property Name="STUDENTS" Type="Int16" />
+    <NavigationProperty Name="RESOURCES" Relationship="Self.LESSONS_SECTIONS_FK2" FromRole="LESSONS_SECTIONS" ToRole="RESOURCES" />
+    <NavigationProperty Name="LESSONS" Relationship="Model.LESSONS_SECTIONS_FK1" FromRole="LESSONS_SECTIONS" ToRole="LESSONS" />
   </EntityType>
   <EntityType Name="MESSAGE_RECIPIENTS">
     <Key>
@@ -353,6 +352,27 @@
     <NavigationProperty Name="USERS" Relationship="Self.PARENTS_USERS_FK1" FromRole="PARENTS" ToRole="USERS" />
     <NavigationProperty Name="STUDENTS_PARENTS" Relationship="Self.STUDENTS_PARENTS_PARENTS_FK2" FromRole="PARENTS" ToRole="STUDENTS_PARENTS" />
   </EntityType>
+  <EntityType Name="RESOURCES">
+    <Key>
+      <PropertyRef Name="RESOURCE_ID" />
+    </Key>
+    <Property Name="RESOURCE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="EDUCATION_YEAR_ID" Type="Int32" />
+    <Property Name="RESOURCE_TYPE_ID" Type="Int32" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OBJECTIVE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ATTACHMENT" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ATTACHMENT_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ATTACHMENT_EXT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ATTACHMENT_TYPE" Type="Int16" />
+    <Property Name="NOTE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="ISSUE_DATE" Type="DateTime" />
+    <NavigationProperty Name="LESSONS_SECTIONS" Relationship="Self.LESSONS_SECTIONS_FK2" FromRole="RESOURCES" ToRole="LESSONS_SECTIONS" />
+    <NavigationProperty Name="SCHOOLS" Relationship="Self.RESOURCES_FK1" FromRole="RESOURCES" ToRole="SCHOOLS" />
+    <NavigationProperty Name="RESOURCES_LINKS" Relationship="Model.RESOURCES_LINKS_FK1" FromRole="RESOURCES" ToRole="RESOURCES_LINKS" />
+    <NavigationProperty Name="EDUCATION_YEARS" Relationship="Model.RESOURCES_FK2" FromRole="RESOURCES" ToRole="EDUCATION_YEARS" />
+  </EntityType>
   <EntityType Name="SCHOOLS">
     <Key>
       <PropertyRef Name="SCHOOL_ID" />
@@ -383,10 +403,49 @@
     <NavigationProperty Name="GROUPS" Relationship="Self.GROUPS_FK1" FromRole="SCHOOLS" ToRole="GROUPS" />
     <NavigationProperty Name="NEWS_CATS" Relationship="Self.NEWS_CATS_FK1" FromRole="SCHOOLS" ToRole="NEWS_CATS" />
     <NavigationProperty Name="PARENTS" Relationship="Self.PARENTS_SCHOOLS_FK1" FromRole="SCHOOLS" ToRole="PARENTS" />
+    <NavigationProperty Name="RESOURCES" Relationship="Self.RESOURCES_FK1" FromRole="SCHOOLS" ToRole="RESOURCES" />
+    <NavigationProperty Name="SESSIONS" Relationship="Self.SESSIONS_FK1" FromRole="SCHOOLS" ToRole="SESSIONS" />
     <NavigationProperty Name="STUDENTS" Relationship="Self.STUDENTS_FK2" FromRole="SCHOOLS" ToRole="STUDENTS" />
     <NavigationProperty Name="SUBJECTS" Relationship="Self.SUBJECTS_FK2" FromRole="SCHOOLS" ToRole="SUBJECTS" />
     <NavigationProperty Name="TEACHERS" Relationship="Self.TEACHERS_FK1" FromRole="SCHOOLS" ToRole="TEACHERS" />
     <NavigationProperty Name="USERS" Relationship="Self.USERSID_FK1" FromRole="SCHOOLS" ToRole="USERS" />
+    <NavigationProperty Name="LESSONS" Relationship="Model.LESSONS_FK1" FromRole="SCHOOLS" ToRole="LESSONS" />
+    <NavigationProperty Name="HOLYDAYS" Relationship="Model.HOLYDAYS_FK1" FromRole="SCHOOLS" ToRole="HOLYDAYS" />
+    <NavigationProperty Name="EDUCATION_YEARS" Relationship="Model.EDUCATION_YEARS_FK1" FromRole="SCHOOLS" ToRole="EDUCATION_YEARS" />
+  </EntityType>
+  <EntityType Name="SESSIONS">
+    <Key>
+      <PropertyRef Name="SESSION_ID" />
+    </Key>
+    <Property Name="SESSION_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="EDUCATION_YEAR_ID" Type="Int32" />
+    <Property Name="CLASS_ID" Type="Int32" />
+    <Property Name="SUBJECT_ID" Type="Int32" />
+    <Property Name="TITLE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="OBJECTIVE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ORDR" Type="Int16" />
+    <Property Name="EXPECTED_DATE" Type="DateTime" />
+    <NavigationProperty Name="CLASSES" Relationship="Self.SESSIONS_FK3" FromRole="SESSIONS" ToRole="CLASSES" />
+    <NavigationProperty Name="SCHOOLS" Relationship="Self.SESSIONS_FK1" FromRole="SESSIONS" ToRole="SCHOOLS" />
+    <NavigationProperty Name="SUBJECTS" Relationship="Self.SESSIONS_FK4" FromRole="SESSIONS" ToRole="SUBJECTS" />
+    <NavigationProperty Name="STUDENT_SESSION_DETAILS" Relationship="Self.STUDENT_SESSION_DETAILS_FK1" FromRole="SESSIONS" ToRole="STUDENT_SESSION_DETAILS" />
+    <NavigationProperty Name="LESSONS" Relationship="Model.LESSONS_FK6" FromRole="SESSIONS" ToRole="LESSONS" />
+    <NavigationProperty Name="HEADLINES" Relationship="Model.HADLINES_FK1" FromRole="SESSIONS" ToRole="HEADLINES" />
+    <NavigationProperty Name="EDUCATION_YEARS" Relationship="Model.SESSIONS_FK2" FromRole="SESSIONS" ToRole="EDUCATION_YEARS" />
+  </EntityType>
+  <EntityType Name="STUDENT_SESSION_DETAILS">
+    <Key>
+      <PropertyRef Name="STU_SESS_ID" />
+    </Key>
+    <Property Name="STU_SESS_ID" Type="Int32" Nullable="false" />
+    <Property Name="SESSION_ID" Type="Int32" Nullable="false" />
+    <Property Name="STUDENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="EXIST" Type="Int16" Nullable="false" />
+    <Property Name="NOTES" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LATE" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="SESSIONS" Relationship="Self.STUDENT_SESSION_DETAILS_FK1" FromRole="STUDENT_SESSION_DETAILS" ToRole="SESSIONS" />
+    <NavigationProperty Name="STUDENTS" Relationship="Self.STUDENT_SESSION_DETAILS_FK2" FromRole="STUDENT_SESSION_DETAILS" ToRole="STUDENTS" />
   </EntityType>
   <EntityType Name="STUDENT_SUBJECTS">
     <Key>
@@ -421,6 +480,7 @@
     <Property Name="MAIN_ID" Type="Int32" />
     <NavigationProperty Name="CLASSES" Relationship="Self.STUDENTS_FK1" FromRole="STUDENTS" ToRole="CLASSES" />
     <NavigationProperty Name="SCHOOLS" Relationship="Self.STUDENTS_FK2" FromRole="STUDENTS" ToRole="SCHOOLS" />
+    <NavigationProperty Name="STUDENT_SESSION_DETAILS" Relationship="Self.STUDENT_SESSION_DETAILS_FK2" FromRole="STUDENTS" ToRole="STUDENT_SESSION_DETAILS" />
     <NavigationProperty Name="STUDENT_SUBJECTS" Relationship="Self.STUDENT_SUBJECTS_FK1" FromRole="STUDENTS" ToRole="STUDENT_SUBJECTS" />
     <NavigationProperty Name="STUDENTS_EXAM" Relationship="Self.STUDENTS_EXAM_FK2" FromRole="STUDENTS" ToRole="STUDENTS_EXAM" />
     <NavigationProperty Name="USERS" Relationship="Self.STUDENTS_FK3" FromRole="STUDENTS" ToRole="USERS" />
@@ -476,15 +536,19 @@
     <Property Name="EXPIRE_DATE" Type="DateTime" />
     <Property Name="START_DATE" Type="DateTime" />
     <Property Name="MAIN_ID" Type="Int32" />
-    <NavigationProperty Name="ANSWERS_USERS" Relationship="Self.ANSWERS_USERS_FK1" FromRole="SUBJECTS" ToRole="ANSWERS_USERS" />
+    <Property Name="SUBJECT_HOURS" Type="Int32" Nullable="false" />
     <NavigationProperty Name="CLASSES" Relationship="Self.SUBJECTS_FK1" FromRole="SUBJECTS" ToRole="CLASSES" />
     <NavigationProperty Name="EXAM_TYPES" Relationship="Self.EXAM_TYPES_FK1" FromRole="SUBJECTS" ToRole="EXAM_TYPES" />
     <NavigationProperty Name="EXAMS" Relationship="Self.EXAMS_FK1" FromRole="SUBJECTS" ToRole="EXAMS" />
     <NavigationProperty Name="MESSAGES" Relationship="Self.MESSAGES_FK1" FromRole="SUBJECTS" ToRole="MESSAGES" />
     <NavigationProperty Name="NEWS_ACL_SUBJECTS" Relationship="Self.NEWS_ACL_SUBJECTS_FK2" FromRole="SUBJECTS" ToRole="NEWS_ACL_SUBJECTS" />
     <NavigationProperty Name="SCHOOLS" Relationship="Self.SUBJECTS_FK2" FromRole="SUBJECTS" ToRole="SCHOOLS" />
+    <NavigationProperty Name="SESSIONS" Relationship="Self.SESSIONS_FK4" FromRole="SUBJECTS" ToRole="SESSIONS" />
     <NavigationProperty Name="STUDENT_SUBJECTS" Relationship="Self.STUDENT_SUBJECTS_FK2" FromRole="SUBJECTS" ToRole="STUDENT_SUBJECTS" />
     <NavigationProperty Name="TEACHER_SUBJECTS" Relationship="Self.TEACHER_SUBJECTS_FK2" FromRole="SUBJECTS" ToRole="TEACHER_SUBJECTS" />
+    <NavigationProperty Name="LESSONS" Relationship="Model.LESSONS_FK4" FromRole="SUBJECTS" ToRole="LESSONS" />
+    <NavigationProperty Name="ANSWERS_USERS" Relationship="Model.ANSWERS_USERS_FK1" FromRole="SUBJECTS" ToRole="ANSWERS_USERS" />
+    <NavigationProperty Name="COURSES" Relationship="Model.COURSES_FK1" FromRole="SUBJECTS" ToRole="COURSES" />
   </EntityType>
   <EntityType Name="TEACHER_SUBJECTS">
     <Key>
@@ -522,6 +586,8 @@
     <NavigationProperty Name="SCHOOLS" Relationship="Self.TEACHERS_FK1" FromRole="TEACHERS" ToRole="SCHOOLS" />
     <NavigationProperty Name="TEACHER_SUBJECTS" Relationship="Self.TEACHER_SUBJECTS_FK1" FromRole="TEACHERS" ToRole="TEACHER_SUBJECTS" />
     <NavigationProperty Name="USERS" Relationship="Self.TEACHERS_FK2" FromRole="TEACHERS" ToRole="USERS" />
+    <NavigationProperty Name="LESSONS" Relationship="Model.LESSONS_FK5" FromRole="TEACHERS" ToRole="LESSONS" />
+    <NavigationProperty Name="COURSES" Relationship="Model.COURSES_FK2" FromRole="TEACHERS" ToRole="COURSES" />
   </EntityType>
   <EntityType Name="USER_VOTES">
     <Key>
@@ -553,8 +619,6 @@
     <Property Name="IMAGE" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="ADMINS" Relationship="Self.ADMINS_USERS_FK1" FromRole="USERS" ToRole="ADMINS" />
     <NavigationProperty Name="ALLOWED_CATS" Relationship="Self.ALLOWED_CATS_FK1" FromRole="USERS" ToRole="ALLOWED_CATS" />
-    <NavigationProperty Name="ANSWERS_USERS" Relationship="Self.ANSWERS_USERS_FK2" FromRole="USERS" ToRole="ANSWERS_USERS" />
-    <NavigationProperty Name="ANSWERS_USERS1" Relationship="Self.ANSWERS_USERS_USERS_FK1" FromRole="USERS" ToRole="ANSWERS_USERS" />
     <NavigationProperty Name="DOCUMENT_USER" Relationship="Self.DOCUMENT_USER_USERS_FK1" FromRole="USERS" ToRole="DOCUMENT_USER" />
     <NavigationProperty Name="GROUP_MEMBERS" Relationship="Self.GROUP_MEMBERS_FK1" FromRole="USERS" ToRole="GROUP_MEMBERS" />
     <NavigationProperty Name="JOIN_GROUPS" Relationship="Self.JOIN_GROUPS_FK2" FromRole="USERS" ToRole="JOIN_GROUPS" />
@@ -568,6 +632,8 @@
     <NavigationProperty Name="STUDENTS_NOTES" Relationship="Self.STUDENTS_NOTES_USERS_FK1" FromRole="USERS" ToRole="STUDENTS_NOTES" />
     <NavigationProperty Name="TEACHERS" Relationship="Self.TEACHERS_FK2" FromRole="USERS" ToRole="TEACHERS" />
     <NavigationProperty Name="USER_VOTES" Relationship="Self.USER_VOTES_FK1" FromRole="USERS" ToRole="USER_VOTES" />
+    <NavigationProperty Name="ANSWERS_USERS" Relationship="Model.ANSWERS_USERS_FK2" FromRole="USERS" ToRole="ANSWERS_USERS" />
+    <NavigationProperty Name="ANSWERS_USERS1" Relationship="Model.ANSWERS_USERS_USERS_FK1" FromRole="USERS" ToRole="ANSWERS_USERS" />
   </EntityType>
   <EntityType Name="VOTING_CHOICES">
     <Key>
@@ -651,66 +717,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ANSWERS_USERS_DOC_ANSWERS_FK1">
-    <End Role="DOC_ANSWERS" Type="Self.DOC_ANSWERS" Multiplicity="0..1" />
-    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DOC_ANSWERS">
-        <PropertyRef Name="ANSWER_ID" />
-      </Principal>
-      <Dependent Role="ANSWERS_USERS">
-        <PropertyRef Name="ANSWER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ANSWERS_USERS_FK1">
-    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1" />
-    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SUBJECTS">
-        <PropertyRef Name="SUBJECT_ID" />
-      </Principal>
-      <Dependent Role="ANSWERS_USERS">
-        <PropertyRef Name="SUBJECT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ANSWERS_USERS_FK2">
-    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
-    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="USERS">
-        <PropertyRef Name="USER_ID" />
-      </Principal>
-      <Dependent Role="ANSWERS_USERS">
-        <PropertyRef Name="STUDENT_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ANSWERS_USERS_QUESTION_FK1">
-    <End Role="DOC_QUESTIONS" Type="Self.DOC_QUESTIONS" Multiplicity="0..1" />
-    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="DOC_QUESTIONS">
-        <PropertyRef Name="QUESTION_ID" />
-      </Principal>
-      <Dependent Role="ANSWERS_USERS">
-        <PropertyRef Name="QUESTION_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ANSWERS_USERS_USERS_FK1">
-    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
-    <End Role="ANSWERS_USERS" Type="Self.ANSWERS_USERS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="USERS">
-        <PropertyRef Name="USER_ID" />
-      </Principal>
-      <Dependent Role="ANSWERS_USERS">
-        <PropertyRef Name="USER_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ATTACHMENTS_MESSAGES_FK1">
     <End Role="MESSAGES" Type="Self.MESSAGES" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -777,6 +783,20 @@
         <PropertyRef Name="CLASS_ID" />
       </Principal>
       <Dependent Role="NEWS_ACL_CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SESSIONS_FK3">
+    <End Role="CLASSES" Type="Self.CLASSES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SESSIONS" Type="Self.SESSIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="SESSIONS">
         <PropertyRef Name="CLASS_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -1016,6 +1036,20 @@
       </Principal>
       <Dependent Role="JOIN_GROUPS">
         <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LESSONS_SECTIONS_FK2">
+    <End Role="RESOURCES" Type="Self.RESOURCES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="LESSONS_SECTIONS" Type="Self.LESSONS_SECTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESOURCES">
+        <PropertyRef Name="RESOURCE_ID" />
+      </Principal>
+      <Dependent Role="LESSONS_SECTIONS">
+        <PropertyRef Name="RESOURCE_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1269,6 +1303,34 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="RESOURCES_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RESOURCES" Type="Self.RESOURCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="RESOURCES">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SESSIONS_FK1">
+    <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SESSIONS" Type="Self.SESSIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="SESSIONS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="STUDENTS_FK2">
     <End Role="SCHOOLS" Type="Self.SCHOOLS" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -1322,6 +1384,48 @@
       </Principal>
       <Dependent Role="USERS">
         <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SESSIONS_FK4">
+    <End Role="SUBJECTS" Type="Self.SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SESSIONS" Type="Self.SESSIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="SESSIONS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_SESSION_DETAILS_FK1">
+    <End Role="SESSIONS" Type="Self.SESSIONS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENT_SESSION_DETAILS" Type="Self.STUDENT_SESSION_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SESSIONS">
+        <PropertyRef Name="SESSION_ID" />
+      </Principal>
+      <Dependent Role="STUDENT_SESSION_DETAILS">
+        <PropertyRef Name="SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STUDENT_SESSION_DETAILS_FK2">
+    <End Role="STUDENTS" Type="Self.STUDENTS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="STUDENT_SESSION_DETAILS" Type="Self.STUDENT_SESSION_DETAILS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENTS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Principal>
+      <Dependent Role="STUDENT_SESSION_DETAILS">
+        <PropertyRef Name="STUDENT_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1496,7 +1600,6 @@
   <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ADMINS" EntityType="Self.ADMINS" />
     <EntitySet Name="ALLOWED_CATS" EntityType="Self.ALLOWED_CATS" />
-    <EntitySet Name="ANSWERS_USERS" EntityType="Self.ANSWERS_USERS" />
     <EntitySet Name="ATTACHMENTS" EntityType="Self.ATTACHMENTS" />
     <EntitySet Name="CLASSES" EntityType="Self.CLASSES" />
     <EntitySet Name="DOC_ANSWERS" EntityType="Self.DOC_ANSWERS" />
@@ -1508,6 +1611,7 @@
     <EntitySet Name="GROUP_MEMBERS" EntityType="Self.GROUP_MEMBERS" />
     <EntitySet Name="GROUPS" EntityType="Self.GROUPS" />
     <EntitySet Name="JOIN_GROUPS" EntityType="Self.JOIN_GROUPS" />
+    <EntitySet Name="LESSONS_SECTIONS" EntityType="Self.LESSONS_SECTIONS" />
     <EntitySet Name="MESSAGE_RECIPIENTS" EntityType="Self.MESSAGE_RECIPIENTS" />
     <EntitySet Name="MESSAGES" EntityType="Self.MESSAGES" />
     <EntitySet Name="NEWS" EntityType="Self.NEWS" />
@@ -1518,7 +1622,10 @@
     <EntitySet Name="NEWS_MEDIAS" EntityType="Self.NEWS_MEDIAS" />
     <EntitySet Name="NEWS_SUB_CATS" EntityType="Self.NEWS_SUB_CATS" />
     <EntitySet Name="PARENTS" EntityType="Self.PARENTS" />
+    <EntitySet Name="RESOURCES" EntityType="Self.RESOURCES" />
     <EntitySet Name="SCHOOLS" EntityType="Self.SCHOOLS" />
+    <EntitySet Name="SESSIONS" EntityType="Self.SESSIONS" />
+    <EntitySet Name="STUDENT_SESSION_DETAILS" EntityType="Self.STUDENT_SESSION_DETAILS" />
     <EntitySet Name="STUDENT_SUBJECTS" EntityType="Self.STUDENT_SUBJECTS" />
     <EntitySet Name="STUDENTS" EntityType="Self.STUDENTS" />
     <EntitySet Name="STUDENTS_EXAM" EntityType="Self.STUDENTS_EXAM" />
@@ -1550,26 +1657,6 @@
       <End Role="NEWS_SUB_CATS" EntitySet="NEWS_SUB_CATS" />
       <End Role="ALLOWED_CATS" EntitySet="ALLOWED_CATS" />
     </AssociationSet>
-    <AssociationSet Name="ANSWERS_USERS_DOC_ANSWERS_FK1" Association="Self.ANSWERS_USERS_DOC_ANSWERS_FK1">
-      <End Role="DOC_ANSWERS" EntitySet="DOC_ANSWERS" />
-      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
-    </AssociationSet>
-    <AssociationSet Name="ANSWERS_USERS_FK1" Association="Self.ANSWERS_USERS_FK1">
-      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
-      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
-    </AssociationSet>
-    <AssociationSet Name="ANSWERS_USERS_FK2" Association="Self.ANSWERS_USERS_FK2">
-      <End Role="USERS" EntitySet="USERS" />
-      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
-    </AssociationSet>
-    <AssociationSet Name="ANSWERS_USERS_QUESTION_FK1" Association="Self.ANSWERS_USERS_QUESTION_FK1">
-      <End Role="DOC_QUESTIONS" EntitySet="DOC_QUESTIONS" />
-      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
-    </AssociationSet>
-    <AssociationSet Name="ANSWERS_USERS_USERS_FK1" Association="Self.ANSWERS_USERS_USERS_FK1">
-      <End Role="USERS" EntitySet="USERS" />
-      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
-    </AssociationSet>
     <AssociationSet Name="ATTACHMENTS_MESSAGES_FK1" Association="Self.ATTACHMENTS_MESSAGES_FK1">
       <End Role="MESSAGES" EntitySet="MESSAGES" />
       <End Role="ATTACHMENTS" EntitySet="ATTACHMENTS" />
@@ -1589,6 +1676,10 @@
     <AssociationSet Name="NEWS_ACL_CLASSES_FK2" Association="Self.NEWS_ACL_CLASSES_FK2">
       <End Role="CLASSES" EntitySet="CLASSES" />
       <End Role="NEWS_ACL_CLASSES" EntitySet="NEWS_ACL_CLASSES" />
+    </AssociationSet>
+    <AssociationSet Name="SESSIONS_FK3" Association="Self.SESSIONS_FK3">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="SESSIONS" EntitySet="SESSIONS" />
     </AssociationSet>
     <AssociationSet Name="STUDENTS_FK1" Association="Self.STUDENTS_FK1">
       <End Role="CLASSES" EntitySet="CLASSES" />
@@ -1657,6 +1748,10 @@
     <AssociationSet Name="JOIN_GROUPS_FK2" Association="Self.JOIN_GROUPS_FK2">
       <End Role="USERS" EntitySet="USERS" />
       <End Role="JOIN_GROUPS" EntitySet="JOIN_GROUPS" />
+    </AssociationSet>
+    <AssociationSet Name="LESSONS_SECTIONS_FK2" Association="Self.LESSONS_SECTIONS_FK2">
+      <End Role="RESOURCES" EntitySet="RESOURCES" />
+      <End Role="LESSONS_SECTIONS" EntitySet="LESSONS_SECTIONS" />
     </AssociationSet>
     <AssociationSet Name="MESSAGE_RECIPIENTS_FK1" Association="Self.MESSAGE_RECIPIENTS_FK1">
       <End Role="MESSAGES" EntitySet="MESSAGES" />
@@ -1730,6 +1825,14 @@
       <End Role="PARENTS" EntitySet="PARENTS" />
       <End Role="STUDENTS_PARENTS" EntitySet="STUDENTS_PARENTS" />
     </AssociationSet>
+    <AssociationSet Name="RESOURCES_FK1" Association="Self.RESOURCES_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="RESOURCES" EntitySet="RESOURCES" />
+    </AssociationSet>
+    <AssociationSet Name="SESSIONS_FK1" Association="Self.SESSIONS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="SESSIONS" EntitySet="SESSIONS" />
+    </AssociationSet>
     <AssociationSet Name="STUDENTS_FK2" Association="Self.STUDENTS_FK2">
       <End Role="SCHOOLS" EntitySet="SCHOOLS" />
       <End Role="STUDENTS" EntitySet="STUDENTS" />
@@ -1745,6 +1848,18 @@
     <AssociationSet Name="USERSID_FK1" Association="Self.USERSID_FK1">
       <End Role="SCHOOLS" EntitySet="SCHOOLS" />
       <End Role="USERS" EntitySet="USERS" />
+    </AssociationSet>
+    <AssociationSet Name="SESSIONS_FK4" Association="Self.SESSIONS_FK4">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="SESSIONS" EntitySet="SESSIONS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_SESSION_DETAILS_FK1" Association="Self.STUDENT_SESSION_DETAILS_FK1">
+      <End Role="SESSIONS" EntitySet="SESSIONS" />
+      <End Role="STUDENT_SESSION_DETAILS" EntitySet="STUDENT_SESSION_DETAILS" />
+    </AssociationSet>
+    <AssociationSet Name="STUDENT_SESSION_DETAILS_FK2" Association="Self.STUDENT_SESSION_DETAILS_FK2">
+      <End Role="STUDENTS" EntitySet="STUDENTS" />
+      <End Role="STUDENT_SESSION_DETAILS" EntitySet="STUDENT_SESSION_DETAILS" />
     </AssociationSet>
     <AssociationSet Name="STUDENT_SUBJECTS_FK1" Association="Self.STUDENT_SUBJECTS_FK1">
       <End Role="STUDENTS" EntitySet="STUDENTS" />
@@ -1794,5 +1909,516 @@
       <End Role="VOTING_CHOICES" EntitySet="VOTING_CHOICES" />
       <End Role="USER_VOTES" EntitySet="USER_VOTES" />
     </AssociationSet>
+    <EntitySet Name="LESSONS" EntityType="Model.LESSONS" />
+    <AssociationSet Name="LESSONS_FK3" Association="Model.LESSONS_FK3">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="LESSONS" EntitySet="LESSONS" />
+    </AssociationSet>
+    <AssociationSet Name="LESSONS_FK1" Association="Model.LESSONS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="LESSONS" EntitySet="LESSONS" />
+    </AssociationSet>
+    <AssociationSet Name="LESSONS_FK4" Association="Model.LESSONS_FK4">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="LESSONS" EntitySet="LESSONS" />
+    </AssociationSet>
+    <AssociationSet Name="LESSONS_FK5" Association="Model.LESSONS_FK5">
+      <End Role="TEACHERS" EntitySet="TEACHERS" />
+      <End Role="LESSONS" EntitySet="LESSONS" />
+    </AssociationSet>
+    <AssociationSet Name="LESSONS_FK6" Association="Model.LESSONS_FK6">
+      <End Role="SESSIONS" EntitySet="SESSIONS" />
+      <End Role="LESSONS" EntitySet="LESSONS" />
+    </AssociationSet>
+    <AssociationSet Name="LESSONS_SECTIONS_FK1" Association="Model.LESSONS_SECTIONS_FK1">
+      <End Role="LESSONS" EntitySet="LESSONS" />
+      <End Role="LESSONS_SECTIONS" EntitySet="LESSONS_SECTIONS" />
+    </AssociationSet>
+    <EntitySet Name="ANSWERS_USERS" EntityType="Model.ANSWERS_USERS" />
+    <AssociationSet Name="ANSWERS_USERS_DOC_ANSWERS_FK1" Association="Model.ANSWERS_USERS_DOC_ANSWERS_FK1">
+      <End Role="DOC_ANSWERS" EntitySet="DOC_ANSWERS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="ANSWERS_USERS_FK1" Association="Model.ANSWERS_USERS_FK1">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="ANSWERS_USERS_FK2" Association="Model.ANSWERS_USERS_FK2">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="ANSWERS_USERS_QUESTION_FK1" Association="Model.ANSWERS_USERS_QUESTION_FK1">
+      <End Role="DOC_QUESTIONS" EntitySet="DOC_QUESTIONS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <AssociationSet Name="ANSWERS_USERS_USERS_FK1" Association="Model.ANSWERS_USERS_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ANSWERS_USERS" EntitySet="ANSWERS_USERS" />
+    </AssociationSet>
+    <EntitySet Name="COURSES" EntityType="Model.COURSES" />
+    <AssociationSet Name="COURSES_FK3" Association="Model.COURSES_FK3">
+      <End Role="CLASSES" EntitySet="CLASSES" />
+      <End Role="COURSES" EntitySet="COURSES" />
+    </AssociationSet>
+    <AssociationSet Name="COURSES_FK1" Association="Model.COURSES_FK1">
+      <End Role="SUBJECTS" EntitySet="SUBJECTS" />
+      <End Role="COURSES" EntitySet="COURSES" />
+    </AssociationSet>
+    <AssociationSet Name="COURSES_FK2" Association="Model.COURSES_FK2">
+      <End Role="TEACHERS" EntitySet="TEACHERS" />
+      <End Role="COURSES" EntitySet="COURSES" />
+    </AssociationSet>
+    <EntitySet Name="HOLYDAYS" EntityType="Model.HOLYDAYS" />
+    <AssociationSet Name="HOLYDAYS_FK1" Association="Model.HOLYDAYS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="HOLYDAYS" EntitySet="HOLYDAYS" />
+    </AssociationSet>
+    <EntitySet Name="HEADLINES" EntityType="Model.HEADLINES" />
+    <EntitySet Name="SUB_HEADLINES" EntityType="Model.SUB_HEADLINES" />
+    <AssociationSet Name="HADLINES_FK1" Association="Model.HADLINES_FK1">
+      <End Role="SESSIONS" EntitySet="SESSIONS" />
+      <End Role="HEADLINES" EntitySet="HEADLINES" />
+    </AssociationSet>
+    <AssociationSet Name="SUB_HEADLINES_FK1" Association="Model.SUB_HEADLINES_FK1">
+      <End Role="HEADLINES" EntitySet="HEADLINES" />
+      <End Role="SUB_HEADLINES" EntitySet="SUB_HEADLINES" />
+    </AssociationSet>
+    <EntitySet Name="RESOURCES_LINKS" EntityType="Model.RESOURCES_LINKS" />
+    <AssociationSet Name="RESOURCES_LINKS_FK1" Association="Model.RESOURCES_LINKS_FK1">
+      <End Role="RESOURCES" EntitySet="RESOURCES" />
+      <End Role="RESOURCES_LINKS" EntitySet="RESOURCES_LINKS" />
+    </AssociationSet>
+    <EntitySet Name="EDUCATION_YEARS" EntityType="Model.EDUCATION_YEARS" />
+    <AssociationSet Name="EDUCATION_YEARS_FK1" Association="Model.EDUCATION_YEARS_FK1">
+      <End Role="SCHOOLS" EntitySet="SCHOOLS" />
+      <End Role="EDUCATION_YEARS" EntitySet="EDUCATION_YEARS" />
+    </AssociationSet>
+    <AssociationSet Name="LESSONS_FK2" Association="Model.LESSONS_FK2">
+      <End Role="EDUCATION_YEARS" EntitySet="EDUCATION_YEARS" />
+      <End Role="LESSONS" EntitySet="LESSONS" />
+    </AssociationSet>
+    <AssociationSet Name="RESOURCES_FK2" Association="Model.RESOURCES_FK2">
+      <End Role="EDUCATION_YEARS" EntitySet="EDUCATION_YEARS" />
+      <End Role="RESOURCES" EntitySet="RESOURCES" />
+    </AssociationSet>
+    <AssociationSet Name="SESSIONS_FK2" Association="Model.SESSIONS_FK2">
+      <End Role="EDUCATION_YEARS" EntitySet="EDUCATION_YEARS" />
+      <End Role="SESSIONS" EntitySet="SESSIONS" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="LESSONS">
+    <Key>
+      <PropertyRef Name="LESSON_ID" />
+    </Key>
+    <Property Name="LESSON_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="EDUCATION_YEAR_ID" Type="Int32" />
+    <Property Name="CLASS_ID" Type="Int32" />
+    <Property Name="SUBJECT_ID" Type="Int32" />
+    <Property Name="TEACHER_ID" Type="Int32" />
+    <Property Name="TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OBJECTIVE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="DURATION" Type="Int16" />
+    <Property Name="ORDR" Type="Int16" />
+    <Property Name="NOTE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="ISSUE_DATE" Type="DateTime" Nullable="false" />
+    <Property Name="SESSION_ID" Type="Int32" />
+    <NavigationProperty Name="CLASSES" Relationship="Model.LESSONS_FK3" FromRole="LESSONS" ToRole="CLASSES" />
+    <NavigationProperty Name="SCHOOLS" Relationship="Model.LESSONS_FK1" FromRole="LESSONS" ToRole="SCHOOLS" />
+    <NavigationProperty Name="SUBJECTS" Relationship="Model.LESSONS_FK4" FromRole="LESSONS" ToRole="SUBJECTS" />
+    <NavigationProperty Name="TEACHERS" Relationship="Model.LESSONS_FK5" FromRole="LESSONS" ToRole="TEACHERS" />
+    <NavigationProperty Name="SESSIONS" Relationship="Model.LESSONS_FK6" FromRole="LESSONS" ToRole="SESSIONS" />
+    <NavigationProperty Name="LESSONS_SECTIONS" Relationship="Model.LESSONS_SECTIONS_FK1" FromRole="LESSONS" ToRole="LESSONS_SECTIONS" />
+    <NavigationProperty Name="EDUCATION_YEARS" Relationship="Model.LESSONS_FK2" FromRole="LESSONS" ToRole="EDUCATION_YEARS" />
+  </EntityType>
+  <Association Name="LESSONS_FK3">
+    <End Type="Model.CLASSES" Role="CLASSES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.LESSONS" Role="LESSONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="LESSONS">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LESSONS_FK1">
+    <End Type="Model.SCHOOLS" Role="SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.LESSONS" Role="LESSONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="LESSONS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LESSONS_FK4">
+    <End Type="Model.SUBJECTS" Role="SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.LESSONS" Role="LESSONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="LESSONS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LESSONS_FK5">
+    <End Type="Model.TEACHERS" Role="TEACHERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.LESSONS" Role="LESSONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHERS">
+        <PropertyRef Name="TEACHER_ID" />
+      </Principal>
+      <Dependent Role="LESSONS">
+        <PropertyRef Name="TEACHER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LESSONS_FK6">
+    <End Type="Model.SESSIONS" Role="SESSIONS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.LESSONS" Role="LESSONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SESSIONS">
+        <PropertyRef Name="SESSION_ID" />
+      </Principal>
+      <Dependent Role="LESSONS">
+        <PropertyRef Name="SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LESSONS_SECTIONS_FK1">
+    <End Type="Model.LESSONS" Role="LESSONS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.LESSONS_SECTIONS" Role="LESSONS_SECTIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LESSONS">
+        <PropertyRef Name="LESSON_ID" />
+      </Principal>
+      <Dependent Role="LESSONS_SECTIONS">
+        <PropertyRef Name="LESSON_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ANSWERS_USERS">
+    <Key>
+      <PropertyRef Name="ANSWER_USER_ID" />
+    </Key>
+    <Property Name="ANSWER_USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="USER_ID" Type="Int32" Nullable="false" />
+    <Property Name="ANSWER_ID" Type="Int32" />
+    <Property Name="IS_CHECKED" Type="Int32" />
+    <Property Name="USER_ANSWER" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="QUESTION_ID" Type="Int32" />
+    <Property Name="SUBJECT_ID" Type="Int32" />
+    <Property Name="STUDENT_ID" Type="Int32" />
+    <NavigationProperty Name="DOC_ANSWERS" Relationship="Model.ANSWERS_USERS_DOC_ANSWERS_FK1" FromRole="ANSWERS_USERS" ToRole="DOC_ANSWERS" />
+    <NavigationProperty Name="SUBJECTS" Relationship="Model.ANSWERS_USERS_FK1" FromRole="ANSWERS_USERS" ToRole="SUBJECTS" />
+    <NavigationProperty Name="USERS" Relationship="Model.ANSWERS_USERS_FK2" FromRole="ANSWERS_USERS" ToRole="USERS" />
+    <NavigationProperty Name="DOC_QUESTIONS" Relationship="Model.ANSWERS_USERS_QUESTION_FK1" FromRole="ANSWERS_USERS" ToRole="DOC_QUESTIONS" />
+    <NavigationProperty Name="USERS1" Relationship="Model.ANSWERS_USERS_USERS_FK1" FromRole="ANSWERS_USERS" ToRole="USERS" />
+  </EntityType>
+  <Association Name="ANSWERS_USERS_DOC_ANSWERS_FK1">
+    <End Type="Model.DOC_ANSWERS" Role="DOC_ANSWERS" Multiplicity="0..1" />
+    <End Type="Model.ANSWERS_USERS" Role="ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOC_ANSWERS">
+        <PropertyRef Name="ANSWER_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="ANSWER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ANSWERS_USERS_FK1">
+    <End Type="Model.SUBJECTS" Role="SUBJECTS" Multiplicity="0..1" />
+    <End Type="Model.ANSWERS_USERS" Role="ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ANSWERS_USERS_FK2">
+    <End Type="Model.USERS" Role="USERS" Multiplicity="0..1" />
+    <End Type="Model.ANSWERS_USERS" Role="ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="STUDENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ANSWERS_USERS_QUESTION_FK1">
+    <End Type="Model.DOC_QUESTIONS" Role="DOC_QUESTIONS" Multiplicity="0..1" />
+    <End Type="Model.ANSWERS_USERS" Role="ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOC_QUESTIONS">
+        <PropertyRef Name="QUESTION_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="QUESTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ANSWERS_USERS_USERS_FK1">
+    <End Type="Model.USERS" Role="USERS" Multiplicity="1" />
+    <End Type="Model.ANSWERS_USERS" Role="ANSWERS_USERS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="ANSWERS_USERS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="COURSES">
+    <Key>
+      <PropertyRef Name="COURSE_ID" />
+    </Key>
+    <Property Name="COURSE_ID" Type="Int32" Nullable="false" />
+    <Property Name="DAY_OF_THE_WEEK" Type="Int32" Nullable="false" />
+    <Property Name="ORDER_IN_WEEK" Type="Int32" Nullable="false" />
+    <Property Name="TEACHER_ID" Type="Int32" />
+    <Property Name="CLASS_ID" Type="Int32" Nullable="false" />
+    <Property Name="IS_MANUALLY" Type="Int16" Nullable="false" />
+    <Property Name="SUBJECT_ID" Type="Int32" />
+    <NavigationProperty Name="CLASSES" Relationship="Model.COURSES_FK3" FromRole="COURSES" ToRole="CLASSES" />
+    <NavigationProperty Name="SUBJECTS" Relationship="Model.COURSES_FK1" FromRole="COURSES" ToRole="SUBJECTS" />
+    <NavigationProperty Name="TEACHERS" Relationship="Model.COURSES_FK2" FromRole="COURSES" ToRole="TEACHERS" />
+  </EntityType>
+  <Association Name="COURSES_FK3">
+    <End Type="Model.CLASSES" Role="CLASSES" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.COURSES" Role="COURSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CLASSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Principal>
+      <Dependent Role="COURSES">
+        <PropertyRef Name="CLASS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="COURSES_FK1">
+    <End Type="Model.SUBJECTS" Role="SUBJECTS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.COURSES" Role="COURSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SUBJECTS">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Principal>
+      <Dependent Role="COURSES">
+        <PropertyRef Name="SUBJECT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="COURSES_FK2">
+    <End Type="Model.TEACHERS" Role="TEACHERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.COURSES" Role="COURSES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEACHERS">
+        <PropertyRef Name="TEACHER_ID" />
+      </Principal>
+      <Dependent Role="COURSES">
+        <PropertyRef Name="TEACHER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HOLYDAYS">
+    <Key>
+      <PropertyRef Name="HOLYDAY_ID" />
+    </Key>
+    <Property Name="HOLYDAY_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="HOLYDAY_DATE" Type="DateTime" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="MAIN_ID" Type="Int32" />
+    <NavigationProperty Name="SCHOOLS" Relationship="Model.HOLYDAYS_FK1" FromRole="HOLYDAYS" ToRole="SCHOOLS" />
+  </EntityType>
+  <Association Name="HOLYDAYS_FK1">
+    <End Type="Model.SCHOOLS" Role="SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.HOLYDAYS" Role="HOLYDAYS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="HOLYDAYS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HEADLINES">
+    <Key>
+      <PropertyRef Name="HEADLINE_ID" />
+    </Key>
+    <Property Name="HEADLINE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SESSION_ID" Type="Int32" />
+    <Property Name="TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OBJECTIVE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="NOTE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SESSIONS" Relationship="Model.HADLINES_FK1" FromRole="HEADLINES" ToRole="SESSIONS" />
+    <NavigationProperty Name="SUB_HEADLINES" Relationship="Model.SUB_HEADLINES_FK1" FromRole="HEADLINES" ToRole="SUB_HEADLINES" />
+  </EntityType>
+  <EntityType Name="SUB_HEADLINES">
+    <Key>
+      <PropertyRef Name="SUB_HEADLINE_ID" />
+    </Key>
+    <Property Name="SUB_HEADLINE_ID" Type="Int32" Nullable="false" />
+    <Property Name="HEADLINE_ID" Type="Int32" Nullable="false" />
+    <Property Name="TITLE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OBJECTIVE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="NOTE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HEADLINES" Relationship="Model.SUB_HEADLINES_FK1" FromRole="SUB_HEADLINES" ToRole="HEADLINES" />
+  </EntityType>
+  <Association Name="HADLINES_FK1">
+    <End Type="Model.SESSIONS" Role="SESSIONS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.HEADLINES" Role="HEADLINES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SESSIONS">
+        <PropertyRef Name="SESSION_ID" />
+      </Principal>
+      <Dependent Role="HEADLINES">
+        <PropertyRef Name="SESSION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUB_HEADLINES_FK1">
+    <End Type="Model.HEADLINES" Role="HEADLINES" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.SUB_HEADLINES" Role="SUB_HEADLINES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HEADLINES">
+        <PropertyRef Name="HEADLINE_ID" />
+      </Principal>
+      <Dependent Role="SUB_HEADLINES">
+        <PropertyRef Name="HEADLINE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="RESOURCES_LINKS">
+    <Key>
+      <PropertyRef Name="RESOURCE_LINK_ID" />
+    </Key>
+    <Property Name="RESOURCE_LINK_ID" Type="Int32" Nullable="false" />
+    <Property Name="RESOURCE_ID" Type="Int32" />
+    <Property Name="LINK_ID" Type="Int32" />
+    <Property Name="LINK_WITH" Type="Int16" />
+    <NavigationProperty Name="RESOURCES" Relationship="Model.RESOURCES_LINKS_FK1" FromRole="RESOURCES_LINKS" ToRole="RESOURCES" />
+  </EntityType>
+  <Association Name="RESOURCES_LINKS_FK1">
+    <End Type="Model.RESOURCES" Role="RESOURCES" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.RESOURCES_LINKS" Role="RESOURCES_LINKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RESOURCES">
+        <PropertyRef Name="RESOURCE_ID" />
+      </Principal>
+      <Dependent Role="RESOURCES_LINKS">
+        <PropertyRef Name="RESOURCE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EDUCATION_YEARS">
+    <Key>
+      <PropertyRef Name="EDUCATION_YEAR_ID" />
+    </Key>
+    <Property Name="EDUCATION_YEAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="SCHOOL_ID" Type="Int32" />
+    <Property Name="NAME" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="START_DATE" Type="DateTime" />
+    <Property Name="END_DATE" Type="DateTime" />
+    <NavigationProperty Name="SCHOOLS" Relationship="Model.EDUCATION_YEARS_FK1" FromRole="EDUCATION_YEARS" ToRole="SCHOOLS" />
+    <NavigationProperty Name="LESSONS" Relationship="Model.LESSONS_FK2" FromRole="EDUCATION_YEARS" ToRole="LESSONS" />
+    <NavigationProperty Name="RESOURCES" Relationship="Model.RESOURCES_FK2" FromRole="EDUCATION_YEARS" ToRole="RESOURCES" />
+    <NavigationProperty Name="SESSIONS" Relationship="Model.SESSIONS_FK2" FromRole="EDUCATION_YEARS" ToRole="SESSIONS" />
+  </EntityType>
+  <Association Name="EDUCATION_YEARS_FK1">
+    <End Type="Model.SCHOOLS" Role="SCHOOLS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.EDUCATION_YEARS" Role="EDUCATION_YEARS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCHOOLS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Principal>
+      <Dependent Role="EDUCATION_YEARS">
+        <PropertyRef Name="SCHOOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LESSONS_FK2">
+    <End Type="Model.EDUCATION_YEARS" Role="EDUCATION_YEARS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.LESSONS" Role="LESSONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDUCATION_YEARS">
+        <PropertyRef Name="EDUCATION_YEAR_ID" />
+      </Principal>
+      <Dependent Role="LESSONS">
+        <PropertyRef Name="EDUCATION_YEAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RESOURCES_FK2">
+    <End Type="Model.EDUCATION_YEARS" Role="EDUCATION_YEARS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.RESOURCES" Role="RESOURCES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDUCATION_YEARS">
+        <PropertyRef Name="EDUCATION_YEAR_ID" />
+      </Principal>
+      <Dependent Role="RESOURCES">
+        <PropertyRef Name="EDUCATION_YEAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SESSIONS_FK2">
+    <End Type="Model.EDUCATION_YEARS" Role="EDUCATION_YEARS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.SESSIONS" Role="SESSIONS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EDUCATION_YEARS">
+        <PropertyRef Name="EDUCATION_YEAR_ID" />
+      </Principal>
+      <Dependent Role="SESSIONS">
+        <PropertyRef Name="EDUCATION_YEAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

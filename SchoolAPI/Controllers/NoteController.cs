@@ -62,15 +62,44 @@ namespace SchoolAPI.Controllers
             {
                 using (Entities e = new Entities())
                 {
+                    var pk = e.STUDENTS_NOTES.ToList().Count == 0 ? 0 : e.STUDENTS_NOTES.Max(s => s.STUDENT_NOTE_ID);
                     STUDENTS_NOTES _note = new STUDENTS_NOTES()
                     {
-                        STUDENT_NOTE_ID = e.STUDENTS_NOTES.Max(s => s.STUDENT_NOTE_ID) + 1,
+                        STUDENT_NOTE_ID = pk + 1,
                         STUDENT_ID = e.STUDENTS.FirstOrDefault(s => s.USER_ID == student_id).STUDENT_ID,
                         USER_ID = user_id,
                         NOTE = note,
                         NOTE_DATE = DateTime.Now
                     };
                     e.STUDENTS_NOTES.Add(_note);
+                    e.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Done" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = ex.Message });
+            }
+        }
+
+
+
+        [HttpGet]
+        public HttpResponseMessage AddNote(int student_id, int session_id, string note)
+        {
+            try
+            {
+                using (Entities e = new Entities())
+                {
+                    var pk = e.STUDENT_SESSION_DETAILS.ToList().Count == 0 ? 0 : e.STUDENT_SESSION_DETAILS.Max(s => s.STU_SESS_ID);
+                    STUDENT_SESSION_DETAILS _note = new STUDENT_SESSION_DETAILS()
+                    {
+                        STU_SESS_ID = pk + 1,
+                        STUDENT_ID = e.STUDENTS.FirstOrDefault(s => s.USER_ID == student_id).STUDENT_ID,
+                        NOTES = note,
+                        SESSION_ID = session_id
+                     };
+                    e.STUDENT_SESSION_DETAILS.Add(_note);
                     e.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, status = "Done" });
                 }

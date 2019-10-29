@@ -210,6 +210,7 @@ G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AspNet.Identity.Core.dll
 G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.Web.Infrastructure.dll
 G:\Projects\SchoolAPI\SchoolAPI\bin\Newtonsoft.Json.dll
+G:\Projects\SchoolAPI\SchoolAPI\bin\NReco.VideoConverter.dll
 G:\Projects\SchoolAPI\SchoolAPI\bin\System.Net.Http.Formatting.dll
 G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Helpers.dll
 G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.dll
@@ -229,6 +230,7 @@ G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AI.WindowsServer.xml
 G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.ApplicationInsights.xml
 G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AspNet.Identity.Core.xml
 G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\Projects\SchoolAPI\SchoolAPI\bin\NReco.VideoConverter.xml
 G:\Projects\SchoolAPI\SchoolAPI\bin\Newtonsoft.Json.xml
 G:\Projects\SchoolAPI\SchoolAPI\bin\System.Net.Http.Formatting.xml
 G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Helpers.xml
@@ -243,4 +245,7 @@ G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.WebPages.Razor.xml
 G:\Projects\SchoolAPI\SchoolAPI\bin\Antlr3.Runtime.pdb
 G:\Projects\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.dll
 G:\Projects\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.pdb
+G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Cors.dll
+G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.Cors.dll
+G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.Cors.xml
 G:\Projects\SchoolAPI\SchoolAPI\obj\Debug\SchoolAPI.csprojResolveAssemblyReference.cache

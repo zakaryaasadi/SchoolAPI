@@ -72,6 +72,7 @@ namespace SchoolAPI.ModelView
                 return null;
             Image img = Base64ToImage(Convert.ToBase64String(image));
             return ImageCompression(image, format, img.Height, img.Width);
+
         }
         public static byte[] ImageCompression(byte[] image, ImageFormat format,int height, int width)
         {
@@ -83,6 +84,37 @@ namespace SchoolAPI.ModelView
             return Convert.FromBase64String(base64);
 
         }
+
+
+        public static byte[] ImageCompression(byte[] image, ImageFormat format, int maxPixelImage)
+        {
+            if (image == null)
+                return null;
+            Image img = Base64ToImage(Convert.ToBase64String(image));          
+
+
+            if (img.Width > img.Height)
+            {
+                if (img.Width < maxPixelImage)
+                    maxPixelImage = img.Width;
+                float percent = img.Height / float.Parse(img.Width.ToString());
+                img = VaryQualityLevel(img, format, (int)Math.Round(maxPixelImage * percent), maxPixelImage);
+            }
+            else
+            {
+                if (img.Height < maxPixelImage)
+                    maxPixelImage = img.Height;
+                float percent = img.Width / float.Parse(img.Height.ToString());
+                img = VaryQualityLevel(img, format, maxPixelImage, (int)Math.Round(maxPixelImage * percent));
+            }
+
+            string base64 = ImageToBase64(img, format);
+            return Convert.FromBase64String(base64);
+
+        }
+
+
+
 
         private static string ImageToBase64(Image image, ImageFormat format)
         {

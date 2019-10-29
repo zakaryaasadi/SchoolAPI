@@ -16,13 +16,16 @@ namespace SchoolAPI.Models.MD
     {
         public SUBJECTS()
         {
-            this.ANSWERS_USERS = new HashSet<ANSWERS_USERS>();
             this.EXAM_TYPES = new HashSet<EXAM_TYPES>();
             this.EXAMS = new HashSet<EXAMS>();
             this.MESSAGES = new HashSet<MESSAGES>();
             this.NEWS_ACL_SUBJECTS = new HashSet<NEWS_ACL_SUBJECTS>();
+            this.SESSIONS = new HashSet<SESSIONS>();
             this.STUDENT_SUBJECTS = new HashSet<STUDENT_SUBJECTS>();
             this.TEACHER_SUBJECTS = new HashSet<TEACHER_SUBJECTS>();
+            this.LESSONS = new HashSet<LESSONS>();
+            this.ANSWERS_USERS = new HashSet<ANSWERS_USERS>();
+            this.COURSES = new HashSet<COURSES>();
         }
     
         public int SUBJECT_ID { get; set; }
@@ -35,15 +38,19 @@ namespace SchoolAPI.Models.MD
         public Nullable<System.DateTime> EXPIRE_DATE { get; set; }
         public Nullable<System.DateTime> START_DATE { get; set; }
         public Nullable<int> MAIN_ID { get; set; }
+        public int SUBJECT_HOURS { get; set; }
     
-        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
         public virtual CLASSES CLASSES { get; set; }
         public virtual ICollection<EXAM_TYPES> EXAM_TYPES { get; set; }
         public virtual ICollection<EXAMS> EXAMS { get; set; }
         public virtual ICollection<MESSAGES> MESSAGES { get; set; }
         public virtual ICollection<NEWS_ACL_SUBJECTS> NEWS_ACL_SUBJECTS { get; set; }
         public virtual SCHOOLS SCHOOLS { get; set; }
+        public virtual ICollection<SESSIONS> SESSIONS { get; set; }
         public virtual ICollection<STUDENT_SUBJECTS> STUDENT_SUBJECTS { get; set; }
         public virtual ICollection<TEACHER_SUBJECTS> TEACHER_SUBJECTS { get; set; }
+        public virtual ICollection<LESSONS> LESSONS { get; set; }
+        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
+        public virtual ICollection<COURSES> COURSES { get; set; }
     }
 }

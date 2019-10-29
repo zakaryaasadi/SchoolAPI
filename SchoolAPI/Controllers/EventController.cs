@@ -25,7 +25,7 @@ namespace SchoolAPI.Controllers
                     int numTotalPage = (int)Math.Ceiling(numNews / 10.0);
 
 
-                    var newsList = NewsView.getNewsClassList(entities, expr, 1);
+                    var newsList = NewsView.getNewsClassList(entities, expr);
 
                     if (newsList.Count == 0)
                         return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, totalPage = numTotalPage, status = "There are not events", results = newsList });
@@ -36,6 +36,33 @@ namespace SchoolAPI.Controllers
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, new Result() {statusCode = 400, status = ex.Message });
+            }
+        }
+
+
+        [HttpGet]
+        public HttpResponseMessage Get(int school_id, DateTime start_date, DateTime end_date)
+        {
+            try
+            {
+                using (Entities entities = new Entities())
+                {
+                    Expression<Func<NEWS, bool>> expr = n => n.SCHOOL_ID == school_id && n.EVENT_DATE != null && n.EVENT_DATE >= start_date && n.EVENT_DATE <= end_date;
+                    var numNews = entities.NEWS.Where(expr).Count();
+                    int numTotalPage = (int)Math.Ceiling(numNews / 10.0);
+
+
+                    var newsList = NewsView.getNewsClassList(entities, expr);
+
+                    if (newsList.Count == 0)
+                        return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 404, totalPage = numTotalPage, status = "There are not events", results = newsList });
+
+                    return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 200, totalPage = numTotalPage, numResult = newsList.Count, page = 1, status = "Success", results = newsList });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, new Result() { statusCode = 400, status = ex.Message });
             }
         }
 

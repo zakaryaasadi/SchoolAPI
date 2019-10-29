@@ -4,6 +4,7 @@ using System.Web.Http;
 
 using System.Web.Hosting;
 using System.IO;
+using System.Web.Http.Cors;
 
 namespace SchoolAPI
 {
@@ -14,6 +15,11 @@ namespace SchoolAPI
             // Web API configuration and services
 
             // Web API routes
+
+            var cors = new EnableCorsAttribute("*", "*", "*");
+
+            config.EnableCors(cors);
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -27,6 +33,7 @@ namespace SchoolAPI
 
 
             CreateAppDataFolder();
+            CreateImagesAndVideosFolder();
         }
 
 
@@ -35,6 +42,23 @@ namespace SchoolAPI
             string path = HostingEnvironment.MapPath("~/App_Data");
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
+        }
+
+
+        private static void CreateImagesAndVideosFolder()
+        {
+            string path = HostingEnvironment.MapPath("~/images");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            File.WriteAllText(path + @"/web.config", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><configuration><system.webServer><directoryBrowse enabled = \"true\" /></system.webServer></configuration>");
+
+
+             path = HostingEnvironment.MapPath("~/videos");
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+
+            File.WriteAllText(path + @"/web.config", "<?xml version=\"1.0\" encoding=\"UTF-8\"?><configuration><system.webServer><directoryBrowse enabled = \"true\" /></system.webServer></configuration>");
         }
     }
 }

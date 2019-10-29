@@ -4,58 +4,57 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ce39bdddd92c414bad6a0d71fbf93e5b" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.ADMINS" Width="1.5" PointX="8.25" PointY="47.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ALLOWED_CATS" Width="1.5" PointX="7.5" PointY="55.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ANSWERS_USERS" Width="1.5" PointX="19" PointY="42.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.ATTACHMENTS" Width="1.5" PointX="12.75" PointY="31.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CLASSES" Width="1.5" PointX="8.25" PointY="40.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DOC_ANSWERS" Width="1.5" PointX="7.5" PointY="45" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DOC_QUESTIONS" Width="1.5" PointX="5.25" PointY="44.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DOCUMENT_USER" Width="1.5" PointX="5.25" PointY="42" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.DOCUMENTS" Width="1.5" PointX="3" PointY="45" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.EXAM_TYPES" Width="1.5" PointX="12.75" PointY="35.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.EXAMS" Width="1.5" PointX="15" PointY="35.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.GROUP_MEMBERS" Width="1.5" PointX="5.25" PointY="48.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.GROUPS" Width="1.5" PointX="3" PointY="48" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.JOIN_GROUPS" Width="1.5" PointX="8.25" PointY="52.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MESSAGE_RECIPIENTS" Width="1.5" PointX="22" PointY="46" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MESSAGES" Width="1.5" PointX="10.5" PointY="42.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.NEWS" Width="1.5" PointX="10.5" PointY="51.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.NEWS_ACL_CLASSES" Width="1.5" PointX="13.75" PointY="48.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.NEWS_ACL_GROUPS" Width="1.5" PointX="11.25" PointY="48.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.NEWS_ACL_SUBJECTS" Width="1.5" PointX="15.75" PointY="53" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.NEWS_CATS" Width="1.5" PointX="3" PointY="51.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.NEWS_MEDIAS" Width="1.5" PointX="12.75" PointY="52" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.NEWS_SUB_CATS" Width="1.5" PointX="5.25" PointY="52.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PARENTS" Width="1.5" PointX="23" PointY="40.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.SCHOOLS" Width="1.5" PointX="0.75" PointY="39" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.STUDENT_SUBJECTS" Width="1.5" PointX="17.75" PointY="34.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.STUDENTS" Width="1.5" PointX="13.5" PointY="39.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.STUDENTS_EXAM" Width="1.5" PointX="15.75" PointY="41.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.STUDENTS_NOTES" Width="1.5" PointX="19" PointY="46.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.STUDENTS_PARENTS" Width="1.5" PointX="20.75" PointY="39.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.SUBJECTS" Width="1.5" PointX="10.5" PointY="36" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.TEACHER_SUBJECTS" Width="1.5" PointX="17.75" PointY="37.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.TEACHERS" Width="1.5" PointX="25" PointY="45.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.USER_VOTES" Width="1.5" PointX="19" PointY="50.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.USERS" Width="1.5" PointX="16.75" PointY="45.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.VOTING_CHOICES" Width="1.5" PointX="12.75" PointY="55.375" IsExpanded="true" />
+      <Diagram DiagramId="1aa3a00ee89842e683dc6e3410a73ada" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="Model.ADMINS" Width="1.5" PointX="8.25" PointY="48" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ALLOWED_CATS" Width="1.5" PointX="7.5" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ATTACHMENTS" Width="1.5" PointX="15.75" PointY="60" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLASSES" Width="1.5" PointX="10.25" PointY="43" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DOC_ANSWERS" Width="1.5" PointX="7.5" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DOC_QUESTIONS" Width="1.5" PointX="5.25" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DOCUMENT_USER" Width="1.5" PointX="5.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DOCUMENTS" Width="1.5" PointX="3" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EXAM_TYPES" Width="1.5" PointX="17.75" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.EXAMS" Width="1.5" PointX="20" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GROUP_MEMBERS" Width="1.5" PointX="5.25" PointY="48.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.GROUPS" Width="1.5" PointX="3" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.JOIN_GROUPS" Width="1.5" PointX="8.25" PointY="52.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LESSONS_SECTIONS" Width="1.5" PointX="5.25" PointY="57.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MESSAGE_RECIPIENTS" Width="1.5" PointX="18" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MESSAGES" Width="1.5" PointX="13.5" PointY="44.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NEWS" Width="1.5" PointX="10.5" PointY="52" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NEWS_ACL_CLASSES" Width="1.5" PointX="15.75" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NEWS_ACL_GROUPS" Width="1.5" PointX="11.25" PointY="48.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NEWS_ACL_SUBJECTS" Width="1.5" PointX="18.75" PointY="42.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NEWS_CATS" Width="1.5" PointX="3" PointY="51.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NEWS_MEDIAS" Width="1.5" PointX="12.75" PointY="52.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.NEWS_SUB_CATS" Width="1.5" PointX="5.25" PointY="52.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PARENTS" Width="1.5" PointX="21" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.RESOURCES" Width="1.5" PointX="3" PointY="57.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SCHOOLS" Width="1.5" PointX="0.75" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SESSIONS" Width="1.5" PointX="12.5" PointY="39.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENT_SESSION_DETAILS" Width="2.75" PointX="20.5" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENT_SUBJECTS" Width="1.5" PointX="22.75" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENTS" Width="1.5" PointX="16.5" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENTS_EXAM" Width="1.5" PointX="18.75" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENTS_NOTES" Width="1.5" PointX="18.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.STUDENTS_PARENTS" Width="1.5" PointX="21.75" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SUBJECTS" Width="1.5" PointX="15.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEACHER_SUBJECTS" Width="1.5" PointX="17.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TEACHERS" Width="1.5" PointX="24" PointY="47.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USER_VOTES" Width="1.5" PointX="18" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USERS" Width="1.5" PointX="15.75" PointY="52.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.VOTING_CHOICES" Width="1.5" PointX="12.75" PointY="55.625" IsExpanded="true" />
         <AssociationConnector Association="Model.ADMINS_NEWS_CATS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ADMINS_SCHOOLS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ADMINS_USERS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ALLOWED_CATS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ALLOWED_CATS_FK2" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ANSWERS_USERS_DOC_ANSWERS_FK1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ANSWERS_USERS_FK1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ANSWERS_USERS_FK2" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ANSWERS_USERS_QUESTION_FK1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.ANSWERS_USERS_USERS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ATTACHMENTS_MESSAGES_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.CLASSES_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.CLASSES_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.MESSAGES_FK3" ManuallyRouted="false" />
         <AssociationConnector Association="Model.NEWS_ACL_CLASSES_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SESSIONS_FK3" ManuallyRouted="false" />
         <AssociationConnector Association="Model.STUDENTS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SUBJECTS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.DOC_ANSWERS_DOC_QUESTIONS_FK1" ManuallyRouted="false" />
@@ -73,6 +72,7 @@
         <AssociationConnector Association="Model.MESSAGES_FK4" ManuallyRouted="false" />
         <AssociationConnector Association="Model.NEWS_ACL_GROUPS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.JOIN_GROUPS_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.LESSONS_SECTIONS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.MESSAGE_RECIPIENTS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.MESSAGE_RECIPIENTS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.MESSAGES_FK1" ManuallyRouted="false" />
@@ -91,10 +91,15 @@
         <AssociationConnector Association="Model.PARENTS_SCHOOLS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.PARENTS_USERS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.STUDENTS_PARENTS_PARENTS_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.RESOURCES_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SESSIONS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.STUDENTS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.SUBJECTS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.TEACHERS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.USERSID_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.SESSIONS_FK4" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.STUDENT_SESSION_DETAILS_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.STUDENT_SESSION_DETAILS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.STUDENT_SUBJECTS_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.STUDENT_SUBJECTS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.STUDENTS_EXAM_FK2" ManuallyRouted="false" />
@@ -107,6 +112,36 @@
         <AssociationConnector Association="Model.TEACHERS_FK2" ManuallyRouted="false" />
         <AssociationConnector Association="Model.USER_VOTES_FK1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.USER_VOTES_FK2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.LESSONS" Width="1.5" PointX="26.25" PointY="41.625" />
+        <AssociationConnector Association="Model.LESSONS_FK3" />
+        <AssociationConnector Association="Model.LESSONS_FK1" />
+        <AssociationConnector Association="Model.LESSONS_FK4" />
+        <AssociationConnector Association="Model.LESSONS_FK5" />
+        <AssociationConnector Association="Model.LESSONS_FK6" />
+        <AssociationConnector Association="Model.LESSONS_SECTIONS_FK1" />
+        <EntityTypeShape EntityType="Model.ANSWERS_USERS" Width="1.5" PointX="24" PointY="42.375" />
+        <AssociationConnector Association="Model.ANSWERS_USERS_DOC_ANSWERS_FK1" />
+        <AssociationConnector Association="Model.ANSWERS_USERS_FK1" />
+        <AssociationConnector Association="Model.ANSWERS_USERS_FK2" />
+        <AssociationConnector Association="Model.ANSWERS_USERS_QUESTION_FK1" />
+        <AssociationConnector Association="Model.ANSWERS_USERS_USERS_FK1" />
+        <EntityTypeShape EntityType="Model.COURSES" Width="1.5" PointX="29.25" PointY="42.625" />
+        <AssociationConnector Association="Model.COURSES_FK3" />
+        <AssociationConnector Association="Model.COURSES_FK1" />
+        <AssociationConnector Association="Model.COURSES_FK2" />
+        <EntityTypeShape EntityType="Model.HOLYDAYS" Width="1.5" PointX="3" PointY="41.75" />
+        <AssociationConnector Association="Model.HOLYDAYS_FK1" />
+        <EntityTypeShape EntityType="Model.HEADLINES" Width="1.5" PointX="14.75" PointY="29.625" />
+        <EntityTypeShape EntityType="Model.SUB_HEADLINES" Width="1.5" PointX="17" PointY="29.75" />
+        <AssociationConnector Association="Model.HADLINES_FK1" />
+        <AssociationConnector Association="Model.SUB_HEADLINES_FK1" />
+        <EntityTypeShape EntityType="Model.RESOURCES_LINKS" Width="1.5" PointX="5.25" PointY="62.125" />
+        <AssociationConnector Association="Model.RESOURCES_LINKS_FK1" />
+        <EntityTypeShape EntityType="Model.EDUCATION_YEARS" Width="1.5" PointX="3" PointY="37.625" />
+        <AssociationConnector Association="Model.EDUCATION_YEARS_FK1" />
+        <AssociationConnector Association="Model.LESSONS_FK2" />
+        <AssociationConnector Association="Model.RESOURCES_FK2" />
+        <AssociationConnector Association="Model.SESSIONS_FK2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,8 +18,6 @@ namespace SchoolAPI.Models.MD
         {
             this.ADMINS = new HashSet<ADMINS>();
             this.ALLOWED_CATS = new HashSet<ALLOWED_CATS>();
-            this.ANSWERS_USERS = new HashSet<ANSWERS_USERS>();
-            this.ANSWERS_USERS1 = new HashSet<ANSWERS_USERS>();
             this.DOCUMENT_USER = new HashSet<DOCUMENT_USER>();
             this.GROUP_MEMBERS = new HashSet<GROUP_MEMBERS>();
             this.JOIN_GROUPS = new HashSet<JOIN_GROUPS>();
@@ -31,6 +29,8 @@ namespace SchoolAPI.Models.MD
             this.STUDENTS_NOTES = new HashSet<STUDENTS_NOTES>();
             this.TEACHERS = new HashSet<TEACHERS>();
             this.USER_VOTES = new HashSet<USER_VOTES>();
+            this.ANSWERS_USERS = new HashSet<ANSWERS_USERS>();
+            this.ANSWERS_USERS1 = new HashSet<ANSWERS_USERS>();
         }
     
         public Nullable<int> SCHOOL_ID { get; set; }
@@ -48,8 +48,6 @@ namespace SchoolAPI.Models.MD
     
         public virtual ICollection<ADMINS> ADMINS { get; set; }
         public virtual ICollection<ALLOWED_CATS> ALLOWED_CATS { get; set; }
-        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
-        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS1 { get; set; }
         public virtual ICollection<DOCUMENT_USER> DOCUMENT_USER { get; set; }
         public virtual ICollection<GROUP_MEMBERS> GROUP_MEMBERS { get; set; }
         public virtual ICollection<JOIN_GROUPS> JOIN_GROUPS { get; set; }
@@ -63,5 +61,7 @@ namespace SchoolAPI.Models.MD
         public virtual ICollection<STUDENTS_NOTES> STUDENTS_NOTES { get; set; }
         public virtual ICollection<TEACHERS> TEACHERS { get; set; }
         public virtual ICollection<USER_VOTES> USER_VOTES { get; set; }
+        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
+        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS1 { get; set; }
     }
 }

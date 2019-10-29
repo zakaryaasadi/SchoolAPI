@@ -25,20 +25,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ANSWERS_USERS">
-      <EntityTypeMapping TypeName="Model.ANSWERS_USERS">
-        <MappingFragment StoreEntitySet="ANSWERS_USERS">
-          <ScalarProperty Name="ANSWER_USER_ID" ColumnName="ANSWER_USER_ID" />
-          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
-          <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
-          <ScalarProperty Name="IS_CHECKED" ColumnName="IS_CHECKED" />
-          <ScalarProperty Name="USER_ANSWER" ColumnName="USER_ANSWER" />
-          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
-          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
-          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ATTACHMENTS">
       <EntityTypeMapping TypeName="Model.ATTACHMENTS">
         <MappingFragment StoreEntitySet="ATTACHMENTS">
@@ -153,6 +139,19 @@
           <ScalarProperty Name="JOIN_GROUP_ID" ColumnName="JOIN_GROUP_ID" />
           <ScalarProperty Name="GROUP_ID" ColumnName="GROUP_ID" />
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LESSONS_SECTIONS">
+      <EntityTypeMapping TypeName="Model.LESSONS_SECTIONS">
+        <MappingFragment StoreEntitySet="LESSONS_SECTIONS">
+          <ScalarProperty Name="LESSON_SECTION_ID" ColumnName="LESSON_SECTION_ID" />
+          <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+          <ScalarProperty Name="RESOURCE_ID" ColumnName="RESOURCE_ID" />
+          <ScalarProperty Name="ORDR" ColumnName="ORDR" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="TEACHER" ColumnName="TEACHER" />
+          <ScalarProperty Name="STUDENTS" ColumnName="STUDENTS" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -305,6 +304,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="RESOURCES">
+      <EntityTypeMapping TypeName="Model.RESOURCES">
+        <MappingFragment StoreEntitySet="RESOURCES">
+          <ScalarProperty Name="RESOURCE_ID" ColumnName="RESOURCE_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="EDUCATION_YEAR_ID" ColumnName="EDUCATION_YEAR_ID" />
+          <ScalarProperty Name="RESOURCE_TYPE_ID" ColumnName="RESOURCE_TYPE_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="OBJECTIVE" ColumnName="OBJECTIVE" />
+          <ScalarProperty Name="ATTACHMENT" ColumnName="ATTACHMENT" />
+          <ScalarProperty Name="ATTACHMENT_NAME" ColumnName="ATTACHMENT_NAME" />
+          <ScalarProperty Name="ATTACHMENT_EXT" ColumnName="ATTACHMENT_EXT" />
+          <ScalarProperty Name="ATTACHMENT_TYPE" ColumnName="ATTACHMENT_TYPE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SCHOOLS">
       <EntityTypeMapping TypeName="Model.SCHOOLS">
         <MappingFragment StoreEntitySet="SCHOOLS">
@@ -328,6 +345,33 @@
           <ScalarProperty Name="TYPE" ColumnName="TYPE" />
           <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
           <ScalarProperty Name="SESSION_DURATION" ColumnName="SESSION_DURATION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SESSIONS">
+      <EntityTypeMapping TypeName="Model.SESSIONS">
+        <MappingFragment StoreEntitySet="SESSIONS">
+          <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="EDUCATION_YEAR_ID" ColumnName="EDUCATION_YEAR_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="OBJECTIVE" ColumnName="OBJECTIVE" />
+          <ScalarProperty Name="ORDR" ColumnName="ORDR" />
+          <ScalarProperty Name="EXPECTED_DATE" ColumnName="EXPECTED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STUDENT_SESSION_DETAILS">
+      <EntityTypeMapping TypeName="Model.STUDENT_SESSION_DETAILS">
+        <MappingFragment StoreEntitySet="STUDENT_SESSION_DETAILS">
+          <ScalarProperty Name="STU_SESS_ID" ColumnName="STU_SESS_ID" />
+          <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="EXIST" ColumnName="EXIST" />
+          <ScalarProperty Name="NOTES" ColumnName="NOTES" />
+          <ScalarProperty Name="LATE" ColumnName="LATE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -409,6 +453,7 @@
           <ScalarProperty Name="EXPIRE_DATE" ColumnName="EXPIRE_DATE" />
           <ScalarProperty Name="START_DATE" ColumnName="START_DATE" />
           <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+          <ScalarProperty Name="SUBJECT_HOURS" ColumnName="SUBJECT_HOURS" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -483,6 +528,64 @@
           <ScalarProperty Name="CHOICE" ColumnName="CHOICE" />
           <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
           <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LESSONS">
+      <EntityTypeMapping TypeName="Model.LESSONS">
+        <MappingFragment StoreEntitySet="LESSONS">
+          <ScalarProperty Name="SESSION_ID" ColumnName="SESSION_ID" />
+          <ScalarProperty Name="ISSUE_DATE" ColumnName="ISSUE_DATE" />
+          <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+          <ScalarProperty Name="ORDR" ColumnName="ORDR" />
+          <ScalarProperty Name="DURATION" ColumnName="DURATION" />
+          <ScalarProperty Name="OBJECTIVE" ColumnName="OBJECTIVE" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="EDUCATION_YEAR_ID" ColumnName="EDUCATION_YEAR_ID" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="LESSON_ID" ColumnName="LESSON_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ANSWERS_USERS">
+      <EntityTypeMapping TypeName="Model.ANSWERS_USERS">
+        <MappingFragment StoreEntitySet="ANSWERS_USERS">
+          <ScalarProperty Name="STUDENT_ID" ColumnName="STUDENT_ID" />
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="USER_ANSWER" ColumnName="USER_ANSWER" />
+          <ScalarProperty Name="IS_CHECKED" ColumnName="IS_CHECKED" />
+          <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ANSWER_USER_ID" ColumnName="ANSWER_USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COURSES">
+      <EntityTypeMapping TypeName="Model.COURSES">
+        <MappingFragment StoreEntitySet="COURSES">
+          <ScalarProperty Name="SUBJECT_ID" ColumnName="SUBJECT_ID" />
+          <ScalarProperty Name="IS_MANUALLY" ColumnName="IS_MANUALLY" />
+          <ScalarProperty Name="CLASS_ID" ColumnName="CLASS_ID" />
+          <ScalarProperty Name="TEACHER_ID" ColumnName="TEACHER_ID" />
+          <ScalarProperty Name="ORDER_IN_WEEK" ColumnName="ORDER_IN_WEEK" />
+          <ScalarProperty Name="DAY_OF_THE_WEEK" ColumnName="DAY_OF_THE_WEEK" />
+          <ScalarProperty Name="COURSE_ID" ColumnName="COURSE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOLYDAYS">
+      <EntityTypeMapping TypeName="Model.HOLYDAYS">
+        <MappingFragment StoreEntitySet="HOLYDAYS">
+          <ScalarProperty Name="MAIN_ID" ColumnName="MAIN_ID" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="HOLYDAY_DATE" ColumnName="HOLYDAY_DATE" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="SCHOOL_ID" ColumnName="SCHOOL_ID" />
+          <ScalarProperty Name="HOLYDAY_ID" ColumnName="HOLYDAY_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

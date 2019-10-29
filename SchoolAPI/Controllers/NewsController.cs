@@ -10,6 +10,7 @@ using SchoolAPI.Views;
 using System.Linq.Expressions;
 using SchoolAPI.ModelView;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SchoolAPI.Controllers
 {
@@ -195,11 +196,45 @@ namespace SchoolAPI.Controllers
                 }
 
             }
-
-
-
             return Ok();
         }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> AddVideo()
+        {
+            if (!Request.Content.IsMimeMultipartContent())
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+
+            var provider = new MultipartMemoryStreamProvider();
+
+            var news_id = Request.Headers.GetValues("news_id").First();
+            int newsId = int.Parse(news_id);
+
+
+            await Request.Content.ReadAsMultipartAsync(provider);
+            foreach (var file in provider.Contents)
+            {
+                var filename = file.Headers.ContentDisposition.FileName.Trim('\"');
+                var buffer = await file.ReadAsByteArrayAsync();
+                //Do whatever you want with filename and its binary data.
+                using (Entities e = new Entities())
+                {
+                    var id = e.NEWS_MEDIAS.Max(n => n.NEWS_MEDIA_ID) + 1;
+                    var fileName = id + ".mp4";
+                    var _media = new NEWS_MEDIAS() { NEWS_MEDIA_ID = id, NEWS_ID = newsId, TYPE = 3, NAME = fileName };
+                    e.NEWS_MEDIAS.Add(_media);
+                    e.SaveChanges();
+
+                    string path = HttpContext.Current.Server.MapPath("~");
+                    string pathVideo = path + @"videos\" + fileName;
+                    System.IO.File.WriteAllBytes(pathVideo, buffer);
+                }
+
+            }
+            return Ok();
+        }
+
 
 
 
@@ -210,7 +245,7 @@ namespace SchoolAPI.Controllers
             {
                 using (Entities entities = new Entities())
                 {
-                    Expression<Func<NEWS, bool>> expr = n => n.SCHOOL_ID == school_id && n.USER_ID == user_id && n.ACCESSIBILITY == 1 && n.APPROVED == 1;
+                    Expression<Func<NEWS, bool>> expr = n => n.SCHOOL_ID == school_id && n.USER_ID == user_id ;
                     var numNews = entities.NEWS.Where(expr).Count();
                     int numTotalPage = (int)Math.Ceiling(numNews / 10.0);
 

@@ -28,7 +28,7 @@ namespace SchoolAPI.Models
         public bool sharable { get; set; }
         public DateTime? eventDate { get; set; }
 
-
+        public List<MediaClass> media { get; set; }
 
     }
 

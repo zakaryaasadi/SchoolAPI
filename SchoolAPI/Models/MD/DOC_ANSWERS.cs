@@ -23,7 +23,7 @@ namespace SchoolAPI.Models.MD
         public string VALUE { get; set; }
         public Nullable<int> QUESTION_ID { get; set; }
     
-        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
         public virtual DOC_QUESTIONS DOC_QUESTIONS { get; set; }
+        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
     }
 }

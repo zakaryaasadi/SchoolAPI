@@ -27,7 +27,6 @@ namespace SchoolAPI.Models.MD
     
         public DbSet<ADMINS> ADMINS { get; set; }
         public DbSet<ALLOWED_CATS> ALLOWED_CATS { get; set; }
-        public DbSet<ANSWERS_USERS> ANSWERS_USERS { get; set; }
         public DbSet<ATTACHMENTS> ATTACHMENTS { get; set; }
         public DbSet<CLASSES> CLASSES { get; set; }
         public DbSet<DOC_ANSWERS> DOC_ANSWERS { get; set; }
@@ -39,6 +38,7 @@ namespace SchoolAPI.Models.MD
         public DbSet<GROUP_MEMBERS> GROUP_MEMBERS { get; set; }
         public DbSet<GROUPS> GROUPS { get; set; }
         public DbSet<JOIN_GROUPS> JOIN_GROUPS { get; set; }
+        public DbSet<LESSONS_SECTIONS> LESSONS_SECTIONS { get; set; }
         public DbSet<MESSAGE_RECIPIENTS> MESSAGE_RECIPIENTS { get; set; }
         public DbSet<MESSAGES> MESSAGES { get; set; }
         public DbSet<NEWS> NEWS { get; set; }
@@ -49,7 +49,10 @@ namespace SchoolAPI.Models.MD
         public DbSet<NEWS_MEDIAS> NEWS_MEDIAS { get; set; }
         public DbSet<NEWS_SUB_CATS> NEWS_SUB_CATS { get; set; }
         public DbSet<PARENTS> PARENTS { get; set; }
+        public DbSet<RESOURCES> RESOURCES { get; set; }
         public DbSet<SCHOOLS> SCHOOLS { get; set; }
+        public DbSet<SESSIONS> SESSIONS { get; set; }
+        public DbSet<STUDENT_SESSION_DETAILS> STUDENT_SESSION_DETAILS { get; set; }
         public DbSet<STUDENT_SUBJECTS> STUDENT_SUBJECTS { get; set; }
         public DbSet<STUDENTS> STUDENTS { get; set; }
         public DbSet<STUDENTS_EXAM> STUDENTS_EXAM { get; set; }
@@ -61,5 +64,13 @@ namespace SchoolAPI.Models.MD
         public DbSet<USER_VOTES> USER_VOTES { get; set; }
         public DbSet<USERS> USERS { get; set; }
         public DbSet<VOTING_CHOICES> VOTING_CHOICES { get; set; }
+        public DbSet<LESSONS> LESSONS { get; set; }
+        public DbSet<ANSWERS_USERS> ANSWERS_USERS { get; set; }
+        public DbSet<COURSES> COURSES { get; set; }
+        public DbSet<HOLYDAYS> HOLYDAYS { get; set; }
+        public DbSet<HEADLINES> HEADLINES { get; set; }
+        public DbSet<SUB_HEADLINES> SUB_HEADLINES { get; set; }
+        public DbSet<RESOURCES_LINKS> RESOURCES_LINKS { get; set; }
+        public DbSet<EDUCATION_YEARS> EDUCATION_YEARS { get; set; }
     }
 }

@@ -17,6 +17,8 @@ namespace SchoolAPI.Models.MD
         public TEACHERS()
         {
             this.TEACHER_SUBJECTS = new HashSet<TEACHER_SUBJECTS>();
+            this.LESSONS = new HashSet<LESSONS>();
+            this.COURSES = new HashSet<COURSES>();
         }
     
         public int TEACHER_ID { get; set; }
@@ -42,5 +44,7 @@ namespace SchoolAPI.Models.MD
         public virtual SCHOOLS SCHOOLS { get; set; }
         public virtual ICollection<TEACHER_SUBJECTS> TEACHER_SUBJECTS { get; set; }
         public virtual USERS USERS { get; set; }
+        public virtual ICollection<LESSONS> LESSONS { get; set; }
+        public virtual ICollection<COURSES> COURSES { get; set; }
     }
 }

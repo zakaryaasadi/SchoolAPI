@@ -16,8 +16,8 @@ namespace SchoolAPI.Models.MD
     {
         public DOC_QUESTIONS()
         {
-            this.ANSWERS_USERS = new HashSet<ANSWERS_USERS>();
             this.DOC_ANSWERS = new HashSet<DOC_ANSWERS>();
+            this.ANSWERS_USERS = new HashSet<ANSWERS_USERS>();
         }
     
         public int QUESTION_ID { get; set; }
@@ -25,8 +25,8 @@ namespace SchoolAPI.Models.MD
         public int TYPE { get; set; }
         public int DOCUMENT_ID { get; set; }
     
-        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
         public virtual ICollection<DOC_ANSWERS> DOC_ANSWERS { get; set; }
         public virtual DOCUMENTS DOCUMENTS { get; set; }
+        public virtual ICollection<ANSWERS_USERS> ANSWERS_USERS { get; set; }
     }
 }

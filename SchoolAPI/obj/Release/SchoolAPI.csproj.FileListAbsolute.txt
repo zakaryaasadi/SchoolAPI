@@ -245,3 +245,8 @@ G:\Projects\SchoolAPI\SchoolAPI\obj\Release\SchoolAPI.dll
 G:\Projects\SchoolAPI\SchoolAPI\obj\Release\SchoolAPI.pdb
 G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AspNet.Identity.Core.dll
 G:\Projects\SchoolAPI\SchoolAPI\bin\Microsoft.AspNet.Identity.Core.xml
+G:\Projects\SchoolAPI\SchoolAPI\bin\NReco.VideoConverter.dll
+G:\Projects\SchoolAPI\SchoolAPI\bin\NReco.VideoConverter.xml
+G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Cors.dll
+G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.Cors.dll
+G:\Projects\SchoolAPI\SchoolAPI\bin\System.Web.Http.Cors.xml
